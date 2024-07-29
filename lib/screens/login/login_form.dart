@@ -142,6 +142,7 @@ class LoginForm extends GetView<LoginController> {
                               ),
                             ),
                             GetBuilder<LoginController>(
+                              id: 'pass_icon',
                               builder: (_) {
                                 return MytextFormFiled(
                                   obscureText: controller.showPass,
