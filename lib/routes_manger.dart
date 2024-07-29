@@ -1,12 +1,14 @@
+import 'package:control_examination/screens/home/home_screen.dart';
 import 'package:control_examination/screens/login/login_screen.dart';
 import 'package:get/get.dart';
 
 import 'bindings/bindings.dart';
 
 class Routes {
-  static const String initialRoute = "/loginScreen";
+  static const String initialRoute = "/homeScreen";
   static const String loginRoute = "/loginScreen";
   static const String loginForm = "/loginForm";
+  static const String homeScreen = "/homeScreen";
 
   // static const String nextExams = "/NextExams";
   // static const String allExams = "/AllExams";
@@ -19,6 +21,13 @@ class Routes {
       page: () => const LoginScreen(),
       transition: Transition.fade,
       binding: LoginBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: homeScreen,
+      page: () => const HomeScreen(),
+      transition: Transition.fade,
+      binding: HomeBindings(),
       transitionDuration: const Duration(seconds: 1),
     ),
     // GetPage(
