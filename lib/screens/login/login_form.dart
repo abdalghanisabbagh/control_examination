@@ -1,3 +1,4 @@
+import 'package:control_examination/routes_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,8 @@ void _login(
             ? {
                 MyFlashBar.showSuccess(
                         'You have been logged in successfully', 'Success')
-                    .show(context)
+                    .show(context),
+                Get.offAllNamed(Routes.homeScreen),
               }
             : null;
       },
@@ -241,7 +243,7 @@ class LoginForm extends GetView<LoginController> {
                               height: 32,
                             ),
                             GetBuilder<LoginController>(
-                              id: 'login_btn',
+                              id: 'login_button',
                               builder: (_) {
                                 return controller.isLoading
                                     ? SizedBox(

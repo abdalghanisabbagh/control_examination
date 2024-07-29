@@ -21,7 +21,7 @@ class LoginController extends GetxController {
 
   Future<bool> login(String username, String password) async {
     isLoading = true;
-    update();
+    update(['login_button']);
     ResponseHandler<LoginResModel> responseHandler = ResponseHandler();
 
     var response = await responseHandler.getResponse(
@@ -52,11 +52,12 @@ class LoginController extends GetxController {
     });
 
     isLoading = false;
-    update();
+    update(['login_button']);
     return isLogin;
   }
 
   setShowPass() {
     showPass = !showPass;
+    update(['pass_icon']);
   }
 }
