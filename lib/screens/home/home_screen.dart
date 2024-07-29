@@ -1,9 +1,11 @@
 import 'package:control_examination/configurations/constants/assets.dart';
+import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/resource_manager/index.dart';
+import 'package:control_examination/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/home/home_controller.dart';
+import '../../routes_manger.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
@@ -187,7 +189,13 @@ class HomeScreen extends GetView<HomeController> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          await Get.find<ProfileController>()
+                              .deleteProfileFromHiveBox();
+                          await Get.find<TokenService>()
+                              .deleteTokenModelFromHiveBox();
+                          Get.offAllNamed(Routes.loginRoute);
+                        },
                         child: Icon(
                           Icons.logout_outlined,
                           color: ColorManager.white,
