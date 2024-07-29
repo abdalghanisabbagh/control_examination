@@ -73,6 +73,7 @@ class ColorManager {
   static const Color primary = Color(0xff001F44);
 
   static Color processingStatus = const Color(0xffFFDD00);
+  static Color ornage = const Color(0xffD09757);
   static Color red = const Color(0xffb22222);
   static Color redWith10opc = const Color(0x9AB5191A); // ff=>CC opactiy 80%
   static Color subtitle1 = Colors.white;
