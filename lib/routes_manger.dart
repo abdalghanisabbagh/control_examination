@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'bindings/bindings.dart';
 
 class Routes {
-  static const String initialRoute = "/homeScreen";
+  static const String initialRoute = "/loginScreen";
   static const String loginRoute = "/loginScreen";
   static const String loginForm = "/loginForm";
   static const String homeScreen = "/homeScreen";
