@@ -1,15 +1,21 @@
 import 'package:get/get.dart';
 
-import '../controllers/login_controller.dart';
-import '../controllers/profile_controller.dart';
-import '../controllers/side_menu_controller.dart';
+import '../controllers/controllers.dart';
 import '../services/token_service.dart';
 
+class HomeBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<HomeController>(
+      () => HomeController(),
+      fenix: true,
+    );
+  }
+}
 
 class InitialBindings extends Bindings {
   @override
   void dependencies() {
-   
     Get.put(
       TokenService(),
       permanent: true,
