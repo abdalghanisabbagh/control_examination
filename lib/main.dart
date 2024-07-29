@@ -9,7 +9,6 @@ Future<void> main() async {
     Hive.initFlutter(),
     Hive.openBox('Token'),
     Hive.openBox('Profile'),
-    Hive.openBox('StudentsInExamRoom'),
   ]);
 
   runApp(MyApp());
