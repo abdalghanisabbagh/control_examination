@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../controllers/controllers.dart';
+import '../controllers/home/home_controller.dart';
 import '../services/token_service.dart';
 
 class HomeBindings extends Bindings {
