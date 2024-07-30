@@ -79,7 +79,7 @@ class LoginForm extends GetView<LoginController> {
                     : size.height > 670
                         ? 0.9
                         : 0.8),
-            width: 450,
+            width: 500,
             child: Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -93,7 +93,7 @@ class LoginForm extends GetView<LoginController> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              "Control System",
+                              "Welcome To Nis Examination Center",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 25,
