@@ -12,6 +12,33 @@ class AuthLinks {
   static const user = 'users';
   static const userAddRoles = 'users/add-roles';
   static const usersAddSchools = 'users/add-schools';
+  static const String studentLogin = 'auth/studentLoginForExam';
+}
+
+class ControlMissionLinks {
+  static const controlMission = 'control-mission';
+  static const controlMissionEducationYear = 'education-year';
+  static const controlMissionSchool = '$controlMission/school';
+  static const studentSeatNumbers = '$controlMission/student-seat-numbers';
+}
+
+class EducationYearsLinks {
+  static const educationyear = 'education-year';
+}
+
+class ExamLinks {
+  static const examMission = 'exam-mission';
+  static const examMissionUpload = 'exam-mission/upload';
+  static const examMissionControlMission = 'exam-mission/control-mission';
+  static const examMissionSubject = 'exam-mission/subject';
+  static const examRooms = 'exam-rooms';
+  static const examRoomsControlMission = 'exam-rooms/control-mission';
+  static const examRoomsSchoolClass = 'exam-rooms/school-class';
+  static const examRoomNextExam = 'exam-rooms/next-exams';
+}
+
+class ProctorsLinks {
+  static const proctor = 'proctor';
 }
 
 class SchoolsLinks {
@@ -29,6 +56,10 @@ class SchoolsLinks {
   static const schoolsType = 'school-type';
   static const subject = 'subject';
   static const subjects = 'subjects';
+}
+
+class Stage {
+  static const stage = 'stage';
 }
 
 class StudentsLinks {
@@ -49,39 +80,9 @@ class StudentsLinks {
   static const studentsClass = 'student/class';
 }
 
-class EducationYearsLinks {
-  static const educationyear = 'education-year';
-}
-
-class ControlMissionLinks {
-  static const controlMission = 'control-mission';
-  static const controlMissionEducationYear = 'education-year';
-  static const controlMissionSchool = '$controlMission/school';
-  static const studentSeatNumbers = '$controlMission/student-seat-numbers';
-}
-
-class ExamLinks {
-  static const examMission = 'exam-mission';
-  static const examMissionUpload = 'exam-mission/upload';
-  static const examMissionControlMission = 'exam-mission/control-mission';
-  static const examMissionSubject = 'exam-mission/subject';
-  static const examRooms = 'exam-rooms';
-  static const examRoomsControlMission = 'exam-rooms/control-mission';
-  static const examRoomsSchoolClass = 'exam-rooms/school-class';
-  static const examRoomNextExam = 'exam-rooms/next-exams';
-}
-
 class UserRolesSystemsLink {
   static const screen = 'user-roles-systems/screen';
   static const userRolesSystems = 'user-roles-systems';
   static const userRolesSystemsConnectRolesTOScreens =
       'user-roles-systems/connect-roles-to-screens';
-}
-
-class Stage {
-  static const stage = 'stage';
-}
-
-class ProctorsLinks {
-  static const proctor = 'proctor';
 }

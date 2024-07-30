@@ -25,7 +25,7 @@ class LoginController extends GetxController {
     ResponseHandler<LoginResModel> responseHandler = ResponseHandler();
 
     var response = await responseHandler.getResponse(
-      path: "${AuthLinks.login}?mobile=1",
+      path: AuthLinks.studentLogin,
       converter: LoginResModel.fromJson,
       type: ReqTypeEnum.POST,
       body: {
