@@ -1,3 +1,62 @@
-import 'package:get/get.dart';
+import 'dart:async';
 
-class HomeController extends GetxController {}
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:control_examination/models/server_clock_model.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+import '../../configurations/app_links.dart';
+import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/enums/req_type_enum.dart';
+import '../../tools/response_handler.dart';
+
+class HomeController extends GetxController {
+  Timer? serverCLock;
+  int timerCounter = 0;
+  String serverTime = '00:00';
+  DateTime? serveclock;
+  @override
+  void onInit() {
+    getServerClock();
+    super.onInit();
+  }
+
+  Future<void> getServerClock() async {
+    ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
+
+    var response = await responseHandler.getResponse(
+      path: AppLinks.baseUrl,
+      converter: ServerClockResModel.fromJson,
+      type: ReqTypeEnum.GET,
+    );
+
+    response.fold((fauilr) {
+      /// handel error
+      MyAwesomeDialogue(
+        title: 'Error',
+        desc: "${fauilr.code} ::${fauilr.message}",
+        dialogType: DialogType.error,
+      ).showDialogue(Get.key.currentContext!);
+    }, (result) {
+      print(result.data);
+      startServerClock(result.data);
+      update();
+    });
+  }
+
+  void startServerClock(String? servertimeString) async {
+    if (servertimeString != null) {
+      DateTime servertimeDate = DateTime.parse(servertimeString)
+          .toUtc();
+      timerCounter = servertimeDate.millisecondsSinceEpoch;
+      serverCLock = Timer.periodic(const Duration(seconds: 1), (timer) {
+        timerCounter += 1000;
+        serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter).toUtc();
+        serverTime = DateFormat('HH:mm:ss')
+            .format(serveclock!);  
+        print(serverTime);
+        update();
+      });
+    }
+  }
+}

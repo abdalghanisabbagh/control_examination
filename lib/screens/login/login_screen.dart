@@ -84,8 +84,7 @@ class LoginScreen extends GetView<LoginController> {
                         : 16,
               ),
               child: GetBuilder<LoginController>(
-                builder: (_) =>
-                    controller.isLogin ? const Text("data") : LoginForm(),
+                builder: (_) => LoginForm(),
               ),
             )
           ],
