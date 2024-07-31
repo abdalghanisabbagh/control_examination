@@ -194,10 +194,13 @@ class HomeScreen extends GetView<HomeController> {
                             ),
                             InkWell(
                               onTap: () async {
+                                controller.stopServerClock();
+
                                 await Get.find<ProfileController>()
                                     .deleteProfileFromHiveBox();
                                 await Get.find<TokenService>()
                                     .deleteTokenModelFromHiveBox();
+
                                 Get.offAllNamed(Routes.loginRoute);
                               },
                               child: Icon(
