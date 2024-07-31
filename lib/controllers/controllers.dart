@@ -1,3 +1,4 @@
+export 'exam_mission_controller.dart';
 export 'home/home.dart';
 export 'login_controller.dart';
 export 'profile_controller.dart';
