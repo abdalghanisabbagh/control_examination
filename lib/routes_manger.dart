@@ -3,12 +3,14 @@ import 'package:control_examination/screens/login/login_screen.dart';
 import 'package:get/get.dart';
 
 import 'bindings/bindings.dart';
+import 'screens/student_exam_waiting/student_exam_waiting_screen.dart';
 
 class Routes {
   static const String initialRoute = "/loginScreen";
   static const String loginRoute = "/loginScreen";
   static const String loginForm = "/loginForm";
   static const String homeScreen = "/homeScreen";
+  static const String studentExamScreenWaiting = "/studentExamScreenWaiting";
 
   // static const String nextExams = "/NextExams";
   // static const String allExams = "/AllExams";
@@ -28,6 +30,14 @@ class Routes {
       page: () => const HomeScreen(),
       transition: Transition.fade,
       binding: HomeBindings(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: studentExamScreenWaiting,
+      page: () => const StudentExamWaitingScreen(),
+      transition: Transition.fade,
+      binding: HomeBindings(),
+      bindings: [WebSocketBinding()],
       transitionDuration: const Duration(seconds: 1),
     ),
     // GetPage(
