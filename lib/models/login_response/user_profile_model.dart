@@ -1,3 +1,4 @@
+import 'package:control_examination/models/barcodes/barcodes_res_model.dart';
 import 'package:control_examination/models/school/school_res_model.dart';
 
 import '../grade_response/grade_res_model.dart';
@@ -13,6 +14,7 @@ class UserProfileModel {
   String? cohortName;
   String? userName;
   // CohortResModel? cohortResModel;
+  BarcodesResModel? barcodesResModel;
   String? createdAt;
   int? createdBy;
   String? email;
@@ -53,6 +55,7 @@ class UserProfileModel {
     this.updatedAt,
     this.gradeResModel,
     this.schoolResModel,
+    this.barcodesResModel,
     // this.classRoomResModel,
     // this.cohortResModel,
     this.active,
@@ -82,6 +85,9 @@ class UserProfileModel {
     schoolResModel = json['schools'] == null
         ? null
         : SchoolResModel.fromJson(json['schools']);
+    barcodesResModel = json['student_barcode'] == null
+        ? null
+        : BarcodesResModel.fromJson(json['student_barcode']);
     // classRoomResModel = json['school_class'] == null
     //     ? null
     //     : ClassRoomResModel.fromJson(json['school_class']);
@@ -114,6 +120,9 @@ class UserProfileModel {
     }
     if (schoolResModel != null) {
       data['schools'] = schoolResModel!.toJson();
+    }
+    if (barcodesResModel != null) {
+      data['student_barcode'] = barcodesResModel!.toJson();
     }
     // if (classRoomResModel != null) {
     //   data['school_class'] = classRoomResModel!.toJson();

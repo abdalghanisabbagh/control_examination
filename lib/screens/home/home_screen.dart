@@ -111,13 +111,35 @@ class HomeScreen extends GetView<HomeController> {
                                         .studentExamsResModel!.exams!.length,
                                     (index) => InkWell(
                                       onTap: () {
-                                        Get.find<ExamMissionController>()
-                                            .saveExamMissionToHiveBox(controller
-                                                .studentExamsResModel!
-                                                .exams![index]
-                                                .examMission!);
-                                        Get.toNamed(
-                                            Routes.studentExamScreenWaiting);
+                                        if (DateTime.parse(controller
+                                                        .studentExamsResModel
+                                                        ?.exams?[index]
+                                                        .examMission
+                                                        ?.startTime ??
+                                                    DateTime.now().toString())
+                                                .toUtc()
+                                                .isAfter(
+                                                    DateTime.now().toUtc()) ||
+                                            DateTime.parse(controller
+                                                        .studentExamsResModel
+                                                        ?.exams?[index]
+                                                        .examMission
+                                                        ?.startTime ??
+                                                    DateTime.now().toString())
+                                                .toUtc()
+                                                .isBefore(DateTime.now()
+                                                    .toUtc()
+                                                    .subtract(const Duration(
+                                                        minutes: 15)))) {
+                                          Get.find<ExamMissionController>()
+                                              .saveExamMissionToHiveBox(
+                                                  controller
+                                                      .studentExamsResModel!
+                                                      .exams![index]
+                                                      .examMission!);
+                                          Get.toNamed(
+                                              Routes.studentExamScreenWaiting);
+                                        }
                                       },
                                       child: DecoratedBox(
                                         decoration: BoxDecoration(
@@ -129,9 +151,11 @@ class HomeScreen extends GetView<HomeController> {
                                                           .examMission
                                                           ?.endTime ??
                                                       DateTime.now().toString())
-                                                  .isAfter(DateTime.now())
-                                              ? ColorManager.greyA8
-                                              : ColorManager.red,
+                                                  .toUtc()
+                                                  .isBefore(
+                                                      DateTime.now().toUtc())
+                                              ? ColorManager.red
+                                              : ColorManager.greyA8,
                                         ),
                                         child: Row(
                                           children: [
