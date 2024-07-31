@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/models/server_clock_model.dart';
 import 'package:control_examination/models/student_exams/student_exams_res_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -39,7 +40,7 @@ class HomeController extends GetxController {
         dialogType: DialogType.error,
       ).showDialogue(Get.key.currentContext!);
     }, (result) {
-      print(result.data);
+      debugPrint(result.data);
       startServerClock(result.data);
       update();
     });
@@ -89,8 +90,19 @@ class HomeController extends GetxController {
         serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter).toUtc();
         serverTime = DateFormat('HH:mm:ss').format(serveclock!);
         print(serverTime);
+        serverTime = DateFormat('HH:mm:ss')
+            .format(serveclock!);  
+        debugPrint(serverTime);
         update();
       });
+    }
+  }
+   void stopServerClock() {
+    if (serverCLock != null) {
+      serverCLock!.cancel();
+      serverCLock = null;
+      debugPrint('Server clock stopped');
+      update();
     }
   }
 }
