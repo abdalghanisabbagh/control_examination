@@ -90,14 +90,14 @@ class HomeController extends GetxController {
         serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter).toUtc();
         serverTime = DateFormat('HH:mm:ss').format(serveclock!);
         print(serverTime);
-        serverTime = DateFormat('HH:mm:ss')
-            .format(serveclock!);  
+        serverTime = DateFormat('HH:mm:ss').format(serveclock!);
         debugPrint(serverTime);
         update();
       });
     }
   }
-   void stopServerClock() {
+
+  void stopServerClock() {
     if (serverCLock != null) {
       serverCLock!.cancel();
       serverCLock = null;
