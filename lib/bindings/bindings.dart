@@ -21,6 +21,11 @@ class InitialBindings extends Bindings {
       permanent: true,
     );
 
+    Get.put(
+      ExamMissionController(),
+      permanent: true,
+    );
+
     Get.put<ProfileController>(
       ProfileController(),
       permanent: true,

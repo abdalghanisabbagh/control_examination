@@ -76,103 +76,136 @@ class HomeScreen extends GetView<HomeController> {
                 ),
               ),
             ),
-            body: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: ColorManager.primary,
-                  ),
-                  child: SizedBox(
-                    width: Get.width * 0.26,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 20),
-                        Text(
-                          'Welcome To NIS Examination Center',
-                          style: nunitoBold.copyWith(
-                            color: ColorManager.white,
-                            fontSize: 20,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 20),
-                        SizedBox(
-                          height: Get.height * 0.65,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: List.generate(
-                                10,
-                                (index) => DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: index == 2
-                                        ? ColorManager.greyA8
-                                        : ColorManager.red,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: Get.width * 0.015,
-                                        height: Get.width * 0.06,
-                                      ),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            '2024/06/24',
-                                            style: nunitoLight.copyWith(
-                                              color: ColorManager.darkGrey2,
-                                              fontSize: 14,
+          ),
+          body: controller.loading
+              ? Center(
+                  child: LoadingIndicators.getLoadingIndicator(),
+                )
+              : Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    DecoratedBox(
+                      decoration: const BoxDecoration(
+                        color: ColorManager.primary,
+                      ),
+                      child: SizedBox(
+                        width: Get.width * 0.26,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: 20),
+                            Text(
+                              'Welcome To NIS Examination Center',
+                              style: nunitoBold.copyWith(
+                                color: ColorManager.white,
+                                fontSize: 20,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 20),
+                            SizedBox(
+                              height: Get.height * 0.65,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: List.generate(
+                                    controller
+                                        .studentExamsResModel!.exams!.length,
+                                    (index) => InkWell(
+                                      onTap: () {
+                                        Get.find<ExamMissionController>()
+                                            .saveExamMissionToHiveBox(controller
+                                                .studentExamsResModel!
+                                                .exams![index]
+                                                .examMission!);
+                                        Get.toNamed(
+                                            Routes.studentExamScreenWaiting);
+                                      },
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: DateTime.parse(controller
+                                                          .studentExamsResModel
+                                                          ?.exams?[index]
+                                                          .examMission
+                                                          ?.endTime ??
+                                                      DateTime.now().toString())
+                                                  .isAfter(DateTime.now())
+                                              ? ColorManager.greyA8
+                                              : ColorManager.red,
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: Get.width * 0.015,
+                                              height: Get.width * 0.06,
                                             ),
-                                          ),
-                                          Text(
-                                            '11:30',
-                                            style: nunitoLight.copyWith(
-                                              color: ColorManager.darkGrey2,
-                                              fontSize: 14,
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  '${controller.studentExamsResModel?.exams?[index].examMission?.startTime?.dateFormat}',
+                                                  style: nunitoLight.copyWith(
+                                                    color:
+                                                        ColorManager.darkGrey2,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '${controller.studentExamsResModel!.exams?[index].examMission?.startTime?.timeFormat}',
+                                                  style: nunitoLight.copyWith(
+                                                    color:
+                                                        ColorManager.darkGrey2,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            'Engilsh',
-                                            style: nunitoSemiBold.copyWith(
-                                              color: ColorManager.white,
-                                              fontSize: 16,
+                                            const Spacer(),
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  '${controller.studentExamsResModel!.exams?[index].examMission!.subjects?.name}',
+                                                  style:
+                                                      nunitoSemiBold.copyWith(
+                                                    color: ColorManager.white,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '${controller.studentExamsResModel!.exams?[index].examMission!.duration}',
+                                                  style:
+                                                      nunitoSemiBold.copyWith(
+                                                    color: ColorManager.white,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ),
-                                          Text(
-                                            '70 Minutes',
-                                            style: nunitoSemiBold.copyWith(
-                                              color: ColorManager.white,
-                                              fontSize: 14,
+                                            const Spacer(),
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  '${controller.studentExamsResModel?.exams?[index].examMission?.endTime?.dateFormat}',
+                                                  style: nunitoLight.copyWith(
+                                                    color:
+                                                        ColorManager.darkGrey2,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '${controller.studentExamsResModel?.exams?[index].examMission?.endTime?.timeFormat}',
+                                                  style: nunitoLight.copyWith(
+                                                    color:
+                                                        ColorManager.darkGrey2,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            '2024/06/24',
-                                            style: nunitoLight.copyWith(
-                                              color: ColorManager.darkGrey2,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                          Text(
-                                            '11:30',
-                                            style: nunitoLight.copyWith(
-                                              color: ColorManager.darkGrey2,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ],
+                                            const Spacer(),
+                                          ],
+                                        ),
                                       ),
                                       const Spacer(),
                                     ],
