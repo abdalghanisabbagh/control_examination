@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/models/server_clock_model.dart';
+import 'package:control_examination/models/student_exams/student_exams_res_model.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -11,16 +13,15 @@ import '../../resource_manager/enums/req_type_enum.dart';
 import '../../tools/response_handler.dart';
 
 class HomeController extends GetxController {
+  bool loading = false;
+
+  final userProfile = Get.find<ProfileController>().cachedUserProfile;
+
   Timer? serverCLock;
+  StudentExamsResModel? studentExamsResModel;
   int timerCounter = 0;
   String serverTime = '00:00';
   DateTime? serveclock;
-  @override
-  void onInit() {
-    getServerClock();
-    super.onInit();
-  }
-
   Future<void> getServerClock() async {
     ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
 
@@ -44,16 +45,49 @@ class HomeController extends GetxController {
     });
   }
 
+  Future<void> getStudentExams() async {
+    final responseHandler = ResponseHandler<StudentExamsResModel>();
+
+    var response = await responseHandler.getResponse(
+      path: StudentsLinks.studentExams,
+      converter: StudentExamsResModel.fromJson,
+      type: ReqTypeEnum.GET,
+    );
+
+    response.fold((l) {
+      MyAwesomeDialogue(
+        title: 'Error',
+        desc: l.message,
+        dialogType: DialogType.error,
+      ).showDialogue(Get.key.currentContext!);
+    }, (r) {
+      studentExamsResModel = r;
+    });
+    update();
+  }
+
+  @override
+  void onInit() async {
+    super.onInit();
+    loading = true;
+    update();
+    await Future.wait([
+      getServerClock(),
+      getStudentExams(),
+    ]);
+
+    loading = false;
+    update();
+  }
+
   void startServerClock(String? servertimeString) async {
     if (servertimeString != null) {
-      DateTime servertimeDate = DateTime.parse(servertimeString)
-          .toUtc();
+      DateTime servertimeDate = DateTime.parse(servertimeString).toUtc();
       timerCounter = servertimeDate.millisecondsSinceEpoch;
       serverCLock = Timer.periodic(const Duration(seconds: 1), (timer) {
         timerCounter += 1000;
         serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter).toUtc();
-        serverTime = DateFormat('HH:mm:ss')
-            .format(serveclock!);  
+        serverTime = DateFormat('HH:mm:ss').format(serveclock!);
         print(serverTime);
         update();
       });
