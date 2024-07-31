@@ -247,13 +247,9 @@ class LoginForm extends GetView<LoginController> {
                               id: 'login_button',
                               builder: (_) {
                                 return controller.isLoading
-                                    ? SizedBox(
-                                        width: 50,
-                                        height: 50,
-                                        child: FittedBox(
-                                          child: LoadingIndicators
-                                              .getLoadingIndicator(),
-                                        ),
+                                    ? FittedBox(
+                                        child: LoadingIndicators
+                                            .getLoadingIndicator(),
                                       )
                                     : SizedBox(
                                         width: double.infinity,
