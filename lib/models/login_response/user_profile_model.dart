@@ -1,3 +1,7 @@
+import 'package:control_examination/models/school/school_res_model.dart';
+
+import '../grade_response/grade_res_model.dart';
+
 class UserProfileModel {
   int? active;
 
@@ -7,13 +11,15 @@ class UserProfileModel {
 
   int? cohortID;
   String? cohortName;
+  String? userName;
   // CohortResModel? cohortResModel;
   String? createdAt;
   int? createdBy;
   String? email;
   String? firstName;
   String? gradeName;
-  // GradeResModel? gradeResModel;
+  GradeResModel? gradeResModel;
+  SchoolResModel? schoolResModel;
   int? gradesID;
   int? iD;
   String? religion;
@@ -28,6 +34,7 @@ class UserProfileModel {
   UserProfileModel({
     this.iD,
     this.blbId,
+    this.userName,
     this.gradesID,
     this.gradeName,
     this.schoolsID,
@@ -44,7 +51,8 @@ class UserProfileModel {
     this.createdAt,
     this.updatedBy,
     this.updatedAt,
-    // this.gradeResModel,
+    this.gradeResModel,
+    this.schoolResModel,
     // this.classRoomResModel,
     // this.cohortResModel,
     this.active,
@@ -53,6 +61,7 @@ class UserProfileModel {
 
   UserProfileModel.fromJson(json) {
     iD = json['ID'];
+    userName = json['User_Name'];
     blbId = json['Blb_Id'];
     gradesID = json['Grades_ID'];
     schoolsID = json['Schools_ID'];
@@ -68,8 +77,11 @@ class UserProfileModel {
     updatedBy = json['Updated_By'];
     updatedAt = json['Updated_At'];
     religion = json['Religion'];
-    // gradeResModel =
-    //     json['grades'] == null ? null : GradeResModel.fromJson(json['grades']);
+    gradeResModel =
+        json['grades'] == null ? null : GradeResModel.fromJson(json['grades']);
+    schoolResModel = json['schools'] == null
+        ? null
+        : SchoolResModel.fromJson(json['schools']);
     // classRoomResModel = json['school_class'] == null
     //     ? null
     //     : ClassRoomResModel.fromJson(json['school_class']);
@@ -82,6 +94,7 @@ class UserProfileModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['ID'] = iD;
     data['Blb_Id'] = blbId;
+    data['User_Name'] = userName;
     data['Grades_ID'] = gradesID;
     data['Schools_ID'] = schoolsID;
     data['Cohort_ID'] = cohortID;
@@ -96,9 +109,12 @@ class UserProfileModel {
     data['Updated_By'] = updatedBy;
     data['Updated_At'] = updatedAt;
     data['Religion'] = religion;
-    // if (gradeResModel != null) {
-    //   data['grades'] = gradeResModel!.toJson();
-    // }
+    if (gradeResModel != null) {
+      data['grades'] = gradeResModel!.toJson();
+    }
+    if (schoolResModel != null) {
+      data['schools'] = schoolResModel!.toJson();
+    }
     // if (classRoomResModel != null) {
     //   data['school_class'] = classRoomResModel!.toJson();
     // }
