@@ -1,3 +1,4 @@
+import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/services/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,14 @@ import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class WebSocketController extends GetxController {
   final token = Get.find<TokenService>().tokenModel;
+  final exam = Get.find<ExamMissionController>().cachedExamMission;
   late io.Socket socket;
+
+  @override
+  void onClose() {
+    socket.dispose();
+    super.onClose();
+  }
 
   @override
   void onInit() {
@@ -18,7 +26,9 @@ class WebSocketController extends GetxController {
         'http://localhost:3000',
         io.OptionBuilder().setTransports(['websocket']).setAuth({
           'authorization': '${token?.aToken}',
-        }).setQuery({'roomid': '123'}).build())
+        }).setQuery({
+          'roomid': '${exam?.examRoomHasExamMission?.first.examRoom?.iD}'
+        }).build())
       ..onConnect((_) {
         debugPrint('connected');
       })
