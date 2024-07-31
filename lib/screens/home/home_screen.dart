@@ -1,10 +1,12 @@
 import 'package:control_examination/configurations/constants/assets.dart';
 import 'package:control_examination/controllers/controllers.dart';
+import 'package:control_examination/extensions/string_extension.dart';
 import 'package:control_examination/resource_manager/index.dart';
 import 'package:control_examination/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 import '../../routes_manger.dart';
 
 class HomeScreen extends GetView<HomeController> {
