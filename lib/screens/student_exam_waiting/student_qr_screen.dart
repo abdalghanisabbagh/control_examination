@@ -1,10 +1,11 @@
-import 'package:control_examination/configurations/constants/assets.dart';
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/resource_manager/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:slide_countdown/slide_countdown.dart';
+
+import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 
 class StudentQrScreen extends GetView<StudentQrCodeController> {
   final int _start = DateTime.parse(Get.find<ExamMissionController>()
@@ -43,16 +44,13 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                 ),
                 Expanded(
                   flex: 5,
-                  child: PrettyQrView.data(
-                    data: controller.qrCode,
-                    decoration: const PrettyQrDecoration(
-                      image: PrettyQrDecorationImage(
-                        image: AssetImage(
-                          Assets.assetsLogosNisLogo,
+                  child: controller.qrCode.isEmpty
+                      ? Center(
+                          child: LoadingIndicators.getLoadingIndicator(),
+                        )
+                      : PrettyQrView.data(
+                          data: controller.qrCode,
                         ),
-                      ),
-                    ),
-                  ),
                 ),
                 const Spacer(
                   flex: 2,
