@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
-class StudentQrScreen extends StatelessWidget {
+import '../../controllers/student_exam/student_qr_code_controller.dart';
+
+class StudentQrScreen extends GetView<StudentQrCodeController> {
   final int _start = DateTime.parse(Get.find<ExamMissionController>()
           .cachedExamMission!
           .startTime
@@ -33,50 +35,53 @@ class StudentQrScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: ColorManager.primary,
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const Spacer(
-              flex: 2,
-            ),
-            Expanded(
-              flex: 5,
-              child: PrettyQrView.data(
-                data:
-                    '${Get.find<ProfileController>().cachedUserProfile?.firstName} ${Get.find<ProfileController>().cachedUserProfile?.secondName} ${Get.find<ProfileController>().cachedUserProfile?.thirdName}\n ${Get.find<ProfileController>().cachedUserProfile?.barcodesResModel?.barcodes?.first.barcode}',
-                decoration: const PrettyQrDecoration(
-                  image: PrettyQrDecorationImage(
-                    image: AssetImage(
-                      Assets.assetsLogosNisLogo,
+      body: GetBuilder<StudentQrCodeController>(
+        builder: (_) {
+          return Center(
+            child: Column(
+              children: [
+                const Spacer(
+                  flex: 2,
+                ),
+                Expanded(
+                  flex: 5,
+                  child: PrettyQrView.data(
+                    data: controller.qrCode,
+                    decoration: const PrettyQrDecoration(
+                      image: PrettyQrDecorationImage(
+                        image: AssetImage(
+                          Assets.assetsLogosNisLogo,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            const Spacer(
-              flex: 2,
-            ),
-            Expanded(
-              flex: 3,
-              child: SlideCountdown(
-                onChanged: (value) => value.inSeconds <= 2 * 60
-                    ? null // TODO: validate time and go to next screen
-                    : null,
-                duration: Duration(seconds: _start),
-                style: nunitoBold.copyWith(
-                  color: ColorManager.white,
-                  fontSize: 100,
+                const Spacer(
+                  flex: 2,
                 ),
-                decoration: BoxDecoration(
-                  color: ColorManager.bgSideMenu,
+                Expanded(
+                  flex: 3,
+                  child: SlideCountdown(
+                    onChanged: (value) => value.inSeconds <= 2 * 60
+                        ? null // TODO: validate time and go to next screen
+                        : null,
+                    duration: Duration(seconds: _start),
+                    style: nunitoBold.copyWith(
+                      color: ColorManager.white,
+                      fontSize: 100,
+                    ),
+                    decoration: BoxDecoration(
+                      color: ColorManager.bgSideMenu,
+                    ),
+                  ),
                 ),
-              ),
+                const Spacer(
+                  flex: 2,
+                ),
+              ],
             ),
-            const Spacer(
-              flex: 2,
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

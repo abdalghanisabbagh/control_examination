@@ -48,6 +48,16 @@ class LoginBinding extends Bindings {
   }
 }
 
+class StudentQrCodeBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<StudentQrCodeController>(
+      () => StudentQrCodeController(),
+      fenix: true,
+    );
+  }
+}
+
 class WebSocketBinding extends Bindings {
   @override
   void dependencies() {
