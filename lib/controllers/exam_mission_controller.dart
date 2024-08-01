@@ -24,6 +24,7 @@ class ExamMissionController extends GetxController {
   }
 
   void saveExamMissionToHiveBox(ExamMission cachedExamMission) {
+    _cachedExamMission = cachedExamMission;
     update();
     Hive.box('ExamMission')
         .put('ExamMission', jsonEncode(cachedExamMission.toJson()));
