@@ -76,6 +76,7 @@ class StudentsLinks {
   static const studentSeatNumbersControlMission =
       '$studentSeatNumbers/control-mission';
 
+  static const studentUuid = '/uuid';
   static const studentSeatNumbersExamRoom = '$studentSeatNumbers/exam-rooms';
   static const studentSeatNumbersStudent = '$studentSeatNumbers/student';
   static const studentsClass = 'student/class';
