@@ -40,7 +40,7 @@ class Routes {
       name: studentExamScreenWaiting,
       page: () => StudentExamWaitingScreen(),
       transition: Transition.fade,
-      binding: HomeBindings(),
+      binding: StudentExamBinding(),
       bindings: [WebSocketBinding()],
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -49,7 +49,10 @@ class Routes {
       page: () => StudentQrScreen(),
       transition: Transition.fade,
       binding: StudentQrCodeBinding(),
-      bindings: [HomeBindings(), WebSocketBinding()],
+      bindings: [
+        StudentExamBinding(),
+        WebSocketBinding(),
+      ],
       transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(
