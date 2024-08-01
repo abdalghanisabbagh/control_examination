@@ -1,5 +1,7 @@
 import 'package:control_examination/screens/home/home_screen.dart';
 import 'package:control_examination/screens/login/login_screen.dart';
+import 'package:control_examination/screens/student_exam_waiting/student_exam_screen.dart';
+import 'package:control_examination/screens/student_exam_waiting/student_qr_screen.dart';
 import 'package:get/get.dart';
 
 import 'bindings/bindings.dart';
@@ -11,6 +13,8 @@ class Routes {
   static const String loginForm = "/loginForm";
   static const String homeScreen = "/homeScreen";
   static const String studentExamScreenWaiting = "/studentExamScreenWaiting";
+  static const String studentExamScreenQRCode = "/studentExamScreenQRCode";
+  static const String studentExamScreen = "/studentExamScreen";
 
   // static const String nextExams = "/NextExams";
   // static const String allExams = "/AllExams";
@@ -34,7 +38,23 @@ class Routes {
     ),
     GetPage(
       name: studentExamScreenWaiting,
-      page: () => const StudentExamWaitingScreen(),
+      page: () => StudentExamWaitingScreen(),
+      transition: Transition.fade,
+      binding: HomeBindings(),
+      bindings: [WebSocketBinding()],
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: studentExamScreenQRCode,
+      page: () => StudentQrScreen(),
+      transition: Transition.fade,
+      binding: HomeBindings(),
+      bindings: [WebSocketBinding()],
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: studentExamScreen,
+      page: () => const StudentExamScreen(),
       transition: Transition.fade,
       binding: HomeBindings(),
       bindings: [WebSocketBinding()],
