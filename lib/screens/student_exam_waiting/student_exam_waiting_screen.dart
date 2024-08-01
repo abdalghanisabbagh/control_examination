@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
-class StudentExamWaitingScreen extends StatelessWidget {
+class StudentExamWaitingScreen extends GetView<StudentExamController> {
   final int _start = DateTime.parse(Get.find<ExamMissionController>()
           .cachedExamMission!
           .startTime
@@ -19,6 +19,7 @@ class StudentExamWaitingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<StudentExamController>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
