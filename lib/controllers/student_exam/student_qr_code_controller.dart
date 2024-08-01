@@ -1,5 +1,15 @@
+import 'dart:async';
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/controllers/controllers.dart';
+import 'package:control_examination/tools/response_handler.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+
+import '../../configurations/app_links.dart';
+import '../../models/uuid/uuid_res_model.dart';
+import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/enums/req_type_enum.dart';
 
 class StudentQrCodeController extends GetxController {
   final StudentExamController studentExamController = Get.find();
@@ -7,6 +17,29 @@ class StudentQrCodeController extends GetxController {
   final cahechedExamMission =
       Get.find<ExamMissionController>().cachedExamMission;
   late String qrCode;
+
+  Future<void> checkStudent() async {
+    final responseHandler = ResponseHandler<UuidResModel>();
+
+    var response = await responseHandler.getResponse(
+      path:
+          '${StudentsLinks.studentUuid}/${studentExamController.uuidResModel?.iD}',
+      converter: UuidResModel.fromJson,
+      type: ReqTypeEnum.GET,
+    );
+    response.fold((l) {
+      MyAwesomeDialogue(
+        title: 'Error',
+        desc: l.message,
+        dialogType: DialogType.error,
+      ).showDialogue(Get.key.currentContext!);
+    }, (r) {
+      debugPrint('${r.active}');
+      update();
+    });
+
+    return;
+  }
 
   @override
   void onClose() {
