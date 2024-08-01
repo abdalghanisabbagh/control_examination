@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
-import '../../controllers/student_exam/student_qr_code_controller.dart';
-
 class StudentQrScreen extends GetView<StudentQrCodeController> {
   final int _start = DateTime.parse(Get.find<ExamMissionController>()
           .cachedExamMission!
