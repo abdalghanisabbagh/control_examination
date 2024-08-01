@@ -113,12 +113,7 @@ class HomeScreen extends GetView<HomeController> {
                                         .studentExamsResModel!.exams!.length,
                                     (index) => InkWell(
                                       onTap: () {
-                                        if (DateTime.parse(controller
-                                                    .studentExamsResModel
-                                                    ?.exams?[index]
-                                                    .examMission
-                                                    ?.endTime ??
-                                                DateTime.now().toString())
+                                        if (DateTime.parse(controller.studentExamsResModel?.exams?[index].examMission?.endTime ?? DateTime.now().toString())
                                             .toUtc()
                                             .isBefore(DateTime.now().toUtc())) {
                                           MyAwesomeDialogue(
@@ -128,17 +123,38 @@ class HomeScreen extends GetView<HomeController> {
                                                   dialogType: DialogType.error)
                                               .showDialogue(
                                                   Get.key.currentContext!);
-                                        } else if (DateTime.parse(controller
-                                                    .studentExamsResModel
-                                                    ?.exams?[index]
-                                                    .examMission
-                                                    ?.startTime ??
-                                                DateTime.now().toString())
+                                        } else if (DateTime.parse(controller.studentExamsResModel?.exams?[index].examMission?.startTime ?? DateTime.now().toString())
                                             .toUtc()
-                                            .isBefore(DateTime.now()
+                                            .isAfter(DateTime.now().toUtc())) {
+                                          Get.toNamed(
+                                              Routes.studentExamScreenWaiting);
+                                        } else if (DateTime.parse(controller
+                                                        .studentExamsResModel
+                                                        ?.exams?[index]
+                                                        .examMission
+                                                        ?.startTime ??
+                                                    DateTime.now().toString())
                                                 .toUtc()
-                                                .subtract(const Duration(
-                                                    minutes: 15)))) {
+                                                .difference(
+                                                    DateTime.now().toUtc()) <
+                                            const Duration(minutes: 15)) {
+                                          Get.find<ExamMissionController>()
+                                              .saveExamMissionToHiveBox(
+                                                  controller
+                                                      .studentExamsResModel!
+                                                      .exams![index]
+                                                      .examMission!);
+                                          Get.toNamed(
+                                              Routes.studentExamScreenWaiting);
+                                        } else if (DateTime.parse(controller
+                                                        .studentExamsResModel
+                                                        ?.exams?[index]
+                                                        .examMission
+                                                        ?.startTime ??
+                                                    DateTime.now().toString())
+                                                .toUtc()
+                                                .difference(DateTime.now().toUtc()) <
+                                            const Duration(minutes: 5)) {
                                           Get.find<ExamMissionController>()
                                               .saveExamMissionToHiveBox(
                                                   controller
