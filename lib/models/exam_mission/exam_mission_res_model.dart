@@ -1,5 +1,6 @@
+import 'package:control_examination/models/subject/subject_res_model.dart';
+
 import '../exam_has_exam_mission/exam_room_has_exam_mission.dart';
-import '../exam_room/exam_room_res_model.dart';
 
 class ExamMission {
   List<ExamRoomHasExamMission>? examRoomHasExamMission;
@@ -7,7 +8,7 @@ class ExamMission {
   String? startTime;
   String? endTime;
   int? duration;
-  ExamRoom? subjects;
+  SubjectResModel? subjects;
 
   ExamMission({this.examRoomHasExamMission, this.iD, this.subjects});
 
@@ -22,12 +23,16 @@ class ExamMission {
     startTime = json['start_time'];
     endTime = json['end_time'];
     duration = json['duration'];
-    subjects =
-        json['subjects'] != null ? ExamRoom.fromJson(json['subjects']) : null;
+    subjects = json['subjects'] != null
+        ? SubjectResModel.fromJson(json['subjects'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['start_time'] = startTime;
+    data['end_time'] = endTime;
+    data['duration'] = duration;
     if (examRoomHasExamMission != null) {
       data['exam_room_has_exam_mission'] =
           examRoomHasExamMission!.map((v) => v.toJson()).toList();
