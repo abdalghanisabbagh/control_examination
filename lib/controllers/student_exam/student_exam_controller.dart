@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/configurations/app_links.dart';
 import 'package:control_examination/controllers/controllers.dart';
@@ -12,7 +14,7 @@ import '../../tools/response_handler.dart';
 class StudentExamController extends GetxController {
   final cachedExamMission = Get.find<ExamMissionController>().cachedExamMission;
   final uuid = const Uuid();
-  UuidResModel? uuidResModel;
+  Completer<UuidResModel> uuidResModel = Completer<UuidResModel>();
 
   Future<void> createUuid() async {
     final responseHandler = ResponseHandler<UuidResModel>();
@@ -36,7 +38,7 @@ class StudentExamController extends GetxController {
         ).showDialogue(Get.key.currentContext!);
       },
       (r) {
-        uuidResModel = r;
+        uuidResModel.complete(r);
       },
     );
     update();
