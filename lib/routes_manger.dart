@@ -48,8 +48,8 @@ class Routes {
       name: studentExamScreenQRCode,
       page: () => StudentQrScreen(),
       transition: Transition.fade,
-      binding: HomeBindings(),
-      bindings: [WebSocketBinding()],
+      binding: StudentQrCodeBinding(),
+      bindings: [HomeBindings(), WebSocketBinding()],
       transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(
