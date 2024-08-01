@@ -1,6 +1,8 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/configurations/constants/assets.dart';
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/extensions/string_extension.dart';
+import 'package:control_examination/resource_manager/ReusableWidget/show_dialgue.dart';
 import 'package:control_examination/resource_manager/index.dart';
 import 'package:control_examination/services/services.dart';
 import 'package:flutter/material.dart';
@@ -112,25 +114,31 @@ class HomeScreen extends GetView<HomeController> {
                                     (index) => InkWell(
                                       onTap: () {
                                         if (DateTime.parse(controller
-                                                        .studentExamsResModel
-                                                        ?.exams?[index]
-                                                        .examMission
-                                                        ?.startTime ??
-                                                    DateTime.now().toString())
+                                                    .studentExamsResModel
+                                                    ?.exams?[index]
+                                                    .examMission
+                                                    ?.endTime ??
+                                                DateTime.now().toString())
+                                            .toUtc()
+                                            .isBefore(DateTime.now().toUtc())) {
+                                          MyAwesomeDialogue(
+                                                  title: 'Exam Ended',
+                                                  desc:
+                                                      'You Can Not Take This Exam',
+                                                  dialogType: DialogType.error)
+                                              .showDialogue(
+                                                  Get.key.currentContext!);
+                                        } else if (DateTime.parse(controller
+                                                    .studentExamsResModel
+                                                    ?.exams?[index]
+                                                    .examMission
+                                                    ?.startTime ??
+                                                DateTime.now().toString())
+                                            .toUtc()
+                                            .isBefore(DateTime.now()
                                                 .toUtc()
-                                                .isAfter(
-                                                    DateTime.now().toUtc()) ||
-                                            DateTime.parse(controller
-                                                        .studentExamsResModel
-                                                        ?.exams?[index]
-                                                        .examMission
-                                                        ?.startTime ??
-                                                    DateTime.now().toString())
-                                                .toUtc()
-                                                .isBefore(DateTime.now()
-                                                    .toUtc()
-                                                    .subtract(const Duration(
-                                                        minutes: 15)))) {
+                                                .subtract(const Duration(
+                                                    minutes: 15)))) {
                                           Get.find<ExamMissionController>()
                                               .saveExamMissionToHiveBox(
                                                   controller
