@@ -89,9 +89,9 @@ class HomeController extends GetxController {
         timerCounter += 1000;
         serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter).toUtc();
         serverTime = DateFormat('HH:mm:ss').format(serveclock!);
-        print(serverTime);
+        // print(serverTime);
         serverTime = DateFormat('HH:mm:ss').format(serveclock!);
-        debugPrint(serverTime);
+//debugPrint(serverTime);
         update();
       });
     }
