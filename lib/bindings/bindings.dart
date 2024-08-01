@@ -48,6 +48,16 @@ class LoginBinding extends Bindings {
   }
 }
 
+class StudentExamBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.put<StudentExamController>(
+      StudentExamController(),
+      permanent: true,
+    );
+  }
+}
+
 class StudentQrCodeBinding extends Bindings {
   @override
   void dependencies() {
