@@ -63,6 +63,16 @@ class StudentExamBinding extends Bindings {
   }
 }
 
+class StudentInExamBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut<StudentInExamController>(
+      () => StudentInExamController(),
+      fenix: true,
+    );
+  }
+}
+
 class StudentQrCodeBinding extends Bindings {
   @override
   void dependencies() {
