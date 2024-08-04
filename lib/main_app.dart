@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
       theme: getApplicationTheme(),
       getPages: Routes.routes,
       initialBinding: InitialBindings(),
-      initialRoute: Routes.initialRoute,
+      initialRoute: Routes.fullScreen,
     );
   }
 

@@ -1,69 +1,54 @@
+import 'package:control_examination/resource_manager/index.dart';
 import 'package:flutter/material.dart';
-import 'dart:js' as js;
-
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
-class FullScreenPage extends StatefulWidget {
-  @override
-  _FullScreenPageState createState() => _FullScreenPageState();
-}
+import '../controllers/full_screen_controller.dart';
 
-class _FullScreenPageState extends State<FullScreenPage> {
-  final FocusNode _focusNode = FocusNode();
-  String _lastKey = 'None';
+// ignore: must_be_immutable
+class FullScreenPage extends GetView<FullScreenController> {
+  final FocusNode _focusNode = FocusNode()..requestFocus();
 
-  @override
-  void initState() {
-    super.initState();
-    _focusNode.requestFocus();
-  }
-
-  void enterFullScreen() {
-    try {
-      js.context.callMethod('enterFullScreen');
-    } catch (e) {
-      print('Error entering full screen: $e');
-    }
-  }
-
-  void exitFullScreen() {
-    try {
-      js.context.callMethod('exitFullScreen');
-    } catch (e) {
-      print('Error exiting full screen: $e');
-    }
-  }
+  FullScreenPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Full Screen Page'),
-      ),
-      body: KeyboardListener(
-        focusNode: _focusNode,
-        onKeyEvent: (KeyEvent event) {
-          if (event is KeyDownEvent) {
-            setState(() {
-              _lastKey = event.logicalKey.debugName ?? 'Unknown';
-              debugPrint('Key pressed: ${event.logicalKey.debugName}');
-            });
-          }
-        },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: enterFullScreen,
-                child: const Text('Enter Full Screen'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: exitFullScreen,
-                child: const Text('Exit Full Screen'),
-              ),
-            ],
+    return KeyboardListener(
+      focusNode: _focusNode,
+      onKeyEvent: (KeyEvent event) {
+        if (event is KeyDownEvent) {
+          controller.handleKeyEvent(event);
+          controller.updateLastKey(event.logicalKey.debugName ?? 'Unknown');
+          debugPrint('Key pressed: ${event.logicalKey.debugName}');
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Full Screen Page'),
+        ),
+        body: Center(
+          child: GetBuilder<FullScreenController>(
+            builder: (_) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: controller.enterFullScreen,
+                    child: const Text('Enter Full Screen'),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: controller.exitFullScreen,
+                    child: const Text('Exit Full Screen'),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Last Key Pressed: ${controller.lastKey}',
+                    style: nunitoBoldStyle(),
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
