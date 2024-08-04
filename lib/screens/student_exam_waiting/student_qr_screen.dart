@@ -129,6 +129,22 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                 const Spacer(
                   flex: 2,
                 ),
+                Expanded(
+                  flex: 3,
+                  child: controller.qrCode.isEmpty
+                      ? const SizedBox.shrink()
+                      : ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Scan Done?',
+                            style:
+                                nunitoBold.copyWith(color: ColorManager.white),
+                          ),
+                        ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
               ],
             ),
           );
