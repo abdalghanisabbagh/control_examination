@@ -65,6 +65,7 @@ class Stage {
 class StudentsLinks {
   static const student = 'student';
   static const studentExams = '$student/student-exams';
+  static const validateStudent = '$student/validate-student';
   static const studentBarcodes = 'student-barcodes';
   static const studentBarcodesExamMission = 'student-barcodes/exam-mission';
   static const studentBarcodesExamRoom = '$studentBarcodes/exam-room';
