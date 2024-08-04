@@ -123,7 +123,16 @@ class HomeScreen extends GetView<HomeController> {
                                                 .studentExamsResModel!
                                                 .exams![index]
                                                 .examMission!);
-                                        if (DateTime.parse(controller.studentExamsResModel?.exams?[index].examMission?.endTime ?? DateTime.now().toString())
+                                        if (controller.studentExamsResModel
+                                                ?.exams?[index].isCheating ==
+                                            1) {
+                                          MyAwesomeDialogue(
+                                            title: 'Cheating Detected',
+                                            desc: 'You Can Not Take This Exam',
+                                            dialogType: DialogType.error,
+                                          ).showDialogue(
+                                              Get.key.currentContext!);
+                                        } else if (DateTime.parse(controller.studentExamsResModel?.exams?[index].examMission?.endTime ?? DateTime.now().toString())
                                             .toUtc()
                                             .isBefore(DateTime.now().toUtc())) {
                                           MyAwesomeDialogue(
@@ -132,22 +141,13 @@ class HomeScreen extends GetView<HomeController> {
                                             dialogType: DialogType.error,
                                           ).showDialogue(
                                               Get.key.currentContext!);
-                                        } else if (DateTime.parse(controller.studentExamsResModel?.exams?[index].examMission?.startTime ?? DateTime.now().toString())
-                                            .toUtc()
-                                            .isBefore(DateTime.now().toUtc())) {
-                                          Get.toNamed(Routes.studentExamScreen);
-                                        } else if (DateTime.parse(controller
-                                                        .studentExamsResModel
-                                                        ?.exams?[index]
-                                                        .examMission
-                                                        ?.startTime ??
-                                                    DateTime.now().toString())
-                                                .toUtc()
-                                                .difference(
+                                        } else if (DateTime.parse(controller.studentExamsResModel?.exams?[index].examMission?.startTime ?? DateTime.now().toString()).toUtc().difference(
                                                     DateTime.now().toUtc()) <=
-                                            const Duration(minutes: 5)) {
-                                          debugPrint(
-                                              '${DateTime.parse(controller.studentExamsResModel?.exams?[index].examMission?.startTime ?? DateTime.now().toString()).toUtc().difference(DateTime.now().toUtc())}');
+                                                const Duration(minutes: 5) ||
+                                            DateTime.parse(controller.studentExamsResModel?.exams?[index].examMission?.startTime ?? DateTime.now().toString())
+                                                .toUtc()
+                                                .isBefore(
+                                                    DateTime.now().toUtc())) {
                                           Get.toNamed(
                                               Routes.studentExamScreenQRCode);
                                         } else if (DateTime.parse(controller
@@ -161,23 +161,46 @@ class HomeScreen extends GetView<HomeController> {
                                             const Duration(minutes: 15)) {
                                           Get.toNamed(
                                               Routes.studentExamScreenWaiting);
+                                        } else {
+                                          MyAwesomeDialogue(
+                                            title: 'Exam Did Not Start Yet',
+                                            desc:
+                                                'You Can Not Take This Exam Before It Starts',
+                                            dialogType: DialogType.error,
+                                          ).showDialogue(
+                                              Get.key.currentContext!);
                                         }
                                       },
                                       child: DecoratedBox(
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          color: DateTime.parse(controller
+                                          color: controller
+                                                      .studentExamsResModel
+                                                      ?.exams?[index]
+                                                      .isCheating ==
+                                                  1
+                                              ? ColorManager.ornage
+                                              : controller
                                                           .studentExamsResModel
                                                           ?.exams?[index]
-                                                          .examMission
-                                                          ?.endTime ??
-                                                      DateTime.now().toString())
-                                                  .toUtc()
-                                                  .isBefore(
-                                                      DateTime.now().toUtc())
-                                              ? ColorManager.red
-                                              : ColorManager.greyA8,
+                                                          .attendanceStatusId ==
+                                                      1
+                                                  ? ColorManager.green
+                                                  : DateTime.parse(controller
+                                                                  .studentExamsResModel
+                                                                  ?.exams?[
+                                                                      index]
+                                                                  .examMission
+                                                                  ?.endTime ??
+                                                              DateTime.now()
+                                                                  .toString())
+                                                          .toUtc()
+                                                          .isBefore(
+                                                              DateTime.now()
+                                                                  .toUtc())
+                                                      ? ColorManager.red
+                                                      : ColorManager.greyA8,
                                         ),
                                         child: Row(
                                           children: [

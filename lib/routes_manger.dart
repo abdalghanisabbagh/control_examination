@@ -59,10 +59,10 @@ class Routes {
     ),
     GetPage(
       name: studentExamScreen,
-      page: () => const StudentExamScreen(),
+      page: () => const StudentInExamScreen(),
       transition: Transition.fade,
-      binding: HomeBindings(),
-      bindings: [WebSocketBinding()],
+      binding: StudentInExamBinding(),
+      bindings: [HomeBindings(), WebSocketBinding()],
       transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(

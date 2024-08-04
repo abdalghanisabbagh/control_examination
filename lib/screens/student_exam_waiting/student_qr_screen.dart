@@ -8,31 +8,84 @@ import 'package:slide_countdown/slide_countdown.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 
 class StudentQrScreen extends GetView<StudentQrCodeController> {
+  final ProfileController profileController = Get.find<ProfileController>();
   final int _start = DateTime.parse(Get.find<ExamMissionController>()
-          .cachedExamMission!
-          .startTime
-          .toString())
-      .toUtc()
-      .difference(DateTime.now().toUtc())
-      .inSeconds
-      .abs(); // Countdown starting value
+              .cachedExamMission!
+              .startTime
+              .toString())
+          .toUtc()
+          .isBefore(DateTime.now().toUtc())
+      ? 0
+      : DateTime.parse(Get.find<ExamMissionController>()
+              .cachedExamMission!
+              .startTime
+              .toString())
+          .toUtc()
+          .difference(DateTime.now().toUtc())
+          .inSeconds
+          .abs(); // Countdown starting value
 
   StudentQrScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Student Exam Waiting',
-          style: nunitoSemiBold.copyWith(
-            fontSize: 16,
-            color: ColorManager.white,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(200),
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            color: ColorManager.primary,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              BackButton(
+                color: ColorManager.white,
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  '${profileController.cachedUserProfile?.firstName} ${profileController.cachedUserProfile?.secondName} ${profileController.cachedUserProfile?.thirdName}',
+                  style: nunitoBold.copyWith(
+                    color: ColorManager.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  '${profileController.cachedUserProfile?.gradeResModel?.name}',
+                  style: nunitoBold.copyWith(
+                    color: ColorManager.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  '${profileController.cachedUserProfile?.schoolResModel?.name}',
+                  style: nunitoBold.copyWith(
+                    color: ColorManager.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+            ],
           ),
         ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: ColorManager.primary,
       ),
       body: GetBuilder<StudentQrCodeController>(
         builder: (_) {
@@ -57,19 +110,21 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                 ),
                 Expanded(
                   flex: 3,
-                  child: SlideCountdown(
-                    onChanged: (value) => value.inSeconds <= 2 * 60
-                        ? null // TODO: validate time and go to next screen
-                        : null,
-                    duration: Duration(seconds: _start),
-                    style: nunitoBold.copyWith(
-                      color: ColorManager.white,
-                      fontSize: 100,
-                    ),
-                    decoration: BoxDecoration(
-                      color: ColorManager.bgSideMenu,
-                    ),
-                  ),
+                  child: _start == 0
+                      ? const SizedBox.shrink()
+                      : SlideCountdown(
+                          onChanged: (value) => value.inSeconds <= 2 * 60
+                              ? null // TODO: validate time and go to next screen
+                              : null,
+                          duration: Duration(seconds: _start),
+                          style: nunitoBold.copyWith(
+                            color: ColorManager.white,
+                            fontSize: 100,
+                          ),
+                          decoration: BoxDecoration(
+                            color: ColorManager.bgSideMenu,
+                          ),
+                        ),
                 ),
                 const Spacer(
                   flex: 2,

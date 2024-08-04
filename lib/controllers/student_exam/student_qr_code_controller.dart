@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/tools/response_handler.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../configurations/app_links.dart';
 import '../../models/uuid/uuid_res_model.dart';
 import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
+import '../../routes_manger.dart';
 
 class StudentQrCodeController extends GetxController {
   final StudentExamController studentExamController = Get.find();
@@ -44,7 +46,7 @@ class StudentQrCodeController extends GetxController {
 
   @override
   void onClose() {
-    Get.delete<StudentExamController>();
+    Get.delete<StudentExamController>(force: true);
     super.onClose();
   }
 
@@ -54,6 +56,10 @@ class StudentQrCodeController extends GetxController {
     qrCode =
         'Name: ${cachedUserProfile?.firstName} ${cachedUserProfile?.secondName} ${cachedUserProfile?.thirdName}\n${uuid.iD}';
     update();
+
+    Future.delayed(Durations.extralong4, () {
+      Get.offNamed(Routes.studentExamScreen);
+    });
     super.onInit();
   }
 }

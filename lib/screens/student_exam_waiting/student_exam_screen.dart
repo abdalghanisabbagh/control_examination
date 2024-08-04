@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../controllers/student_exam/student_in_exam_controller.dart';
 import '../../resource_manager/color_manager.dart';
 import '../../resource_manager/styles_manager.dart';
 
-class StudentExamScreen extends StatelessWidget {
-  const StudentExamScreen({super.key});
+class StudentInExamScreen extends GetView<StudentInExamController> {
+  const StudentInExamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          color: ColorManager.white,
+        ),
         title: Text(
           'Student Exam',
           style: nunitoSemiBold.copyWith(
