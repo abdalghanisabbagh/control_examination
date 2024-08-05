@@ -1,5 +1,6 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
+import 'dart:js' as js;
 
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:flutter/material.dart';
@@ -49,35 +50,32 @@ class FullScreenController extends GetxController {
       return true;
     }
 
-    if (HardwareKeyboard.instance.isLogicalKeyPressed(LogicalKeyboardKey.f11)) {
-      if (isFullScreen()) {
-        exitFullScreen();
-      } else {
-        studentInExamController.markStudentCheating();
-
-        enterFullScreen();
-      }
-      return true;
-    }
-
     return false;
   }
 
-  bool isFullScreen() {
-    debugPrint('Is full screen: ${html.document.fullscreenElement != null}');
-    return html.document.fullscreenElement != null;
+  bool isInFullScreen() {
+    var result = js.context.callMethod('isFullScreen');
+    return result ?? false;
   }
 
   @override
   void onClose() {
     exitFullScreen();
+    removeListeners();
     super.onClose();
   }
 
   @override
   void onInit() async {
     await enterFullScreen();
+    html.window.addEventListener('fullscreenchange', (event) {
+      isInFullScreen() ? studentInExamController.markStudentCheating() : null;
+    });
     super.onInit();
+  }
+
+  removeListeners() {
+    html.window.removeEventListener('fullscreenchange', (event) => true, true);
   }
 
   void updateLastKey(String key) {
