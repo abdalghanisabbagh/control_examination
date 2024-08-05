@@ -1,4 +1,3 @@
-import 'package:control_examination/controllers/full_screen_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/controllers.dart';
@@ -34,10 +33,6 @@ class InitialBindings extends Bindings {
 
     Get.put<SideMenuController>(
       SideMenuController(),
-      permanent: true,
-    );
-    Get.put<FullScreenController>(
-      FullScreenController(),
       permanent: true,
     );
   }
@@ -77,7 +72,7 @@ class StudentQrCodeBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<StudentQrCodeController>(
-       StudentQrCodeController(),
+      StudentQrCodeController(),
       permanent: true,
     );
   }

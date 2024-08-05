@@ -1,4 +1,3 @@
-import 'package:control_examination/screens/full_screen.dart';
 import 'package:control_examination/screens/home/home_screen.dart';
 import 'package:control_examination/screens/login/login_screen.dart';
 import 'package:control_examination/screens/student_exam_waiting/student_in_exam_screen.dart';
@@ -68,12 +67,6 @@ class Routes {
         StudentQrCodeBinding(),
         StudentExamBinding()
       ],
-      transitionDuration: const Duration(seconds: 1),
-    ),
-    GetPage(
-      name: fullScreen,
-      page: () => FullScreenPage(),
-      transition: Transition.fade,
       transitionDuration: const Duration(seconds: 1),
     ),
     // GetPage(

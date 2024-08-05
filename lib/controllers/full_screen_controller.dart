@@ -1,13 +1,16 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:html' as html;
 import 'package:flutter/services.dart';
 
 class FullScreenController extends GetxController {
+  final FocusNode focusNode = FocusNode()..requestFocus();
+
   String lastKey = '';
-  void enterFullScreen() {
+  Future<void> enterFullScreen() async {
     try {
-      html.window.document.documentElement?.requestFullscreen();
+      await html.window.document.documentElement?.requestFullscreen();
     } catch (e) {
       debugPrint('Error entering full screen: $e');
     }
@@ -57,11 +60,23 @@ class FullScreenController extends GetxController {
       return true;
     }
 
-    return false; 
+    return false;
+  }
+
+  @override
+  void onInit() async {
+    await enterFullScreen();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    exitFullScreen();
+    super.onClose();
   }
 
   void updateLastKey(String key) {
     lastKey = key;
-    update(); 
+    update();
   }
 }
