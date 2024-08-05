@@ -119,10 +119,15 @@ class HomeScreen extends GetView<HomeController> {
                                     (index) => InkWell(
                                       onTap: () {
                                         Get.find<ExamMissionController>()
-                                            .saveExamMissionToHiveBox(controller
-                                                .studentExamsResModel!
-                                                .exams![index]
-                                                .examMission!);
+                                            .saveExamMissionToHiveBox(
+                                                examMission: controller
+                                                    .studentExamsResModel!
+                                                    .exams![index]
+                                                    .examMission!,
+                                                barcode: controller
+                                                    .studentExamsResModel!
+                                                    .exams![index]
+                                                    .barcode!);
                                         if (controller.studentExamsResModel
                                                 ?.exams?[index].isCheating ==
                                             1) {
