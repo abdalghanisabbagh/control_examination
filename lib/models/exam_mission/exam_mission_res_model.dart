@@ -1,5 +1,6 @@
 import 'package:control_examination/models/subject/subject_res_model.dart';
 
+import '../control_mission/control_mission_res_model.dart';
 import '../exam_has_exam_mission/exam_room_has_exam_mission.dart';
 
 class ExamMission {
@@ -20,6 +21,8 @@ class ExamMission {
 
   SubjectResModel? subjects;
 
+  ControlMissionResModel? controlMissionResModel;
+
   ExamMission({
     this.examRoomHasExamMission,
     this.iD,
@@ -30,9 +33,16 @@ class ExamMission {
     this.duration,
     this.pdf,
     this.pdfV2,
+    this.startTime,
+    this.endTime,
+    this.controlMissionResModel,
   });
 
   ExamMission.fromJson(json) {
+    if (json['control_mission'] != null) {
+      controlMissionResModel =
+          ControlMissionResModel.fromJson(json['control_mission']);
+    }
     if (json['exam_room_has_exam_mission'] != null) {
       examRoomHasExamMission = <ExamRoomHasExamMission>[];
       json['exam_room_has_exam_mission'].forEach((v) {
@@ -73,6 +83,10 @@ class ExamMission {
     if (examRoomHasExamMission != null) {
       data['exam_room_has_exam_mission'] =
           examRoomHasExamMission!.map((v) => v.toJson()).toList();
+    }
+
+    if (controlMissionResModel != null) {
+      data['control_mission'] = controlMissionResModel!.toJson();
     }
     data['ID'] = iD;
     if (subjects != null) {
