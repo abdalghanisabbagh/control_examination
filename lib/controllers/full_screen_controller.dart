@@ -1,12 +1,14 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 
+import 'package:control_examination/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class FullScreenController extends GetxController {
   final FocusNode focusNode = FocusNode()..requestFocus();
+  final studentInExamController = Get.find<StudentInExamController>();
 
   String lastKey = '';
   Future<void> enterFullScreen() async {
@@ -43,7 +45,7 @@ class FullScreenController extends GetxController {
         HardwareKeyboard.instance.isLogicalKeyPressed(LogicalKeyboardKey.f6) ||
         HardwareKeyboard.instance.isLogicalKeyPressed(LogicalKeyboardKey.f4) ||
         HardwareKeyboard.instance.isLogicalKeyPressed(LogicalKeyboardKey.tab)) {
-      debugPrint("Key pressed: ${event.logicalKey.debugName}");
+      studentInExamController.markStudentCheating();
       return true;
     }
 
@@ -51,6 +53,8 @@ class FullScreenController extends GetxController {
       if (isFullScreen()) {
         exitFullScreen();
       } else {
+        studentInExamController.markStudentCheating();
+
         enterFullScreen();
       }
       return true;
