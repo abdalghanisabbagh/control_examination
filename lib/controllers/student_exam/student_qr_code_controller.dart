@@ -2,15 +2,14 @@ import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/controllers/controllers.dart';
+import 'package:control_examination/models/student_exams/exam_link_res_model.dart';
 import 'package:control_examination/tools/response_handler.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../configurations/app_links.dart';
 import '../../models/uuid/uuid_res_model.dart';
 import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
-import '../../routes_manger.dart';
 
 class StudentQrCodeController extends GetxController {
   final StudentExamController studentExamController = Get.find();
@@ -56,10 +55,36 @@ class StudentQrCodeController extends GetxController {
     qrCode =
         'Name: ${cachedUserProfile?.firstName} ${cachedUserProfile?.secondName} ${cachedUserProfile?.thirdName}\n${uuid.iD}';
     update();
-
-    Future.delayed(Durations.extralong4, () {
-      Get.offNamed(Routes.studentExamScreen);
-    });
     super.onInit();
+  }
+
+  Future<bool> validtaeStudentToStartExam() async {
+    bool isValid = false;
+    UuidResModel uuid = await studentExamController.uuidResModel.future;
+
+    final responseHandler = ResponseHandler<ExamLinkResModel>();
+
+    var response = await responseHandler.getResponse(
+      path: '${StudentsLinks.validateStudent}/${uuid.iD}',
+      converter: ExamLinkResModel.fromJson,
+      params: {
+        'examMissionId': cahechedExamMission?.iD,
+      },
+      type: ReqTypeEnum.GET,
+    );
+    response.fold(
+      (l) {
+        MyAwesomeDialogue(
+          title: 'Error',
+          desc: l.message,
+          dialogType: DialogType.error,
+        ).showDialogue(Get.key.currentContext!);
+      },
+      (r) {
+        isValid = true;
+      },
+    );
+
+    return isValid;
   }
 }

@@ -6,6 +6,7 @@ import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
+import '../../routes_manger.dart';
 
 class StudentQrScreen extends GetView<StudentQrCodeController> {
   final ProfileController profileController = Get.find<ProfileController>();
@@ -115,7 +116,9 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                       : SlideCountdown(
                           onChanged: (value) => value.inSeconds <= 2 * 60
                               ? null // TODO: validate time and go to next screen
-                              : null,
+                              : value.inSeconds == 0
+                                  ? Get.offNamed(Routes.studentExamScreen)
+                                  : null,
                           duration: Duration(seconds: _start),
                           style: nunitoBold.copyWith(
                             color: ColorManager.white,
@@ -123,6 +126,28 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                           ),
                           decoration: BoxDecoration(
                             color: ColorManager.bgSideMenu,
+                          ),
+                        ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: controller.qrCode.isEmpty
+                      ? const SizedBox.shrink()
+                      : ElevatedButton(
+                          onPressed: () async {
+                            final bool isValid =
+                                await controller.validtaeStudentToStartExam();
+                            if (isValid) {
+                              Get.offNamed(Routes.studentExamScreen);
+                            }
+                          },
+                          child: Text(
+                            'Scan Done?',
+                            style:
+                                nunitoBold.copyWith(color: ColorManager.white),
                           ),
                         ),
                 ),
