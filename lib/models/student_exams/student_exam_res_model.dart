@@ -5,10 +5,11 @@ class StudentExamResModel {
 
   int? isCheating;
   int? attendanceStatusId;
-
+  String? barcode;
   StudentExamResModel({this.examMission, this.isCheating});
 
-  StudentExamResModel.fromJson(Map<String, dynamic> json) {
+  StudentExamResModel.fromJson(json) {
+    barcode = json['Barcode'];
     attendanceStatusId = json['AttendanceStatusId'];
     isCheating = json['isCheating'];
     examMission = json['exam_mission'] != null
@@ -18,6 +19,7 @@ class StudentExamResModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['Barcode'] = barcode;
     data['isCheating'] = isCheating;
     data['AttendanceStatusId'] = attendanceStatusId;
     if (examMission != null) {
