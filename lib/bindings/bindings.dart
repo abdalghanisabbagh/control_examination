@@ -76,9 +76,9 @@ class StudentInExamBinding extends Bindings {
 class StudentQrCodeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<StudentQrCodeController>(
-      () => StudentQrCodeController(),
-      fenix: true,
+    Get.put<StudentQrCodeController>(
+       StudentQrCodeController(),
+      permanent: true,
     );
   }
 }

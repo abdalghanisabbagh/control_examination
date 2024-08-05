@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/models/student_exams/exam_link_res_model.dart';
 import 'package:control_examination/tools/response_handler.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../configurations/app_links.dart';
@@ -17,6 +18,8 @@ class StudentQrCodeController extends GetxController {
   final cahechedExamMission =
       Get.find<ExamMissionController>().cachedExamMission;
   String qrCode = '';
+
+  Completer<ExamLinkResModel> examLinkResModel = Completer<ExamLinkResModel>();
 
   Future<void> checkStudent() async {
     UuidResModel uuid = await studentExamController.uuidResModel.future;
@@ -45,7 +48,6 @@ class StudentQrCodeController extends GetxController {
 
   @override
   void onClose() {
-    Get.delete<StudentExamController>(force: true);
     super.onClose();
   }
 
@@ -82,6 +84,7 @@ class StudentQrCodeController extends GetxController {
       },
       (r) {
         isValid = true;
+        examLinkResModel.complete(r);
       },
     );
 

@@ -1,7 +1,7 @@
 import 'package:control_examination/screens/full_screen.dart';
 import 'package:control_examination/screens/home/home_screen.dart';
 import 'package:control_examination/screens/login/login_screen.dart';
-import 'package:control_examination/screens/student_exam_waiting/student_exam_screen.dart';
+import 'package:control_examination/screens/student_exam_waiting/student_in_exam_screen.dart';
 import 'package:control_examination/screens/student_exam_waiting/student_qr_screen.dart';
 import 'package:get/get.dart';
 
@@ -62,7 +62,12 @@ class Routes {
       page: () => const StudentInExamScreen(),
       transition: Transition.fade,
       binding: StudentInExamBinding(),
-      bindings: [HomeBindings(), WebSocketBinding()],
+      bindings: [
+        HomeBindings(),
+        WebSocketBinding(),
+        StudentQrCodeBinding(),
+        StudentExamBinding()
+      ],
       transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(
