@@ -115,7 +115,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                       ? const SizedBox.shrink()
                       : SlideCountdown(
                           onChanged: (value) => value.inSeconds <= 2 * 60
-                              ? null // TODO: validate time and go to next screen
+                              ? null // TODO: validate
                               : value.inSeconds == 0
                                   ? Get.offNamed(Routes.studentExamScreen)
                                   : null,
