@@ -8,15 +8,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
-class StudentInExamController extends GetxController {
+class StudentInExamController extends FullLifeCycleController
+    with FullLifeCycleMixin {
   final StudentQrCodeController studentQrCodeController =
       Get.find<StudentQrCodeController>();
 
   Uint8List? documentBytes;
+
   PdfViewerController? pdfViewerController = PdfViewerController();
+
   int currentPage = 0, documentPage = 0;
+
   bool isLoadingExam = true;
 
+  double _xScale = 1.0;
+
+  double _yScale = 1.0;
+  final ScrollController scrollController = ScrollController();
+  final TransformationController transformationController =
+      TransformationController();
   Future<void> getExamData() async {
     try {
       var link = await studentQrCodeController.examLinkResModel.future;
@@ -35,6 +45,29 @@ class StudentInExamController extends GetxController {
   }
 
   @override
+  void onClose() {
+    Get.delete<StudentQrCodeController>(force: true);
+    Get.delete<StudentExamController>(force: true);
+
+    super.onClose();
+  }
+
+  @override
+  void onDetached() {
+    debugPrint('onDetached');
+  }
+
+  @override
+  void onHidden() {
+    debugPrint('onHidden');
+  }
+
+  @override
+  void onInactive() {
+    debugPrint('onInactive');
+  }
+
+  @override
   void onInit() async {
     await Future.wait([
       getExamData(),
@@ -42,13 +75,15 @@ class StudentInExamController extends GetxController {
     super.onInit();
   }
 
-  double _xScale = 1.0;
-  double _yScale = 1.0;
+  @override
+  void onPaused() {
+    debugPrint('onPaused');
+  }
 
-  final ScrollController scrollController = ScrollController();
-
-  final TransformationController transformationController =
-      TransformationController();
+  @override
+  void onResumed() {
+    debugPrint('onResumed');
+  }
 
   void zoomIn() {
     if (_xScale >= 2.0 || _yScale >= 2.0) {
@@ -65,13 +100,5 @@ class StudentInExamController extends GetxController {
     }
     transformationController.value = Matrix4.identity()
       ..scale(_xScale -= 0.1, _yScale -= 0.1);
-  }
-
-  @override
-  void onClose() {
-    Get.delete<StudentQrCodeController>(force: true);
-    Get.delete<StudentExamController>(force: true);
-
-    super.onClose();
   }
 }
