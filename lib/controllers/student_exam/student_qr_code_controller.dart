@@ -46,11 +46,6 @@ class StudentQrCodeController extends GetxController {
   }
 
   @override
-  void onClose() {
-    super.onClose();
-  }
-
-  @override
   void onInit() async {
     UuidResModel uuid = await studentExamController.uuidResModel.future;
     qrCode =

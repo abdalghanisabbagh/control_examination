@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
+
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class FullScreenController extends GetxController {
   final FocusNode focusNode = FocusNode()..requestFocus();
@@ -22,11 +23,6 @@ class FullScreenController extends GetxController {
     } catch (e) {
       debugPrint('Error exiting full screen: $e');
     }
-  }
-
-  bool isFullScreen() {
-    debugPrint('Is full screen: ${html.document.fullscreenElement != null}');
-    return html.document.fullscreenElement != null;
   }
 
   bool handleKeyEvent(KeyEvent event) {
@@ -63,16 +59,21 @@ class FullScreenController extends GetxController {
     return false;
   }
 
-  @override
-  void onInit() async {
-    await enterFullScreen();
-    super.onInit();
+  bool isFullScreen() {
+    debugPrint('Is full screen: ${html.document.fullscreenElement != null}');
+    return html.document.fullscreenElement != null;
   }
 
   @override
   void onClose() {
     exitFullScreen();
     super.onClose();
+  }
+
+  @override
+  void onInit() async {
+    await enterFullScreen();
+    super.onInit();
   }
 
   void updateLastKey(String key) {
