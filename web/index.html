@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <base href="$FLUTTER_BASE_HREF">
 
@@ -14,60 +15,14 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>control_examination</title>
   <link rel="manifest" href="manifest.json">
-  <script>
-    function enterFullScreen() {
-      const elem = document.documentElement;
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.mozRequestFullScreen) { // Firefox
-        elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { // IE/Edge
-        elem.msRequestFullscreen();
-      }
-    }
 
-    function exitFullScreen() {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.mozCancelFullScreen) { // Firefox
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) { // IE/Edge
-        document.msExitFullscreen();
-      }
-    }
-
-    function isFullScreen() {
-      return document.fullscreenElement ||
-             document.mozFullScreenElement ||
-             document.webkitFullscreenElement ||
-             document.msFullscreenElement ? true : false;
-    }
-
-    // Example usage: update fullscreen status
-    function updateFullScreenStatus() {
-      console.log("Is full screen: " + isFullScreen());
-    }
-
-    // Event listeners for entering and exiting full screen
-    document.addEventListener("fullscreenchange", updateFullScreenStatus);
-    document.addEventListener("mozfullscreenchange", updateFullScreenStatus);
-    document.addEventListener("webkitfullscreenchange", updateFullScreenStatus);
-    document.addEventListener("msfullscreenchange", updateFullScreenStatus);
-  </script>
 </head>
 <!-- IMPORTANT: load pdfjs files -->
-<script
-  src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"
-  type="text/javascript"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
@@ -80,7 +35,65 @@
     // params: {}
   };
 </script>
+
 <body>
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    function enterFullScreen ()
+    {
+      const elem = document.documentElement;
+      if ( elem.requestFullscreen )
+      {
+        elem.requestFullscreen();
+      } else if ( elem.mozRequestFullScreen )
+      { // Firefox
+        elem.mozRequestFullScreen();
+      } else if ( elem.webkitRequestFullscreen )
+      { // Chrome, Safari, and Opera
+        elem.webkitRequestFullscreen();
+      } else if ( elem.msRequestFullscreen )
+      { // IE/Edge
+        elem.msRequestFullscreen();
+      }
+    }
+
+    function exitFullScreen ()
+    {
+      if ( document.exitFullscreen )
+      {
+        document.exitFullscreen();
+      } else if ( document.mozCancelFullScreen )
+      { // Firefox
+        document.mozCancelFullScreen();
+      } else if ( document.webkitExitFullscreen )
+      { // Chrome, Safari, and Opera
+        document.webkitExitFullscreen();
+      } else if ( document.msExitFullscreen )
+      { // IE/Edge
+        document.msExitFullscreen();
+      }
+    }
+
+    function isFullScreen ()
+    {
+      return document.fullscreenElement ||
+        document.mozFullScreenElement ||
+        document.webkitFullscreenElement ||
+        document.msFullscreenElement ? true : false;
+    }
+
+    // Example usage: update fullscreen status
+    function updateFullScreenStatus ()
+    {
+      console.log( "Is full screen: " + isFullScreen() );
+    }
+
+    // Event listeners for entering and exiting full screen
+    document.addEventListener( "fullscreenchange", updateFullScreenStatus );
+    document.addEventListener( "mozfullscreenchange", updateFullScreenStatus );
+    document.addEventListener( "webkitfullscreenchange", updateFullScreenStatus );
+    document.addEventListener( "msfullscreenchange", updateFullScreenStatus );
+  </script>
 </body>
+
 </html>
