@@ -3,15 +3,22 @@ import 'dart:typed_data';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/resource_manager/ReusableWidget/show_dialgue.dart';
+import 'package:control_examination/tools/response_handler.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
+import '../../configurations/app_links.dart';
+import '../../resource_manager/enums/req_type_enum.dart';
+
 class StudentInExamController extends FullLifeCycleController
     with FullLifeCycleMixin {
   final StudentQrCodeController studentQrCodeController =
       Get.find<StudentQrCodeController>();
+
+  final ExamMissionController examMissionController =
+      Get.find<ExamMissionController>();
 
   Uint8List? documentBytes;
 
@@ -44,6 +51,16 @@ class StudentInExamController extends FullLifeCycleController
     return;
   }
 
+  void markStudentCheating() async {
+    final ResponseHandler responseHandler = ResponseHandler<void>();
+
+    responseHandler.getResponse(
+      path: '${StudentsLinks.studentCheating}/${examMissionController.barcode}',
+      type: ReqTypeEnum.GET,
+      converter: (_) {},
+    );
+  }
+
   @override
   void onClose() {
     Get.delete<StudentQrCodeController>(force: true);
@@ -54,17 +71,17 @@ class StudentInExamController extends FullLifeCycleController
 
   @override
   void onDetached() {
-    debugPrint('onDetached');
+    markStudentCheating();
   }
 
   @override
   void onHidden() {
-    debugPrint('onHidden');
+    markStudentCheating();
   }
 
   @override
   void onInactive() {
-    debugPrint('onInactive');
+    markStudentCheating();
   }
 
   @override
@@ -77,13 +94,11 @@ class StudentInExamController extends FullLifeCycleController
 
   @override
   void onPaused() {
-    debugPrint('onPaused');
+    markStudentCheating();
   }
 
   @override
-  void onResumed() {
-    debugPrint('onResumed');
-  }
+  void onResumed() {}
 
   void zoomIn() {
     if (_xScale >= 2.0 || _yScale >= 2.0) {
