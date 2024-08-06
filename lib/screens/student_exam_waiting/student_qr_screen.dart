@@ -45,6 +45,10 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
               ),
               BackButton(
                 color: ColorManager.white,
+                onPressed: () => {
+                  Get.back(),
+                  Get.delete<StudentQrCodeController>(force: true),
+                },
               ),
               const Spacer(
                 flex: 2,
