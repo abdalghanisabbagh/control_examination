@@ -87,23 +87,3 @@ class WebSocketBinding extends Bindings {
     );
   }
 }
-
-// class NextExamBindings extends Bindings {
-//   @override
-//   void dependencies() {
-//     Get.lazyPut<NextExamController>(
-//       () => NextExamController(),
-//       fenix: true,
-//     );
-//   }
-//}
-
-// class StudentsInExamRoomBinding extends Bindings {
-//   @override
-//   void dependencies() {
-//     Get.lazyPut<StudentsInExamRoomController>(
-//       () => StudentsInExamRoomController(),
-//       fenix: true,
-//     );
-//   }
-// }

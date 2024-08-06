@@ -12,6 +12,7 @@ import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
 
 class StudentQrCodeController extends GetxController {
+  bool loading = false;
   final StudentExamController studentExamController = Get.find();
   final cachedUserProfile = Get.find<ProfileController>().cachedUserProfile;
   final cahechedExamMission =
@@ -61,7 +62,9 @@ class StudentQrCodeController extends GetxController {
   }
 
   Future<bool> validtaeStudentToStartExam() async {
+    loading = true;
     bool isValid = false;
+    update(['scan_done']);
     UuidResModel uuid = await studentExamController.uuidResModel.future;
 
     final responseHandler = ResponseHandler<ExamLinkResModel>();
@@ -88,6 +91,8 @@ class StudentQrCodeController extends GetxController {
       },
     );
 
+    loading = false;
+    update(['scan_done']);
     return isValid;
   }
 }

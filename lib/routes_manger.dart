@@ -15,7 +15,6 @@ class Routes {
   static const String studentExamScreenWaiting = "/studentExamScreenWaiting";
   static const String studentExamScreenQRCode = "/studentExamScreenQRCode";
   static const String studentExamScreen = "/studentExamScreen";
-  static const String fullScreen = "/fullScreen";
 
   // static const String nextExams = "/NextExams";
   // static const String allExams = "/AllExams";

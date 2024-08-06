@@ -5,7 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/models/server_clock_model.dart';
 import 'package:control_examination/models/student_exams/student_exams_res_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -17,6 +17,8 @@ import '../../tools/response_handler.dart';
 
 class HomeController extends GetxController {
   bool loading = false;
+
+  ScrollController scrollController = ScrollController();
 
   final userProfile = Get.find<ProfileController>().cachedUserProfile;
 
@@ -70,7 +72,7 @@ class HomeController extends GetxController {
         (element) => element.examMission?.controlMissionResModel?.name,
       );
     });
-    update();
+    update(['exams']);
   }
 
   @override
