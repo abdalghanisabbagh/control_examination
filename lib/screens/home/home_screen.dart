@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:control_examination/configurations/constants/assets.dart';
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/extensions/string_extension.dart';
+import 'package:control_examination/models/student_exams/student_exam_res_model.dart';
 import 'package:control_examination/resource_manager/ReusableWidget/show_dialgue.dart';
 import 'package:control_examination/resource_manager/index.dart';
 import 'package:control_examination/services/services.dart';
@@ -109,173 +110,212 @@ class HomeScreen extends GetView<HomeController> {
                               ),
                             ),
                             const SizedBox(height: 20),
+                            const Divider(),
                             SizedBox(
                               height: Get.height * 0.65,
                               child: SingleChildScrollView(
                                 child: Column(
                                   children: List.generate(
-                                    controller.studentExams.length,
+                                    controller
+                                        .studentExamsResModel!.entries.length,
                                     (index) {
-                                      return InkWell(
-                                        onTap: () {
-                                          Get.find<ExamMissionController>()
-                                              .saveExamMissionToHiveBox(
-                                                  examMission: controller
-                                                      .studentExams[index]
-                                                      .examMission!,
-                                                  barcode: controller
-                                                      .studentExams[index]
-                                                      .barcode!);
-                                          if (controller.studentExams[index].isCheating ==
-                                              1) {
-                                            MyAwesomeDialogue(
-                                              title: 'Cheating Detected',
-                                              desc:
-                                                  'You Can Not Take This Exam',
-                                              dialogType: DialogType.error,
-                                            ).showDialogue(
-                                                Get.key.currentContext!);
-                                          } else if (DateTime.parse(controller.studentExams[index].examMission?.endTime ?? DateTime.now().toString())
-                                              .toUtc()
-                                              .isBefore(
-                                                  DateTime.now().toUtc())) {
-                                            MyAwesomeDialogue(
-                                              title: 'Exam Ended',
-                                              desc:
-                                                  'You Can Not Take This Exam',
-                                              dialogType: DialogType.error,
-                                            ).showDialogue(
-                                                Get.key.currentContext!);
-                                          } else if (DateTime.parse(controller.studentExams[index].examMission?.startTime ?? DateTime.now().toString()).toUtc().difference(
-                                                      DateTime.now().toUtc()) <=
-                                                  const Duration(minutes: 5) ||
-                                              DateTime.parse(controller.studentExams[index].examMission?.startTime ?? DateTime.now().toString())
-                                                  .toUtc()
-                                                  .isBefore(
-                                                      DateTime.now().toUtc())) {
-                                            Get.toNamed(
-                                                Routes.studentExamScreenQRCode);
-                                          } else if (DateTime.parse(controller
-                                                          .studentExams[index]
-                                                          .examMission
-                                                          ?.startTime ??
-                                                      DateTime.now().toString())
-                                                  .toUtc()
-                                                  .difference(DateTime.now().toUtc()) <
-                                              const Duration(minutes: 15)) {
-                                            Get.toNamed(Routes
-                                                .studentExamScreenWaiting);
-                                          } else {
-                                            MyAwesomeDialogue(
-                                              title: 'Exam Did Not Start Yet',
-                                              desc:
-                                                  'You Can Not Take This Exam Before It Starts',
-                                              dialogType: DialogType.error,
-                                            ).showDialogue(
-                                                Get.key.currentContext!);
-                                          }
-                                        },
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: controller
-                                                        .studentExams[index]
-                                                        .isCheating ==
-                                                    1
-                                                ? ColorManager.ornage
-                                                : controller.studentExams[index]
-                                                            .attendanceStatusId ==
-                                                        1
-                                                    ? ColorManager.green
-                                                    : DateTime.parse(controller
-                                                                    .studentExams[
-                                                                        index]
-                                                                    .examMission
-                                                                    ?.endTime ??
-                                                                DateTime.now()
-                                                                    .toString())
-                                                            .toUtc()
-                                                            .isBefore(
-                                                                DateTime.now()
-                                                                    .toUtc())
-                                                        ? ColorManager.red
-                                                        : ColorManager.greyA8,
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: Get.width * 0.015,
-                                                height: Get.width * 0.06,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    '${controller.studentExams[index].examMission?.startTime?.dateFormat}',
-                                                    style: nunitoLight.copyWith(
-                                                      color: ColorManager
-                                                          .darkGrey2,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    '${controller.studentExams[index].examMission?.startTime?.timeFormat}',
-                                                    style: nunitoLight.copyWith(
-                                                      color: ColorManager
-                                                          .darkGrey2,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const Spacer(),
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    '${controller.studentExams[index].examMission!.subjects?.name}',
-                                                    style:
-                                                        nunitoSemiBold.copyWith(
-                                                      color: ColorManager.white,
-                                                      fontSize: 16,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    '${controller.studentExams[index].examMission!.duration}',
-                                                    style:
-                                                        nunitoSemiBold.copyWith(
-                                                      color: ColorManager.white,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const Spacer(),
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    '${controller.studentExams[index].examMission?.endTime?.dateFormat}',
-                                                    style: nunitoLight.copyWith(
-                                                      color: ColorManager
-                                                          .darkGrey2,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    '${controller.studentExams[index].examMission?.endTime?.timeFormat}',
-                                                    style: nunitoLight.copyWith(
-                                                      color: ColorManager
-                                                          .darkGrey2,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const Spacer(),
-                                            ],
+                                      final String controlMissionName =
+                                          controller
+                                              .studentExamsResModel!.entries
+                                              .toList()[index]
+                                              .key!;
+                                      List<StudentExamResModel>
+                                          examsInControlMission = controller
+                                              .studentExamsResModel!.entries
+                                              .toList()[index]
+                                              .value;
+                                      return ListTile(
+                                        title: Text(
+                                          controlMissionName,
+                                          style: nunitoBold.copyWith(
+                                            color: ColorManager.white,
                                           ),
                                         ),
-                                      ).paddingSymmetric(
-                                          horizontal: 10, vertical: 10);
+                                        subtitle: Column(
+                                          children: [
+                                            ...examsInControlMission.map(
+                                              (exam) => InkWell(
+                                                onTap: () {
+                                                  Get.find<
+                                                          ExamMissionController>()
+                                                      .saveExamMissionToHiveBox(
+                                                          examMission:
+                                                              exam.examMission!,
+                                                          barcode:
+                                                              exam.barcode!);
+                                                  if (exam.isCheating == 1) {
+                                                    MyAwesomeDialogue(
+                                                      title:
+                                                          'Cheating Detected',
+                                                      desc:
+                                                          'You Can Not Take This Exam',
+                                                      dialogType:
+                                                          DialogType.error,
+                                                    ).showDialogue(Get
+                                                        .key.currentContext!);
+                                                  } else if (DateTime.parse(exam.examMission?.endTime ?? DateTime.now().toString())
+                                                      .toUtc()
+                                                      .isBefore(DateTime.now()
+                                                          .toUtc())) {
+                                                    MyAwesomeDialogue(
+                                                      title: 'Exam Ended',
+                                                      desc:
+                                                          'You Can Not Take This Exam',
+                                                      dialogType:
+                                                          DialogType.error,
+                                                    ).showDialogue(Get
+                                                        .key.currentContext!);
+                                                  } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).toUtc().difference(DateTime.now().toUtc()) <=
+                                                          const Duration(
+                                                              minutes: 5) ||
+                                                      DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
+                                                          .toUtc()
+                                                          .isBefore(DateTime.now()
+                                                              .toUtc())) {
+                                                    Get.toNamed(Routes
+                                                        .studentExamScreenQRCode);
+                                                  } else if (DateTime.parse(exam
+                                                                  .examMission
+                                                                  ?.startTime ??
+                                                              DateTime.now().toString())
+                                                          .toUtc()
+                                                          .difference(DateTime.now().toUtc()) <
+                                                      const Duration(minutes: 15)) {
+                                                    Get.toNamed(Routes
+                                                        .studentExamScreenWaiting);
+                                                  } else {
+                                                    MyAwesomeDialogue(
+                                                      title:
+                                                          'Exam Did Not Start Yet',
+                                                      desc:
+                                                          'You Can Not Take This Exam Before It Starts',
+                                                      dialogType:
+                                                          DialogType.error,
+                                                    ).showDialogue(Get
+                                                        .key.currentContext!);
+                                                  }
+                                                },
+                                                child: DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: exam.isCheating == 1
+                                                        ? ColorManager.ornage
+                                                        : exam.attendanceStatusId ==
+                                                                1
+                                                            ? ColorManager.green
+                                                            : DateTime.parse(exam
+                                                                            .examMission
+                                                                            ?.endTime ??
+                                                                        DateTime.now()
+                                                                            .toString())
+                                                                    .toUtc()
+                                                                    .isBefore(DateTime
+                                                                            .now()
+                                                                        .toUtc())
+                                                                ? ColorManager
+                                                                    .red
+                                                                : ColorManager
+                                                                    .greyA8,
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      SizedBox(
+                                                        width:
+                                                            Get.width * 0.015,
+                                                        height:
+                                                            Get.width * 0.06,
+                                                      ),
+                                                      Column(
+                                                        children: [
+                                                          Text(
+                                                            '${exam.examMission?.startTime?.dateFormat}',
+                                                            style: nunitoLight
+                                                                .copyWith(
+                                                              color: ColorManager
+                                                                  .darkGrey2,
+                                                              fontSize: 14,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            '${exam.examMission?.startTime?.timeFormat}',
+                                                            style: nunitoLight
+                                                                .copyWith(
+                                                              color: ColorManager
+                                                                  .darkGrey2,
+                                                              fontSize: 14,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const Spacer(),
+                                                      Column(
+                                                        children: [
+                                                          Text(
+                                                            '${exam.examMission!.subjects?.name}',
+                                                            style:
+                                                                nunitoSemiBold
+                                                                    .copyWith(
+                                                              color:
+                                                                  ColorManager
+                                                                      .white,
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            '${exam.examMission!.duration}',
+                                                            style:
+                                                                nunitoSemiBold
+                                                                    .copyWith(
+                                                              color:
+                                                                  ColorManager
+                                                                      .white,
+                                                              fontSize: 14,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const Spacer(),
+                                                      Column(
+                                                        children: [
+                                                          Text(
+                                                            '${exam.examMission?.endTime?.dateFormat}',
+                                                            style: nunitoLight
+                                                                .copyWith(
+                                                              color: ColorManager
+                                                                  .darkGrey2,
+                                                              fontSize: 14,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            '${exam.examMission?.endTime?.timeFormat}',
+                                                            style: nunitoLight
+                                                                .copyWith(
+                                                              color: ColorManager
+                                                                  .darkGrey2,
+                                                              fontSize: 14,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const Spacer(),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ).paddingOnly(
+                                                top: 10,
+                                              ),
+                                            ),
+                                          ],
+                                        ).paddingSymmetric(
+                                            horizontal: 10, vertical: 10),
+                                      );
                                     },
                                   ),
                                 ),
