@@ -21,7 +21,7 @@ class HomeController extends GetxController {
   final userProfile = Get.find<ProfileController>().cachedUserProfile;
 
   Timer? serverCLock;
-  Map<int?, List<StudentExamResModel>>? studentExamsResModel;
+  Map<String?, List<StudentExamResModel>>? studentExamsResModel;
   List<StudentExamResModel> studentExams = [];
   int timerCounter = 0;
   String serverTime = '00:00';
@@ -67,7 +67,7 @@ class HomeController extends GetxController {
     }, (r) {
       studentExams.assignAll(r.exams!);
       studentExamsResModel = r.exams!.groupListsBy(
-        (element) => element.examMission?.controlMissionResModel?.iD,
+        (element) => element.examMission?.controlMissionResModel?.name,
       );
     });
     update();
