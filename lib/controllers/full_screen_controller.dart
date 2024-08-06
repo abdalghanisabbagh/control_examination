@@ -6,6 +6,7 @@ import 'package:control_examination/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class FullScreenController extends GetxController {
   final FocusNode focusNode = FocusNode()..requestFocus();
@@ -60,8 +61,8 @@ class FullScreenController extends GetxController {
 
   @override
   void onClose() {
-    exitFullScreen();
     removeListeners();
+    exitFullScreen();
     super.onClose();
   }
 
@@ -69,7 +70,9 @@ class FullScreenController extends GetxController {
   void onInit() async {
     await enterFullScreen();
     html.window.addEventListener('fullscreenchange', (event) {
-      isInFullScreen() ? studentInExamController.markStudentCheating() : null;
+      if (Hive.box('ExamMission').get('inExam')) {
+        isInFullScreen() ? null : studentInExamController.markStudentCheating();
+      }
     });
     super.onInit();
   }

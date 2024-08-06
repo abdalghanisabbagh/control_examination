@@ -2,6 +2,7 @@ import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/resource_manager/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
@@ -145,6 +146,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                             final bool isValid =
                                 await controller.validtaeStudentToStartExam();
                             if (isValid) {
+                              Hive.box('ExamMission').put('inExam', true);
                               Get.offNamed(Routes.studentExamScreen);
                             }
                           },

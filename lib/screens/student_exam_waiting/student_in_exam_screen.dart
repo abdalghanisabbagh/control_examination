@@ -3,6 +3,7 @@ import 'package:control_examination/resource_manager/ReusableWidget/loading_indi
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
 import '../../controllers/student_exam/student_in_exam_controller.dart';
@@ -21,16 +22,20 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
             focusNode: fullScreenController.focusNode,
             onKeyEvent: (KeyEvent event) {
               if (event is KeyDownEvent) {
-                fullScreenController.handleKeyEvent(event);
-                fullScreenController
-                    .updateLastKey(event.logicalKey.debugName ?? 'Unknown');
-                debugPrint('Key pressed: ${event.logicalKey.debugName}');
+                // fullScreenController.handleKeyEvent(event);
+                // fullScreenController
+                //     .updateLastKey(event.logicalKey.debugName ?? 'Unknown');
+                // debugPrint('Key pressed: ${event.logicalKey.debugName}');
               }
             },
             child: Scaffold(
               appBar: AppBar(
                 leading: BackButton(
                   color: ColorManager.white,
+                  onPressed: () {
+                    Hive.box('ExamMission').put('inExam', false);
+                    Get.back();
+                  },
                 ),
                 title: Text(
                   'Student Exam',
