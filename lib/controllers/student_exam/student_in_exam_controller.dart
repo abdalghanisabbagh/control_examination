@@ -51,16 +51,6 @@ class StudentInExamController extends FullLifeCycleController
     return;
   }
 
-  void markStudentAttendance() async {
-    final ResponseHandler responseHandler = ResponseHandler<void>();
-    responseHandler.getResponse(
-      path:
-          '${StudentsLinks.markStudentAttendance}/${examMissionController.barcode}',
-      type: ReqTypeEnum.GET,
-      converter: (_) {},
-    );
-  }
-
   void markStudentCheating() async {
     final ResponseHandler responseHandler = ResponseHandler<void>();
 
@@ -105,12 +95,6 @@ class StudentInExamController extends FullLifeCycleController
   @override
   void onPaused() {
     markStudentCheating();
-  }
-
-  @override
-  void onReady() async {
-    markStudentAttendance();
-    super.onReady();
   }
 
   @override
