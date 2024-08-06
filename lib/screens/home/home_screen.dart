@@ -208,7 +208,7 @@ class HomeScreen extends GetView<HomeController> {
                                                     color: exam.isCheating == 1
                                                         ? ColorManager.ornage
                                                         : exam.attendanceStatusId ==
-                                                                1
+                                                                13
                                                             ? ColorManager.green
                                                             : DateTime.parse(exam
                                                                             .examMission
