@@ -14,11 +14,15 @@ import '../../resource_manager/enums/req_type_enum.dart';
 
 class StudentInExamController extends FullLifeCycleController
     with FullLifeCycleMixin {
+  final int examDuration =
+      Get.find<ExamMissionController>().cachedExamMission!.duration!;
   final StudentQrCodeController studentQrCodeController =
       Get.find<StudentQrCodeController>();
 
   final ExamMissionController examMissionController =
       Get.find<ExamMissionController>();
+
+  final userProfile = Get.find<ProfileController>().cachedUserProfile;
 
   Uint8List? documentBytes;
 
@@ -110,7 +114,7 @@ class StudentInExamController extends FullLifeCycleController
   }
 
   void zoomOut() {
-    if (_xScale <= 1.0 || _yScale <= 1.1) {
+    if (_xScale <= 1.0 || _yScale <= 1.0) {
       return;
     }
     transformationController.value = Matrix4.identity()
