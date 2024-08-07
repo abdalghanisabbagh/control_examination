@@ -67,8 +67,8 @@ class StudentInExamController extends FullLifeCycleController
 
   @override
   void onClose() {
-    // Get.delete<StudentQrCodeController>(force: true);
-    // Get.delete<StudentExamController>(force: true);
+    Get.delete<StudentQrCodeController>(force: true);
+    Get.delete<StudentExamController>(force: true);
 
     super.onClose();
   }
