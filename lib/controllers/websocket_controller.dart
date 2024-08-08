@@ -1,8 +1,9 @@
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/services/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
+
+import '../services/services.dart';
+import 'controllers.dart';
 
 class WebSocketController extends GetxController {
   final token = Get.find<TokenService>().tokenModel;
