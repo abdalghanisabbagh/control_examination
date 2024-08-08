@@ -51,6 +51,10 @@ dependencies:
   slide_countdown: ^1.6.1
   pdf_render: ^1.4.10
   collection: ^1.18.0
+  custom_theme:
+    git:
+      url: https://github.com/Mahmoud-Saeed-Mahmoud/custom_theme.git
+      ref: v1.0.3
 
 dev_dependencies:
   flutter_test:
