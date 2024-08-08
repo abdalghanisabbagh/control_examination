@@ -1,9 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:control_examination/controllers/login_controller.dart';
-import 'package:control_examination/screens/login/login_form.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/login_controller.dart';
+import 'login_form.dart';
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
