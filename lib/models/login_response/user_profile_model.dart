@@ -10,27 +10,29 @@ class UserProfileModel {
 
   int? cohortID;
   String? cohortName;
-  String? userName;
   // CohortResModel? cohortResModel;
   // BarcodesResModel? barcodesResModel;
   String? createdAt;
+
   int? createdBy;
   String? email;
+
   String? firstName;
   String? gradeName;
   GradeResModel? gradeResModel;
-  SchoolResModel? schoolResModel;
   int? gradesID;
   int? iD;
   String? religion;
   int? schoolClassID;
   String? schoolClassName;
+  SchoolResModel? schoolResModel;
   int? schoolsID;
   String? secondLang;
   String? secondName;
   String? thirdName;
   DateTime? updatedAt;
   int? updatedBy;
+  String? userName;
   UserProfileModel({
     this.iD,
     this.blbId,
@@ -59,7 +61,6 @@ class UserProfileModel {
     this.active,
     this.religion,
   });
-
   UserProfileModel.fromJson(json) {
     iD = json['ID'];
     userName = json['User_Name'];
