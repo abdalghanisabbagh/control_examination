@@ -14,30 +14,28 @@ import '../controllers.dart';
 
 class StudentInExamController extends FullLifeCycleController
     with FullLifeCycleMixin {
+  int currentPage = 0, documentPage = 0;
+  Uint8List? documentBytes;
   final int examDuration =
       Get.find<ExamMissionController>().cachedExamMission!.duration!;
-  final StudentQrCodeController studentQrCodeController =
-      Get.find<StudentQrCodeController>();
 
   final ExamMissionController examMissionController =
       Get.find<ExamMissionController>();
 
-  final userProfile = Get.find<ProfileController>().cachedUserProfile;
-
-  Uint8List? documentBytes;
-
-  PdfViewerController? pdfViewerController = PdfViewerController();
-
-  int currentPage = 0, documentPage = 0;
-
   bool isLoadingExam = true;
-
-  double _xScale = 1.0;
-
-  double _yScale = 1.0;
+  PdfViewerController? pdfViewerController = PdfViewerController();
   final ScrollController scrollController = ScrollController();
+  final StudentQrCodeController studentQrCodeController =
+      Get.find<StudentQrCodeController>();
+
   final TransformationController transformationController =
       TransformationController();
+
+  final userProfile = Get.find<ProfileController>().cachedUserProfile;
+
+  double _xScale = 1.0;
+  double _yScale = 1.0;
+
   Future<void> getExamData() async {
     try {
       var link = await studentQrCodeController.examLinkResModel.future;
