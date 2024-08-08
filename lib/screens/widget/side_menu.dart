@@ -9,6 +9,7 @@ import '../../services/token_service.dart';
 
 class SideMenu extends StatelessWidget {
   final SideMenuController sideMenuController = Get.put(SideMenuController());
+
   SideMenu({super.key});
 
   @override
