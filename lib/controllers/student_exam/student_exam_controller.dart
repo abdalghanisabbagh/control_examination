@@ -12,8 +12,8 @@ import '../../tools/response_handler.dart';
 import '../controllers.dart';
 
 class StudentExamController extends GetxController {
-  final userProfile = Get.find<ProfileController>().cachedUserProfile;
   final cachedExamMission = Get.find<ExamMissionController>().cachedExamMission;
+  final userProfile = Get.find<ProfileController>().cachedUserProfile;
   final uuid = const Uuid();
   Completer<UuidResModel> uuidResModel = Completer<UuidResModel>();
 
