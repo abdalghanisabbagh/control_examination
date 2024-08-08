@@ -1,9 +1,9 @@
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'bindings/bindings.dart';
-import 'resource_manager/theme_manager.dart';
 import 'routes_manger.dart';
 
 class MyApp extends StatefulWidget {

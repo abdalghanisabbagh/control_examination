@@ -1,10 +1,9 @@
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/profile_controller.dart';
 import '../../controllers/side_menu_controller.dart';
-import '../../resource_manager/assets_manager.dart';
-import '../../resource_manager/color_manager.dart';
 import '../../routes_manger.dart';
 import '../../services/token_service.dart';
 

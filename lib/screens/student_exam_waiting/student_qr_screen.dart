@@ -1,5 +1,5 @@
 import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/resource_manager/index.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -194,7 +194,8 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                                     child: Text(
                                       'Scan Done?',
                                       style: nunitoBold.copyWith(
-                                          color: ColorManager.white),
+                                        color: ColorManager.white,
+                                      ),
                                     ),
                                   );
                           },
