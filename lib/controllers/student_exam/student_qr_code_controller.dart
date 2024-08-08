@@ -12,14 +12,14 @@ import '../../tools/response_handler.dart';
 import '../controllers.dart';
 
 class StudentQrCodeController extends GetxController {
-  bool loading = false;
-  final StudentExamController studentExamController = Get.find();
   final cachedUserProfile = Get.find<ProfileController>().cachedUserProfile;
   final cahechedExamMission =
       Get.find<ExamMissionController>().cachedExamMission;
-  String qrCode = '';
 
   Completer<ExamLinkResModel> examLinkResModel = Completer<ExamLinkResModel>();
+  bool loading = false;
+  String qrCode = '';
+  final StudentExamController studentExamController = Get.find();
 
   Future<void> checkStudent() async {
     UuidResModel uuid = await studentExamController.uuidResModel.future;
