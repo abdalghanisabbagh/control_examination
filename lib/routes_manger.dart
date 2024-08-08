@@ -8,14 +8,10 @@ import 'screens/student_exam_waiting/student_in_exam_screen.dart';
 import 'screens/student_exam_waiting/student_qr_screen.dart';
 
 class Routes {
-  static const String initialRoute = "/loginScreen";
-  static const String loginRoute = "/loginScreen";
-  static const String loginForm = "/loginForm";
   static const String homeScreen = "/homeScreen";
-  static const String studentExamScreenWaiting = "/studentExamScreenWaiting";
-  static const String studentExamScreenQRCode = "/studentExamScreenQRCode";
-  static const String studentExamScreen = "/studentExamScreen";
-
+  static const String initialRoute = "/loginScreen";
+  static const String loginForm = "/loginForm";
+  static const String loginRoute = "/loginScreen";
   // static const String nextExams = "/NextExams";
   // static const String allExams = "/AllExams";
   // static const String attendance = "/Attendance";
@@ -91,4 +87,8 @@ class Routes {
     //   transitionDuration: const Duration(seconds: 1),
     // ),
   ];
+
+  static const String studentExamScreen = "/studentExamScreen";
+  static const String studentExamScreenQRCode = "/studentExamScreenQRCode";
+  static const String studentExamScreenWaiting = "/studentExamScreenWaiting";
 }
