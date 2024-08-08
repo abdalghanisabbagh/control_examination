@@ -1,7 +1,6 @@
-import 'package:control_examination/models/subject/subject_res_model.dart';
-
 import '../control_mission/control_mission_res_model.dart';
 import '../exam_has_exam_mission/exam_room_has_exam_mission.dart';
+import '../subject/subject_res_model.dart';
 
 class ExamMission {
   List<ExamRoomHasExamMission>? examRoomHasExamMission;

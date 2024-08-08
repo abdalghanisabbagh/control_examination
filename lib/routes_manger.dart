@@ -1,11 +1,11 @@
-import 'package:control_examination/screens/home/home_screen.dart';
-import 'package:control_examination/screens/login/login_screen.dart';
-import 'package:control_examination/screens/student_exam_waiting/student_in_exam_screen.dart';
-import 'package:control_examination/screens/student_exam_waiting/student_qr_screen.dart';
 import 'package:get/get.dart';
 
 import 'bindings/bindings.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/login/login_screen.dart';
 import 'screens/student_exam_waiting/student_exam_waiting_screen.dart';
+import 'screens/student_exam_waiting/student_in_exam_screen.dart';
+import 'screens/student_exam_waiting/student_qr_screen.dart';
 
 class Routes {
   static const String initialRoute = "/loginScreen";

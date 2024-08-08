@@ -1,16 +1,16 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_examination/configurations/constants/assets.dart';
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/extensions/string_extension.dart';
-import 'package:control_examination/models/student_exams/student_exam_res_model.dart';
-import 'package:control_examination/resource_manager/ReusableWidget/show_dialgue.dart';
-import 'package:control_examination/services/services.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../configurations/constants/assets.dart';
+import '../../controllers/controllers.dart';
+import '../../extensions/string_extension.dart';
+import '../../models/student_exams/student_exam_res_model.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
+import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../../routes_manger.dart';
+import '../../services/services.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});

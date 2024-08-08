@@ -1,11 +1,11 @@
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/routes_manger.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../configurations/constants/assets.dart';
+import '../../controllers/controllers.dart';
+import '../../routes_manger.dart';
 
 class StudentExamWaitingScreen extends GetView<StudentExamController> {
   final int _start = DateTime.parse(Get.find<ExamMissionController>()

@@ -1,4 +1,4 @@
-import 'package:control_examination/models/school/school_type.dart';
+import 'school_type.dart';
 
 class SchoolResModel {
   int? active;

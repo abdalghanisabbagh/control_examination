@@ -1,6 +1,5 @@
-import 'package:control_examination/models/school/school_res_model.dart';
-
 import '../grade_response/grade_res_model.dart';
+import '../school/school_res_model.dart';
 
 class UserProfileModel {
   int? active;

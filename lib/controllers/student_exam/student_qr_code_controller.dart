@@ -1,15 +1,15 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/models/student_exams/exam_link_res_model.dart';
-import 'package:control_examination/tools/response_handler.dart';
 import 'package:get/get.dart';
 
 import '../../configurations/app_links.dart';
+import '../../models/student_exams/exam_link_res_model.dart';
 import '../../models/uuid/uuid_res_model.dart';
 import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
+import '../../tools/response_handler.dart';
+import '../controllers.dart';
 
 class StudentQrCodeController extends GetxController {
   bool loading = false;

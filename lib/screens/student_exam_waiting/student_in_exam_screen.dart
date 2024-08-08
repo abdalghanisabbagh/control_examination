@@ -1,5 +1,3 @@
-import 'package:control_examination/controllers/full_screen_controller.dart';
-import 'package:control_examination/resource_manager/ReusableWidget/loading_indicators.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +8,9 @@ import 'package:pdf_render/pdf_render_widgets.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../configurations/constants/assets.dart';
+import '../../controllers/full_screen_controller.dart';
 import '../../controllers/student_exam/student_in_exam_controller.dart';
+import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 
 class StudentInExamScreen extends GetView<StudentInExamController> {
   const StudentInExamScreen({super.key});
