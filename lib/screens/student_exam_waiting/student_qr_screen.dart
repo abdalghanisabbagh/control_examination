@@ -1,4 +1,3 @@
-import 'package:control_examination/controllers/controllers.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../configurations/constants/assets.dart';
+import '../../controllers/controllers.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 import '../../routes_manger.dart';
 
