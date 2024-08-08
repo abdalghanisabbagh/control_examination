@@ -1,6 +1,6 @@
 import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/resource_manager/index.dart';
 import 'package:control_examination/routes_manger.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_countdown/slide_countdown.dart';
