@@ -17,17 +17,15 @@ import '../controllers.dart';
 
 class HomeController extends GetxController {
   bool loading = false;
-
   ScrollController scrollController = ScrollController();
-
+  DateTime? serveclock;
+  Timer? serverCLock;
+  String serverTime = '00:00';
+  List<StudentExamResModel> studentExams = [];
+  Map<String?, List<StudentExamResModel>>? studentExamsResModel;
+  int timerCounter = 0;
   final userProfile = Get.find<ProfileController>().cachedUserProfile;
 
-  Timer? serverCLock;
-  Map<String?, List<StudentExamResModel>>? studentExamsResModel;
-  List<StudentExamResModel> studentExams = [];
-  int timerCounter = 0;
-  String serverTime = '00:00';
-  DateTime? serveclock;
   Future<void> getServerClock() async {
     ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
 
