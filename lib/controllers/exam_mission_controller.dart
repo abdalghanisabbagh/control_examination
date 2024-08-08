@@ -6,8 +6,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../models/exam_mission/exam_mission_res_model.dart';
 
 class ExamMissionController extends GetxController {
-  ExamMission? _cachedExamMission;
   String? _barcode;
+  ExamMission? _cachedExamMission;
+
   String? get barcode => _barcode ?? getBarcodeFromHiveBox();
 
   ExamMission? get cachedExamMission =>
