@@ -117,8 +117,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.0.3"
-      resolved-ref: a52872647e5bf559644453db6d35db397ddf3ba5
+      ref: "v1.0.0"
+      resolved-ref: "2b5ccd30701279d46e86750aa1f22d41d828cefa"
       url: "https://github.com/Mahmoud-Saeed-Mahmoud/custom_theme.git"
     source: git
     version: "0.0.1"
