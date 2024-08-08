@@ -4,8 +4,8 @@ import 'package:control_examination/controllers/controllers.dart';
 import 'package:control_examination/extensions/string_extension.dart';
 import 'package:control_examination/models/student_exams/student_exam_res_model.dart';
 import 'package:control_examination/resource_manager/ReusableWidget/show_dialgue.dart';
-import 'package:control_examination/resource_manager/index.dart';
 import 'package:control_examination/services/services.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
