@@ -2,18 +2,18 @@ import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:collection/collection.dart';
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/models/server_clock_model.dart';
-import 'package:control_examination/models/student_exams/student_exams_res_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../configurations/app_links.dart';
+import '../../models/server_clock_model.dart';
 import '../../models/student_exams/student_exam_res_model.dart';
+import '../../models/student_exams/student_exams_res_model.dart';
 import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
 import '../../tools/response_handler.dart';
+import '../controllers.dart';
 
 class HomeController extends GetxController {
   bool loading = false;
