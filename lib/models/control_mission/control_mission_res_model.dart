@@ -1,9 +1,9 @@
 class ControlMissionResModel {
   int? iD;
+
   String? name;
 
   ControlMissionResModel({this.iD, this.name});
-
   ControlMissionResModel.fromJson(json) {
     iD = json['ID'];
     name = json['Name'];
