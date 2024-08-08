@@ -6,9 +6,9 @@ import '../services/services.dart';
 import 'controllers.dart';
 
 class WebSocketController extends GetxController {
-  final token = Get.find<TokenService>().tokenModel;
   final exam = Get.find<ExamMissionController>().cachedExamMission;
   late io.Socket socket;
+  final token = Get.find<TokenService>().tokenModel;
 
   @override
   void onClose() {
