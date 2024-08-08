@@ -415,13 +415,11 @@ class HomeScreen extends GetView<HomeController> {
               SizedBox(
                 height: double.infinity,
                 width: Get.width * 0.74,
-                child: Scrollbar(
-                  trackVisibility: true,
-                  thumbVisibility: true,
+                child: SingleChildScrollView(
                   controller: controller.scrollController,
-                  child: SingleChildScrollView(
-                    controller: controller.scrollController,
-                    physics: const BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -1147,8 +1145,8 @@ class HomeScreen extends GetView<HomeController> {
                         const SizedBox(height: 20),
                       ],
                     ),
-                  ).paddingSymmetric(horizontal: 20),
-                ),
+                  ),
+                ).paddingSymmetric(horizontal: 20),
               ),
             ],
           ),
