@@ -11,9 +11,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class FullScreenController extends GetxController {
   final FocusNode focusNode = FocusNode()..requestFocus();
+  String lastKey = '';
   final studentInExamController = Get.find<StudentInExamController>();
 
-  String lastKey = '';
   Future<void> enterFullScreen() async {
     try {
       await html.window.document.documentElement?.requestFullscreen();
