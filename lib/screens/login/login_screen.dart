@@ -1,11 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:control_examination/controllers/login_controller.dart';
 import 'package:control_examination/screens/login/login_form.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../resource_manager/assets_manager.dart';
-import '../../resource_manager/index.dart';
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
@@ -68,9 +66,13 @@ class LoginScreen extends GetView<LoginController> {
                     const SizedBox(
                       width: 8,
                     ),
-                    Text("Copyright 2024",
-                        style: nunitoBoldStyle().copyWith(
-                            fontSize: 22, color: ColorManager.primary)),
+                    Text(
+                      "Copyright 2024",
+                      style: nunitoBoldStyle().copyWith(
+                        fontSize: 22,
+                        color: ColorManager.primary,
+                      ),
+                    ),
                   ],
                 ),
               ),
