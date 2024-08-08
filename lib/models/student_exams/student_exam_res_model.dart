@@ -1,13 +1,13 @@
 import '../exam_mission/exam_mission_res_model.dart';
 
 class StudentExamResModel {
-  ExamMission? examMission;
-
-  int? isCheating;
   int? attendanceStatusId;
-  String? barcode;
-  StudentExamResModel({this.examMission, this.isCheating});
 
+  String? barcode;
+
+  ExamMission? examMission;
+  int? isCheating;
+  StudentExamResModel({this.examMission, this.isCheating});
   StudentExamResModel.fromJson(json) {
     barcode = json['Barcode'];
     attendanceStatusId = json['AttendanceStatusId'];
