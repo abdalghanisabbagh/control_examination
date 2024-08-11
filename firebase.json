@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "build/web",
+    "target": "control_examination",
+    "source": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
