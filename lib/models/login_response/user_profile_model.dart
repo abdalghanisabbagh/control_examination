@@ -1,7 +1,5 @@
-import 'package:control_examination/models/barcodes/barcodes_res_model.dart';
-import 'package:control_examination/models/school/school_res_model.dart';
-
 import '../grade_response/grade_res_model.dart';
+import '../school/school_res_model.dart';
 
 class UserProfileModel {
   int? active;
@@ -12,27 +10,29 @@ class UserProfileModel {
 
   int? cohortID;
   String? cohortName;
-  String? userName;
   // CohortResModel? cohortResModel;
-  BarcodesResModel? barcodesResModel;
+  // BarcodesResModel? barcodesResModel;
   String? createdAt;
+
   int? createdBy;
   String? email;
+
   String? firstName;
   String? gradeName;
   GradeResModel? gradeResModel;
-  SchoolResModel? schoolResModel;
   int? gradesID;
   int? iD;
   String? religion;
   int? schoolClassID;
   String? schoolClassName;
+  SchoolResModel? schoolResModel;
   int? schoolsID;
   String? secondLang;
   String? secondName;
   String? thirdName;
   DateTime? updatedAt;
   int? updatedBy;
+  String? userName;
   UserProfileModel({
     this.iD,
     this.blbId,
@@ -55,13 +55,12 @@ class UserProfileModel {
     this.updatedAt,
     this.gradeResModel,
     this.schoolResModel,
-    this.barcodesResModel,
+    // this.barcodesResModel,
     // this.classRoomResModel,
     // this.cohortResModel,
     this.active,
     this.religion,
   });
-
   UserProfileModel.fromJson(json) {
     iD = json['ID'];
     userName = json['User_Name'];
@@ -85,9 +84,9 @@ class UserProfileModel {
     schoolResModel = json['schools'] == null
         ? null
         : SchoolResModel.fromJson(json['schools']);
-    barcodesResModel = json['student_barcode'] == null
-        ? null
-        : BarcodesResModel.fromJson(json['student_barcode']);
+    // barcodesResModel = json['student_barcode'] == null
+    //     ? null
+    // : BarcodesResModel.fromJson(json['student_barcode']);
     // classRoomResModel = json['school_class'] == null
     //     ? null
     //     : ClassRoomResModel.fromJson(json['school_class']);
@@ -121,9 +120,9 @@ class UserProfileModel {
     if (schoolResModel != null) {
       data['schools'] = schoolResModel!.toJson();
     }
-    if (barcodesResModel != null) {
-      data['student_barcode'] = barcodesResModel!.toJson();
-    }
+    // if (barcodesResModel != null) {
+    //   data['student_barcode'] = barcodesResModel!.toJson();
+    // }
     // if (classRoomResModel != null) {
     //   data['school_class'] = classRoomResModel!.toJson();
     // }

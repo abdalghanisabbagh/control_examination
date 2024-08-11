@@ -1,9 +1,11 @@
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/resource_manager/index.dart';
-import 'package:control_examination/routes_manger.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_countdown/slide_countdown.dart';
+
+import '../../configurations/constants/assets.dart';
+import '../../controllers/controllers.dart';
+import '../../routes_manger.dart';
 
 class StudentExamWaitingScreen extends GetView<StudentExamController> {
   final int _start = DateTime.parse(Get.find<ExamMissionController>()
@@ -21,17 +23,97 @@ class StudentExamWaitingScreen extends GetView<StudentExamController> {
   Widget build(BuildContext context) {
     Get.find<StudentExamController>();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Waiting For QR Code',
-          style: nunitoSemiBold.copyWith(
-            fontSize: 16,
-            color: ColorManager.white,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            color: ColorManager.primary,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              BackButton(
+                color: ColorManager.white,
+                onPressed: () {
+                  Get.delete<StudentQrCodeController>(force: true);
+                  Get.back();
+                },
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Image.asset(
+                Assets.assetsLogosNIS5,
+                height: 100,
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  '${controller.userProfile?.firstName} ${controller.userProfile?.secondName} ${controller.userProfile?.thirdName}',
+                  style: nunitoBold.copyWith(
+                    color: ColorManager.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              Row(
+                children: [
+                  FittedBox(
+                    fit: BoxFit.fill,
+                    child: Text(
+                      '${controller.userProfile?.schoolResModel?.schoolType?.name}',
+                      style: nunitoBold.copyWith(
+                        color: ColorManager.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  FittedBox(
+                    fit: BoxFit.fill,
+                    child: Text(
+                      ' ${controller.userProfile?.schoolResModel?.name}',
+                      style: nunitoBold.copyWith(
+                        color: ColorManager.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  '${controller.userProfile?.gradeResModel?.name}',
+                  style: nunitoBold.copyWith(
+                    color: ColorManager.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  ' / ${controller.cachedExamMission?.subjects?.name}',
+                  style: nunitoBold.copyWith(
+                    color: ColorManager.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const Spacer(),
+            ],
           ),
         ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: ColorManager.primary,
       ),
       body: Center(
         child: SlideCountdown(

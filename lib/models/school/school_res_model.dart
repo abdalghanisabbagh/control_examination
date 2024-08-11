@@ -1,3 +1,5 @@
+import 'school_type.dart';
+
 class SchoolResModel {
   int? active;
 
@@ -6,7 +8,7 @@ class SchoolResModel {
   int? createdBy;
   int? iD;
   String? name;
-  // SchoolTypeResModel? schoolType;
+  SchoolTypeResModel? schoolType;
   int? schoolTypeID;
   DateTime? updatedAt;
   int? updatedBy;
@@ -19,7 +21,7 @@ class SchoolResModel {
     this.updatedBy,
     this.updatedAt,
     this.active,
-    // this.schoolType,
+    this.schoolType,
   });
   factory SchoolResModel.fromJson(json) => SchoolResModel(
         iD: json['ID'],
@@ -30,9 +32,9 @@ class SchoolResModel {
         updatedBy: json['Updated_By'],
         updatedAt: json['Updated_At'],
         active: json['Active'],
-        // schoolType: json['school_type'] != null
-        //     ? SchoolTypeResModel.fromJson(json['school_type'])
-        //     : null,
+        schoolType: json['school_type'] != null
+            ? SchoolTypeResModel.fromJson(json['school_type'])
+            : null,
       );
 
   Map<String, dynamic> toJson() {
@@ -45,9 +47,9 @@ class SchoolResModel {
     data['Updated_By'] = updatedBy;
     data['Updated_At'] = updatedAt;
     data['Active'] = active;
-    // if (schoolType != null) {
-    //   data['school_type'] = schoolType!.toJson();
-    // }
+    if (schoolType != null) {
+      data['school_type'] = schoolType!.toJson();
+    }
     return data;
   }
 }

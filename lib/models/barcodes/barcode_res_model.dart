@@ -7,11 +7,13 @@ class BarcodeResModel {
   int? examMissionID;
   String? examVersion;
   int? iD;
+
   int? isCheating;
   // StudentResModel? student;
   String? studentDegree;
   int? studentID;
   int? studentSeatNumnbersID;
+
   BarcodeResModel({
     this.iD,
     this.examMissionID,

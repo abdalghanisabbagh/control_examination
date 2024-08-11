@@ -1,15 +1,18 @@
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/resource_manager/index.dart';
+import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
+import '../../configurations/constants/assets.dart';
+import '../../controllers/controllers.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
 import '../../routes_manger.dart';
 
 class StudentQrScreen extends GetView<StudentQrCodeController> {
   final ProfileController profileController = Get.find<ProfileController>();
+
   final int _start = DateTime.parse(Get.find<ExamMissionController>()
               .cachedExamMission!
               .startTime
@@ -32,7 +35,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(200),
+        preferredSize: const Size.fromHeight(100),
         child: DecoratedBox(
           decoration: const BoxDecoration(
             color: ColorManager.primary,
@@ -45,10 +48,17 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
               ),
               BackButton(
                 color: ColorManager.white,
-                onPressed: () => {
-                  Get.back(),
-                  Get.delete<StudentQrCodeController>(force: true),
+                onPressed: () {
+                  Get.delete<StudentQrCodeController>(force: true);
+                  Get.back();
                 },
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Image.asset(
+                Assets.assetsLogosNIS5,
+                height: 100,
               ),
               const Spacer(
                 flex: 2,
@@ -56,7 +66,55 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
               FittedBox(
                 fit: BoxFit.fill,
                 child: Text(
-                  '${profileController.cachedUserProfile?.firstName} ${profileController.cachedUserProfile?.secondName} ${profileController.cachedUserProfile?.thirdName}',
+                  '${controller.cachedUserProfile?.firstName} ${controller.cachedUserProfile?.secondName} ${controller.cachedUserProfile?.thirdName}',
+                  style: nunitoBold.copyWith(
+                    color: ColorManager.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              Row(
+                children: [
+                  FittedBox(
+                    fit: BoxFit.fill,
+                    child: Text(
+                      '${controller.cachedUserProfile?.schoolResModel?.schoolType?.name}',
+                      style: nunitoBold.copyWith(
+                        color: ColorManager.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  FittedBox(
+                    fit: BoxFit.fill,
+                    child: Text(
+                      ' ${controller.cachedUserProfile?.schoolResModel?.name}',
+                      style: nunitoBold.copyWith(
+                        color: ColorManager.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  '${controller.cachedUserProfile?.gradeResModel?.name}',
+                  style: nunitoBold.copyWith(
+                    color: ColorManager.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              FittedBox(
+                fit: BoxFit.fill,
+                child: Text(
+                  ' / ${controller.cahechedExamMission?.subjects?.name}',
                   style: nunitoBold.copyWith(
                     color: ColorManager.white,
                     fontSize: 18,
@@ -64,30 +122,6 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                 ),
               ),
               const Spacer(),
-              FittedBox(
-                fit: BoxFit.fill,
-                child: Text(
-                  '${profileController.cachedUserProfile?.gradeResModel?.name}',
-                  style: nunitoBold.copyWith(
-                    color: ColorManager.white,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              const Spacer(),
-              FittedBox(
-                fit: BoxFit.fill,
-                child: Text(
-                  '${profileController.cachedUserProfile?.schoolResModel?.name}',
-                  style: nunitoBold.copyWith(
-                    color: ColorManager.white,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
             ],
           ),
         ),
@@ -140,19 +174,32 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                   flex: 3,
                   child: controller.qrCode.isEmpty
                       ? const SizedBox.shrink()
-                      : ElevatedButton(
-                          onPressed: () async {
-                            final bool isValid =
-                                await controller.validtaeStudentToStartExam();
-                            if (isValid) {
-                              Get.offNamed(Routes.studentExamScreen);
-                            }
+                      : GetBuilder<StudentQrCodeController>(
+                          id: 'scan_done',
+                          builder: (_) {
+                            return controller.loading
+                                ? Center(
+                                    child:
+                                        LoadingIndicators.getLoadingIndicator(),
+                                  )
+                                : ElevatedButton(
+                                    onPressed: () async {
+                                      final bool isValid = await controller
+                                          .validtaeStudentToStartExam();
+                                      if (isValid) {
+                                        Hive.box('ExamMission')
+                                            .put('inExam', true);
+                                        Get.offNamed(Routes.studentExamScreen);
+                                      }
+                                    },
+                                    child: Text(
+                                      'Scan Done?',
+                                      style: nunitoBold.copyWith(
+                                        color: ColorManager.white,
+                                      ),
+                                    ),
+                                  );
                           },
-                          child: Text(
-                            'Scan Done?',
-                            style:
-                                nunitoBold.copyWith(color: ColorManager.white),
-                          ),
                         ),
                 ),
                 const Spacer(

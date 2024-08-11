@@ -1,24 +1,25 @@
 import 'dart:async';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/models/student_exams/exam_link_res_model.dart';
-import 'package:control_examination/tools/response_handler.dart';
 import 'package:get/get.dart';
 
 import '../../configurations/app_links.dart';
+import '../../models/student_exams/exam_link_res_model.dart';
 import '../../models/uuid/uuid_res_model.dart';
 import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
+import '../../tools/response_handler.dart';
+import '../controllers.dart';
 
 class StudentQrCodeController extends GetxController {
-  final StudentExamController studentExamController = Get.find();
   final cachedUserProfile = Get.find<ProfileController>().cachedUserProfile;
   final cahechedExamMission =
       Get.find<ExamMissionController>().cachedExamMission;
-  String qrCode = '';
 
   Completer<ExamLinkResModel> examLinkResModel = Completer<ExamLinkResModel>();
+  bool loading = false;
+  String qrCode = '';
+  final StudentExamController studentExamController = Get.find();
 
   Future<void> checkStudent() async {
     UuidResModel uuid = await studentExamController.uuidResModel.future;
@@ -61,7 +62,9 @@ class StudentQrCodeController extends GetxController {
   }
 
   Future<bool> validtaeStudentToStartExam() async {
+    loading = true;
     bool isValid = false;
+    update(['scan_done']);
     UuidResModel uuid = await studentExamController.uuidResModel.future;
 
     final responseHandler = ResponseHandler<ExamLinkResModel>();
@@ -88,6 +91,8 @@ class StudentQrCodeController extends GetxController {
       },
     );
 
+    loading = false;
+    update(['scan_done']);
     return isValid;
   }
 }

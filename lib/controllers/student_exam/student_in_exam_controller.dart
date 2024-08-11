@@ -1,39 +1,41 @@
 import 'dart:typed_data';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_examination/controllers/controllers.dart';
-import 'package:control_examination/resource_manager/ReusableWidget/show_dialgue.dart';
-import 'package:control_examination/tools/response_handler.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
 import '../../configurations/app_links.dart';
+import '../../resource_manager/ReusableWidget/show_dialgue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
+import '../../tools/response_handler.dart';
+import '../controllers.dart';
 
 class StudentInExamController extends FullLifeCycleController
     with FullLifeCycleMixin {
-  final StudentQrCodeController studentQrCodeController =
-      Get.find<StudentQrCodeController>();
+  int currentPage = 0, documentPage = 0;
+  Uint8List? documentBytes;
+  final int examDuration =
+      Get.find<ExamMissionController>().cachedExamMission!.duration!;
 
   final ExamMissionController examMissionController =
       Get.find<ExamMissionController>();
 
-  Uint8List? documentBytes;
-
-  PdfViewerController? pdfViewerController = PdfViewerController();
-
-  int currentPage = 0, documentPage = 0;
-
   bool isLoadingExam = true;
-
-  double _xScale = 1.0;
-
-  double _yScale = 1.0;
+  PdfViewerController? pdfViewerController = PdfViewerController();
   final ScrollController scrollController = ScrollController();
+  final StudentQrCodeController studentQrCodeController =
+      Get.find<StudentQrCodeController>();
+
   final TransformationController transformationController =
       TransformationController();
+
+  final userProfile = Get.find<ProfileController>().cachedUserProfile;
+
+  double _xScale = 1.0;
+  double _yScale = 1.0;
+
   Future<void> getExamData() async {
     try {
       var link = await studentQrCodeController.examLinkResModel.future;
@@ -51,16 +53,6 @@ class StudentInExamController extends FullLifeCycleController
     return;
   }
 
-  void markStudentAttendance() async {
-    final ResponseHandler responseHandler = ResponseHandler<void>();
-    responseHandler.getResponse(
-      path:
-          '${StudentsLinks.markStudentAttendance}/${examMissionController.barcode}',
-      type: ReqTypeEnum.GET,
-      converter: (_) {},
-    );
-  }
-
   void markStudentCheating() async {
     final ResponseHandler responseHandler = ResponseHandler<void>();
 
@@ -73,8 +65,8 @@ class StudentInExamController extends FullLifeCycleController
 
   @override
   void onClose() {
-    // Get.delete<StudentQrCodeController>(force: true);
-    // Get.delete<StudentExamController>(force: true);
+    Get.delete<StudentQrCodeController>(force: true);
+    Get.delete<StudentExamController>(force: true);
 
     super.onClose();
   }
@@ -108,12 +100,6 @@ class StudentInExamController extends FullLifeCycleController
   }
 
   @override
-  void onReady() async {
-    markStudentAttendance();
-    super.onReady();
-  }
-
-  @override
   void onResumed() {}
 
   void zoomIn() {
@@ -126,7 +112,7 @@ class StudentInExamController extends FullLifeCycleController
   }
 
   void zoomOut() {
-    if (_xScale <= 1.0 || _yScale <= 1.1) {
+    if (_xScale <= 1.0 || _yScale <= 1.0) {
       return;
     }
     transformationController.value = Matrix4.identity()

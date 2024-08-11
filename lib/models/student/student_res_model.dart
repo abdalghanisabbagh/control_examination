@@ -8,7 +8,6 @@ class StudentResModel {
   int? blbId;
 
   ClassRoomResModel? classRoomResModel;
-
   int? cohortID;
   String? cohortName;
   CohortResModel? cohortResModel;
@@ -53,7 +52,6 @@ class StudentResModel {
       this.cohortResModel,
       this.active,
       this.religion});
-
   StudentResModel.fromJson(json) {
     iD = json['ID'];
     blbId = json['Blb_Id'];

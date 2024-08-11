@@ -1,17 +1,19 @@
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
 
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class FullScreenController extends GetxController {
   final FocusNode focusNode = FocusNode()..requestFocus();
+  String lastKey = '';
   final studentInExamController = Get.find<StudentInExamController>();
 
-  String lastKey = '';
   Future<void> enterFullScreen() async {
     try {
       await html.window.document.documentElement?.requestFullscreen();
@@ -60,8 +62,8 @@ class FullScreenController extends GetxController {
 
   @override
   void onClose() {
-    exitFullScreen();
     removeListeners();
+    exitFullScreen();
     super.onClose();
   }
 
@@ -69,7 +71,9 @@ class FullScreenController extends GetxController {
   void onInit() async {
     await enterFullScreen();
     html.window.addEventListener('fullscreenchange', (event) {
-      isInFullScreen() ? studentInExamController.markStudentCheating() : null;
+      if (Hive.box('ExamMission').get('inExam')) {
+        isInFullScreen() ? null : studentInExamController.markStudentCheating();
+      }
     });
     super.onInit();
   }

@@ -1,4 +1,4 @@
-import 'package:control_examination/models/student_exams/student_exam_res_model.dart';
+import 'student_exam_res_model.dart';
 
 class StudentExamsResModel {
   List<StudentExamResModel>? exams;

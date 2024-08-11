@@ -1,9 +1,9 @@
 class ExamRoom {
   int? iD;
+
   String? name;
 
   ExamRoom({this.iD, this.name});
-
   ExamRoom.fromJson(Map<String, dynamic> json) {
     iD = json['ID'];
     name = json['Name'];

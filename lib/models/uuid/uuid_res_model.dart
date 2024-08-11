@@ -1,14 +1,15 @@
 class UuidResModel {
-  int? iD;
-  String? uUID;
-  int? examMissionId;
-  String? studentId;
   int? active;
-  String? createdAt;
-  String? updatedAt;
-  int? createdBy;
-  String? updatedBy;
 
+  String? createdAt;
+
+  int? createdBy;
+  int? examMissionId;
+  int? iD;
+  String? studentId;
+  String? uUID;
+  String? updatedAt;
+  String? updatedBy;
   UuidResModel({
     this.iD,
     this.uUID,
@@ -20,7 +21,6 @@ class UuidResModel {
     this.createdBy,
     this.updatedBy,
   });
-
   UuidResModel.fromJson(json) {
     iD = json['ID'];
     uUID = json['UUID'];
