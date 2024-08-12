@@ -8,10 +8,10 @@ import 'screens/student_exam_waiting/student_in_exam_screen.dart';
 import 'screens/student_exam_waiting/student_qr_screen.dart';
 
 class Routes {
-  static const String homeScreen = "/homeScreen";
-  static const String initialRoute = "/loginScreen";
+  static const String homeScreen = "/home";
+  static const String initialRoute = "/login";
   static const String loginForm = "/loginForm";
-  static const String loginRoute = "/loginScreen";
+  static const String loginRoute = "/login";
   // static const String nextExams = "/NextExams";
   // static const String allExams = "/AllExams";
   // static const String attendance = "/Attendance";

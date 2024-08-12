@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 abstract class LoadingIndicators {
-  static Widget getLoadingIndicator() => SizedBox(
-        height: 80,
-        width: 80,
-        child: Lottie.asset('animations/loading_aimation.json'),
+  static Widget getLoadingIndicator([Color? color]) => SizedBox(
+        height: 50,
+        width: 50,
+        child: LoadingIndicator(
+          colors: color != null ? [color] : [],
+          indicatorType: Indicator.ballRotateChase,
+        ),
       );
 }

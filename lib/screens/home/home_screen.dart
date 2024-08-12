@@ -122,8 +122,9 @@ class HomeScreen extends GetView<HomeController> {
                         builder: (_) {
                           return controller.loading
                               ? Center(
-                                  child:
-                                      LoadingIndicators.getLoadingIndicator(),
+                                  child: LoadingIndicators.getLoadingIndicator(
+                                    ColorManager.background,
+                                  ),
                                 )
                               : SizedBox(
                                   height: Get.height * 0.65,
