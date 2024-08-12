@@ -3,7 +3,6 @@ class AppLinks {
   static const baseUrl = 'http://localhost:3333/';
 
   static const baseUrlDev = 'http://10.6.65.83:3333/';
-   
    static const baseUrlProd = 'https://control-o5xlbifnea-uc.a.run.app/';
 }
 
