@@ -1,9 +1,9 @@
+import 'package:animated_analog_clock/animated_analog_clock.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
@@ -155,7 +155,22 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
                               );
                       },
                     ),
-                    Lottie.asset('animations/time_animation.json'),
+                    const SizedBox(
+                      height: 80,
+                      width: 80,
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: AnimatedAnalogClock(
+                          backgroundColor: Color(0xff1E1E26),
+                          hourHandColor: Colors.lightBlueAccent,
+                          minuteHandColor: Colors.lightBlueAccent,
+                          secondHandColor: Colors.amber,
+                          centerDotColor: Colors.amber,
+                          hourDashColor: Colors.lightBlue,
+                          minuteDashColor: Colors.blueAccent,
+                        ),
+                      ),
+                    ),
                     const SizedBox(width: 20),
                   ],
                 ),
