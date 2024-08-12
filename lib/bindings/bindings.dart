@@ -81,9 +81,9 @@ class StudentQrCodeBinding extends Bindings {
 class WebSocketBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<WebSocketController>(
-      WebSocketController(),
-      permanent: true,
-    );
+    // Get.put<WebSocketController>(
+    //   WebSocketController(),
+    //   permanent: true,
+    // );
   }
 }
