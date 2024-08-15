@@ -53,7 +53,7 @@ dependencies:
   custom_theme:
     git:
       url: https://github.com/Mahmoud-Saeed-Mahmoud/custom_theme.git
-      ref: v1.0.0
+      ref: v1.0.1
   animated_analog_clock: ^0.1.0
 
 dev_dependencies:
