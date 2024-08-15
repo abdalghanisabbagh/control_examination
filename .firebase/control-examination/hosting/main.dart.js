@@ -50722,8 +50722,8 @@ n.ja()
 s=A.F7(25)
 r=A.F7(15)
 o=o.a.b
-if(o>770)q=0.7
-else q=o>670?0.9:0.8
+if(o>770)q=0.8
+else q=o>670?0.7:0.9
 return A.aW9(A.h_(new A.TG(10,new A.e1(s,B.u),A.aTS(A.h_(A.a00(new A.dq(B.HY,A.kP(new A.apY(this,a),p,p,A.aWj(),p,t.D1),p),p,p),p,p),p,new A.dw(B.i,p,p,r,p,p,p,B.ap),B.Z,p,o*q,500),p),p,p),n,new A.apZ(this,a))}}
 A.apZ.prototype={
 $1(a){var s,r
