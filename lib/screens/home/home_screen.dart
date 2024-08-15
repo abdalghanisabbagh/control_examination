@@ -401,7 +401,7 @@ class HomeScreen extends GetView<HomeController> {
                                   .deleteTokenModelFromHiveBox();
                               Get.offAllNamed(Routes.loginRoute);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.logout_outlined,
                               color: ColorManager.white,
                             ),
