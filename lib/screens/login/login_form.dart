@@ -121,7 +121,7 @@ class LoginForm extends GetView<LoginController> {
                             const SizedBox(
                               height: 8,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 30,
                               child: Divider(
                                 color: ColorManager.bgSideMenu,
@@ -135,7 +135,7 @@ class LoginForm extends GetView<LoginController> {
                               controller: emailController,
                               myValidation: Validations.requiredValidator,
                               title: "Email",
-                              suffixIcon: Icon(
+                              suffixIcon: const Icon(
                                 Icons.mail_outline,
                                 color: ColorManager.glodenColor,
                               ),
@@ -215,14 +215,14 @@ class LoginForm extends GetView<LoginController> {
                                               switchInCurve: Curves.easeOutExpo,
                                               switchOutCurve: Curves.easeInExpo,
                                               child: controller.showPass
-                                                  ? Icon(
-                                                      key: const ValueKey(1),
+                                                  ? const Icon(
+                                                      key: ValueKey(1),
                                                       Icons.visibility,
                                                       color: ColorManager
                                                           .glodenColor,
                                                     )
-                                                  : Icon(
-                                                      key: const ValueKey(2),
+                                                  : const Icon(
+                                                      key: ValueKey(2),
                                                       Icons.visibility_off,
                                                       color: ColorManager
                                                           .glodenColor,
