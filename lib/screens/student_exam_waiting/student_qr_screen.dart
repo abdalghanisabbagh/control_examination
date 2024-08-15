@@ -162,7 +162,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                             color: ColorManager.white,
                             fontSize: 100,
                           ),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: ColorManager.bgSideMenu,
                           ),
                         ),
