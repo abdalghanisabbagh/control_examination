@@ -74,10 +74,10 @@ class LoginForm extends GetView<LoginController> {
             ),
             height: size.height *
                 (size.height > 770
-                    ? 0.7
+                    ? 0.8
                     : size.height > 670
-                        ? 0.9
-                        : 0.8),
+                        ? 0.7
+                        : 0.9),
             width: 500,
             child: Center(
               child: SingleChildScrollView(
