@@ -198,9 +198,10 @@ class HomeScreen extends GetView<HomeController> {
                                                                   ?.endTime ??
                                                               DateTime.now()
                                                                   .toString())
+                                                          .toLocal()
                                                           .toUtc()
                                                           .isBefore(DateTime.now()
-                                                              .toUtc())) {
+                                                              .toLocal())) {
                                                         MyAwesomeDialogue(
                                                           title: 'Exam Ended',
                                                           desc:
@@ -211,14 +212,16 @@ class HomeScreen extends GetView<HomeController> {
                                                             .currentContext!);
                                                       } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).toUtc().difference(DateTime.now().toUtc()) <= const Duration(minutes: 5) ||
                                                           DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
+                                                              .toLocal()
                                                               .toUtc()
                                                               .isBefore(DateTime.now()
-                                                                  .toUtc())) {
+                                                                  .toLocal())) {
                                                         Get.toNamed(Routes
                                                             .studentExamScreenQRCode);
                                                       } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
+                                                              .toLocal()
                                                               .toUtc()
-                                                              .difference(DateTime.now().toUtc()) <
+                                                              .difference(DateTime.now().toLocal()) <
                                                           const Duration(minutes: 15)) {
                                                         Get.toNamed(Routes
                                                             .studentExamScreenWaiting);

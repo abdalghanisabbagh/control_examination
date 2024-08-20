@@ -30,7 +30,7 @@ class HomeController extends GetxController {
     ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
 
     var response = await responseHandler.getResponse(
-      path: AppLinks.baseUrl,
+      path: AppLinks.baseUrlProd,
       converter: ServerClockResModel.fromJson,
       type: ReqTypeEnum.GET,
     );
