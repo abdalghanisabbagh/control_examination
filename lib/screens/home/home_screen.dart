@@ -113,7 +113,7 @@ class HomeScreen extends GetView<HomeController> {
                             fontSize: 20,
                           ),
                           textAlign: TextAlign.center,
-                        ),
+                        ).paddingSymmetric(horizontal: 20),
                       ),
                       const SizedBox(height: 20),
                       const Divider(),
@@ -387,27 +387,48 @@ class HomeScreen extends GetView<HomeController> {
                         },
                       ),
                       const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      Column(
                         children: [
-                          Text(
-                            'Logout',
-                            style: nunitoBold.copyWith(
-                              color: ColorManager.white,
-                              fontSize: 16,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              FittedBox(
+                                fit: BoxFit.fill,
+                                child: Text(
+                                  'Logout',
+                                  style: nunitoBold.copyWith(
+                                    color: ColorManager.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  await Get.find<ProfileController>()
+                                      .deleteProfileFromHiveBox();
+                                  await Get.find<TokenService>()
+                                      .deleteTokenModelFromHiveBox();
+                                  Get.offAllNamed(Routes.loginRoute);
+                                },
+                                child: const Icon(
+                                  Icons.logout_outlined,
+                                  color: ColorManager.white,
+                                ),
+                              ),
+                            ],
                           ),
-                          InkWell(
-                            onTap: () async {
-                              await Get.find<ProfileController>()
-                                  .deleteProfileFromHiveBox();
-                              await Get.find<TokenService>()
-                                  .deleteTokenModelFromHiveBox();
-                              Get.offAllNamed(Routes.loginRoute);
-                            },
-                            child: const Icon(
-                              Icons.logout_outlined,
-                              color: ColorManager.white,
+                          const SizedBox(height: 20),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: FittedBox(
+                              fit: BoxFit.fill,
+                              child: Text(
+                                'NIS Copyright © 2025 (v1.0.0)',
+                                style: nunitoLight.copyWith(
+                                  color: ColorManager.white,
+                                  fontSize: 12,
+                                ),
+                              ),
                             ),
                           ),
                         ],
