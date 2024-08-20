@@ -120,289 +120,270 @@ class HomeScreen extends GetView<HomeController> {
                       GetBuilder<HomeController>(
                         id: 'exams',
                         builder: (_) {
-                          return controller.loading
-                              ? Center(
-                                  child: LoadingIndicators.getLoadingIndicator(
-                                    ColorManager.background,
-                                  ),
-                                )
-                              : controller.studentExams.isEmpty
-                                  ? Center(
-                                      child: Text(
-                                        'No exams available',
-                                        style: nunitoBold.copyWith(
-                                            color: ColorManager.white),
-                                      ),
-                                    )
-                                  : SizedBox(
-                                      height: Get.height * 0.65,
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          children: List.generate(
-                                            controller.studentExamsResModel!
-                                                .entries.length,
-                                            (index) {
-                                              final String controlMissionName =
-                                                  controller
-                                                      .studentExamsResModel!
-                                                      .entries
-                                                      .toList()[index]
-                                                      .key!;
-                                              List<StudentExamResModel>
-                                                  examsInControlMission =
-                                                  controller
-                                                      .studentExamsResModel!
-                                                      .entries
-                                                      .toList()[index]
-                                                      .value;
-                                              return DecoratedBox(
-                                                decoration: const BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                    Radius.circular(10),
-                                                  ),
-                                                  backgroundBlendMode:
-                                                      BlendMode.screen,
-                                                  color: ColorManager.primary,
-                                                ),
-                                                child: ListTile(
-                                                  title: Text(
-                                                    controlMissionName,
-                                                    style: nunitoBold.copyWith(
-                                                      color: ColorManager.white,
-                                                    ),
-                                                  ),
-                                                  subtitle: Column(
-                                                    children: [
-                                                      ...examsInControlMission
-                                                          .map(
-                                                        (exam) => InkWell(
-                                                          onTap: () {
-                                                            Get.find<
-                                                                    ExamMissionController>()
-                                                                .saveExamMissionToHiveBox(
-                                                                    examMission:
-                                                                        exam
-                                                                            .examMission!,
-                                                                    barcode: exam
-                                                                        .barcode!);
-                                                            if (exam.isCheating ==
-                                                                1) {
-                                                              MyAwesomeDialogue(
-                                                                title:
-                                                                    'Cheating Detected',
-                                                                desc:
-                                                                    'You Can Not Take This Exam',
-                                                                dialogType:
-                                                                    DialogType
-                                                                        .error,
-                                                              ).showDialogue(Get
-                                                                  .key
-                                                                  .currentContext!);
-                                                            } else if (DateTime.parse(exam
-                                                                        .examMission
-                                                                        ?.endTime ??
-                                                                    DateTime.now()
-                                                                        .toString())
-                                                                .toUtc()
-                                                                .isBefore(DateTime.now()
-                                                                    .toUtc())) {
-                                                              MyAwesomeDialogue(
-                                                                title:
-                                                                    'Exam Ended',
-                                                                desc:
-                                                                    'You Can Not Take This Exam',
-                                                                dialogType:
-                                                                    DialogType
-                                                                        .error,
-                                                              ).showDialogue(Get
-                                                                  .key
-                                                                  .currentContext!);
-                                                            } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).toUtc().difference(DateTime.now().toUtc()) <= const Duration(minutes: 5) ||
-                                                                DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
-                                                                    .toUtc()
-                                                                    .isBefore(
-                                                                        DateTime.now()
-                                                                            .toUtc())) {
-                                                              Get.toNamed(Routes
-                                                                  .studentExamScreenQRCode);
-                                                            } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
-                                                                    .toUtc()
-                                                                    .difference(DateTime.now().toUtc()) <
-                                                                const Duration(minutes: 15)) {
-                                                              Get.toNamed(Routes
-                                                                  .studentExamScreenWaiting);
-                                                            } else {
-                                                              MyAwesomeDialogue(
-                                                                title:
-                                                                    'Exam Did Not Start Yet',
-                                                                desc:
-                                                                    'You Can Not Take This Exam Before It Starts',
-                                                                dialogType:
-                                                                    DialogType
-                                                                        .error,
-                                                              ).showDialogue(Get
-                                                                  .key
-                                                                  .currentContext!);
-                                                            }
-                                                          },
-                                                          child: DecoratedBox(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              color: exam.isCheating ==
-                                                                      1
-                                                                  ? ColorManager
-                                                                      .ornage
-                                                                  : exam.attendanceStatusId ==
-                                                                          13
-                                                                      ? ColorManager
-                                                                          .green
-                                                                      : DateTime.parse(exam.examMission?.endTime ?? DateTime.now().toString()).toUtc().isBefore(DateTime.now()
-                                                                              .toUtc())
-                                                                          ? ColorManager
-                                                                              .red
-                                                                          : ColorManager
-                                                                              .greyA8,
-                                                            ),
-                                                            child: Row(
-                                                              children: [
-                                                                SizedBox(
-                                                                  width:
-                                                                      Get.width *
-                                                                          0.015,
-                                                                  height:
-                                                                      Get.width *
-                                                                          0.06,
-                                                                ),
-                                                                Column(
-                                                                  children: [
-                                                                    FittedBox(
-                                                                      fit: BoxFit
-                                                                          .fill,
-                                                                      child:
-                                                                          Text(
-                                                                        '${exam.examMission?.startTime?.dateFormat}',
-                                                                        style: nunitoLight
-                                                                            .copyWith(
-                                                                          color:
-                                                                              ColorManager.darkGrey2,
-                                                                          fontSize:
-                                                                              14,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    FittedBox(
-                                                                      fit: BoxFit
-                                                                          .fill,
-                                                                      child:
-                                                                          Text(
-                                                                        '${exam.examMission?.startTime?.timeFormat}',
-                                                                        style: nunitoLight
-                                                                            .copyWith(
-                                                                          color:
-                                                                              ColorManager.darkGrey2,
-                                                                          fontSize:
-                                                                              14,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const Spacer(),
-                                                                Column(
-                                                                  children: [
-                                                                    FittedBox(
-                                                                      fit: BoxFit
-                                                                          .fill,
-                                                                      child:
-                                                                          Text(
-                                                                        '${exam.examMission!.subjects?.name}',
-                                                                        style: nunitoSemiBold
-                                                                            .copyWith(
-                                                                          color:
-                                                                              ColorManager.white,
-                                                                          fontSize:
-                                                                              16,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    FittedBox(
-                                                                      fit: BoxFit
-                                                                          .fill,
-                                                                      child:
-                                                                          Text(
-                                                                        '${exam.examMission!.duration}',
-                                                                        style: nunitoSemiBold
-                                                                            .copyWith(
-                                                                          color:
-                                                                              ColorManager.white,
-                                                                          fontSize:
-                                                                              14,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const Spacer(),
-                                                                Column(
-                                                                  children: [
-                                                                    FittedBox(
-                                                                      fit: BoxFit
-                                                                          .fill,
-                                                                      child:
-                                                                          Text(
-                                                                        '${exam.examMission?.endTime?.dateFormat}',
-                                                                        style: nunitoLight
-                                                                            .copyWith(
-                                                                          color:
-                                                                              ColorManager.darkGrey2,
-                                                                          fontSize:
-                                                                              14,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    FittedBox(
-                                                                      fit: BoxFit
-                                                                          .fill,
-                                                                      child:
-                                                                          Text(
-                                                                        '${exam.examMission?.endTime?.timeFormat}',
-                                                                        style: nunitoLight
-                                                                            .copyWith(
-                                                                          color:
-                                                                              ColorManager.darkGrey2,
-                                                                          fontSize:
-                                                                              14,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const Spacer(),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ).paddingOnly(
-                                                          top: 10,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ).paddingSymmetric(
-                                                      horizontal: 10,
-                                                      vertical: 10),
-                                                ),
-                                              ).paddingSymmetric(
-                                                horizontal: 10,
-                                              );
-                                            },
+                          if (controller.loading) {
+                            return Center(
+                              child: LoadingIndicators.getLoadingIndicator(
+                                ColorManager.background,
+                              ),
+                            );
+                          } else {
+                            if (controller.studentExams.isEmpty) {
+                              return Center(
+                                child: Text(
+                                  'No exams available',
+                                  style: nunitoBold.copyWith(
+                                      color: ColorManager.white),
+                                ),
+                              );
+                            } else {
+                              return SizedBox(
+                                height: Get.height * 0.65,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: List.generate(
+                                      controller
+                                          .studentExamsResModel!.entries.length,
+                                      (index) {
+                                        final String controlMissionName =
+                                            controller
+                                                .studentExamsResModel!.entries
+                                                .toList()[index]
+                                                .key!;
+                                        List<StudentExamResModel>
+                                            examsInControlMission = controller
+                                                .studentExamsResModel!.entries
+                                                .toList()[index]
+                                                .value;
+                                        return DecoratedBox(
+                                          decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10),
+                                            ),
+                                            backgroundBlendMode:
+                                                BlendMode.screen,
+                                            color: ColorManager.primary,
                                           ),
-                                        ),
-                                      ),
-                                    );
+                                          child: ListTile(
+                                            title: Text(
+                                              controlMissionName,
+                                              style: nunitoBold.copyWith(
+                                                color: ColorManager.white,
+                                              ),
+                                            ),
+                                            subtitle: Column(
+                                              children: [
+                                                ...examsInControlMission.map(
+                                                  (exam) => InkWell(
+                                                    onTap: () {
+                                                      Get.find<
+                                                              ExamMissionController>()
+                                                          .saveExamMissionToHiveBox(
+                                                              examMission: exam
+                                                                  .examMission!,
+                                                              barcode: exam
+                                                                  .barcode!);
+                                                      if (exam.isCheating ==
+                                                          1) {
+                                                        MyAwesomeDialogue(
+                                                          title:
+                                                              'Cheating Detected',
+                                                          desc:
+                                                              'You Can Not Take This Exam',
+                                                          dialogType:
+                                                              DialogType.error,
+                                                        ).showDialogue(Get.key
+                                                            .currentContext!);
+                                                      } else if (DateTime.parse(exam
+                                                                  .examMission
+                                                                  ?.endTime ??
+                                                              DateTime.now()
+                                                                  .toString())
+                                                          .toUtc()
+                                                          .isBefore(DateTime.now()
+                                                              .toUtc())) {
+                                                        MyAwesomeDialogue(
+                                                          title: 'Exam Ended',
+                                                          desc:
+                                                              'You Can Not Take This Exam',
+                                                          dialogType:
+                                                              DialogType.error,
+                                                        ).showDialogue(Get.key
+                                                            .currentContext!);
+                                                      } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).toUtc().difference(DateTime.now().toUtc()) <= const Duration(minutes: 5) ||
+                                                          DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
+                                                              .toUtc()
+                                                              .isBefore(DateTime.now()
+                                                                  .toUtc())) {
+                                                        Get.toNamed(Routes
+                                                            .studentExamScreenQRCode);
+                                                      } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
+                                                              .toUtc()
+                                                              .difference(DateTime.now().toUtc()) <
+                                                          const Duration(minutes: 15)) {
+                                                        Get.toNamed(Routes
+                                                            .studentExamScreenWaiting);
+                                                      } else {
+                                                        MyAwesomeDialogue(
+                                                          title:
+                                                              'Exam Did Not Start Yet',
+                                                          desc:
+                                                              'You Can Not Take This Exam Before It Starts',
+                                                          dialogType:
+                                                              DialogType.error,
+                                                        ).showDialogue(Get.key
+                                                            .currentContext!);
+                                                      }
+                                                    },
+                                                    child: DecoratedBox(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        color: exam.isCheating ==
+                                                                1
+                                                            ? ColorManager
+                                                                .ornage
+                                                            : exam.attendanceStatusId ==
+                                                                    13
+                                                                ? ColorManager
+                                                                    .green
+                                                                : DateTime.parse(exam.examMission?.endTime ??
+                                                                            DateTime.now()
+                                                                                .toString())
+                                                                        .toUtc()
+                                                                        .isBefore(DateTime.now()
+                                                                            .toUtc())
+                                                                    ? ColorManager
+                                                                        .red
+                                                                    : ColorManager
+                                                                        .greyA8,
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          SizedBox(
+                                                            width: Get.width *
+                                                                0.015,
+                                                            height: Get.width *
+                                                                0.06,
+                                                          ),
+                                                          Column(
+                                                            children: [
+                                                              FittedBox(
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                child: Text(
+                                                                  '${exam.examMission?.startTime?.dateFormat}',
+                                                                  style: nunitoLight
+                                                                      .copyWith(
+                                                                    color: ColorManager
+                                                                        .darkGrey2,
+                                                                    fontSize:
+                                                                        14,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              FittedBox(
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                child: Text(
+                                                                  '${exam.examMission?.startTime?.timeFormat}',
+                                                                  style: nunitoLight
+                                                                      .copyWith(
+                                                                    color: ColorManager
+                                                                        .darkGrey2,
+                                                                    fontSize:
+                                                                        14,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const Spacer(),
+                                                          Column(
+                                                            children: [
+                                                              FittedBox(
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                child: Text(
+                                                                  '${exam.examMission!.subjects?.name}',
+                                                                  style: nunitoSemiBold
+                                                                      .copyWith(
+                                                                    color: ColorManager
+                                                                        .white,
+                                                                    fontSize:
+                                                                        16,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              FittedBox(
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                child: Text(
+                                                                  '${exam.examMission!.duration}',
+                                                                  style: nunitoSemiBold
+                                                                      .copyWith(
+                                                                    color: ColorManager
+                                                                        .white,
+                                                                    fontSize:
+                                                                        14,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const Spacer(),
+                                                          Column(
+                                                            children: [
+                                                              FittedBox(
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                child: Text(
+                                                                  '${exam.examMission?.endTime?.dateFormat}',
+                                                                  style: nunitoLight
+                                                                      .copyWith(
+                                                                    color: ColorManager
+                                                                        .darkGrey2,
+                                                                    fontSize:
+                                                                        14,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              FittedBox(
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                child: Text(
+                                                                  '${exam.examMission?.endTime?.timeFormat}',
+                                                                  style: nunitoLight
+                                                                      .copyWith(
+                                                                    color: ColorManager
+                                                                        .darkGrey2,
+                                                                    fontSize:
+                                                                        14,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const Spacer(),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ).paddingOnly(
+                                                    top: 10,
+                                                  ),
+                                                ),
+                                              ],
+                                            ).paddingSymmetric(
+                                                horizontal: 10, vertical: 10),
+                                          ),
+                                        ).paddingSymmetric(horizontal: 10);
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                          }
                         },
                       ),
                       const Spacer(),
