@@ -430,7 +430,7 @@ class HomeScreen extends GetView<HomeController> {
                             child: FittedBox(
                               fit: BoxFit.fill,
                               child: Text(
-                                'NIS Copyright © 2025 (v1.0.0)',
+                                'NIS Copyright © 2025 (${Get.find<LoginController>().packageInfo?.version ?? 'getting version...'})',
                                 style: nunitoLight.copyWith(
                                   color: ColorManager.white,
                                   fontSize: 12,
