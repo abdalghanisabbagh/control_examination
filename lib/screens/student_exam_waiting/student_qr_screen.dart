@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
-import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../configurations/constants/assets.dart';
 import '../../controllers/controllers.dart';
@@ -140,29 +139,6 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                         )
                       : PrettyQrView.data(
                           data: controller.qrCode,
-                        ),
-                ),
-                const Spacer(
-                  flex: 2,
-                ),
-                Expanded(
-                  flex: 3,
-                  child: _start == 0
-                      ? const SizedBox.shrink()
-                      : SlideCountdown(
-                          onChanged: (value) => value.inSeconds <= 2 * 60
-                              ? null // TODO: validate
-                              : value.inSeconds == 0
-                                  ? Get.offNamed(Routes.studentExamScreen)
-                                  : null,
-                          duration: Duration(seconds: _start),
-                          style: nunitoBold.copyWith(
-                            color: ColorManager.white,
-                            fontSize: 100,
-                          ),
-                          decoration: const BoxDecoration(
-                            color: ColorManager.bgSideMenu,
-                          ),
                         ),
                 ),
                 const Spacer(
