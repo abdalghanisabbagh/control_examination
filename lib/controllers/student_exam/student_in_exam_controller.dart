@@ -57,12 +57,12 @@ class StudentInExamController extends FullLifeCycleController
   void markStudentCheating() async {
     final ResponseHandler responseHandler = ResponseHandler<void>();
 
-    responseHandler.getResponse(
+    await responseHandler.getResponse(
       path: '${StudentsLinks.studentCheating}/${examMissionController.barcode}',
       type: ReqTypeEnum.GET,
       converter: (_) {},
     );
-
+    Get.find<HomeController>().onInit();
     Get.offAllNamed(Routes.homeScreen);
   }
 

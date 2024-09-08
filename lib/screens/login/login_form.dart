@@ -82,6 +82,7 @@ class LoginForm extends GetView<LoginController> {
                         return Form(
                           key: formKey,
                           child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
@@ -98,8 +99,8 @@ class LoginForm extends GetView<LoginController> {
                               Image.asset(
                                 AssetsManager.assetsLogosNisLogo,
                                 fit: BoxFit.fill,
-                                height: 160,
-                                width: 160,
+                                height: 130,
+                                width: 130,
                               ),
                               const SizedBox(
                                 height: 8,

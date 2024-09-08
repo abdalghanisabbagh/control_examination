@@ -1,3 +1,4 @@
+import 'package:control_examination/controllers/window_size_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/controllers.dart';
@@ -6,9 +7,9 @@ import '../services/token_service.dart';
 class HomeBindings extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<HomeController>(
-      () => HomeController(),
-      fenix: true,
+    Get.put<HomeController>(
+      HomeController(),
+      permanent: true,
     );
     LoginBinding().dependencies();
   }
@@ -36,15 +37,20 @@ class InitialBindings extends Bindings {
       SideMenuController(),
       permanent: true,
     );
+
+    Get.put<WindowSizeController>(
+      WindowSizeController(),
+      permanent: true,
+    );
   }
 }
 
 class LoginBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<LoginController>(
-      () => LoginController(),
-      fenix: true,
+    Get.put<LoginController>(
+      LoginController(),
+      permanent: true,
     );
   }
 }
