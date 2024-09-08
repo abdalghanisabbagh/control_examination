@@ -17,15 +17,13 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
               .cachedExamMission!
               .startTime
               .toString())
-          .toUtc()
-          .isBefore(DateTime.now().toUtc())
+          .isBefore(DateTime.now())
       ? 0
       : DateTime.parse(Get.find<ExamMissionController>()
               .cachedExamMission!
               .startTime
               .toString())
-          .toUtc()
-          .difference(DateTime.now().toUtc())
+          .difference(DateTime.now())
           .inSeconds
           .abs(); // Countdown starting value
 
