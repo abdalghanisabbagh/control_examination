@@ -55,8 +55,10 @@ class ExamMission {
 
     pdfV2 = json['pdf_V2'];
 
-    startTime = json['start_time'];
-    endTime = json['end_time'];
+    startTime = (json['start_time'] as String)
+        .substring(0, json['start_time'].length - 1);
+    endTime =
+        (json['end_time'] as String).substring(0, json['end_time'].length - 1);
     duration = json['duration'];
     subjects = json['subjects'] != null
         ? SubjectResModel.fromJson(json['subjects'])

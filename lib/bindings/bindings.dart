@@ -10,6 +10,7 @@ class HomeBindings extends Bindings {
       () => HomeController(),
       fenix: true,
     );
+    LoginBinding().dependencies();
   }
 }
 
