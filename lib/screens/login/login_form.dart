@@ -45,8 +45,6 @@ class LoginForm extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
-
     return KeyboardListener(
       onKeyEvent: (value) {
         if (value.logicalKey == LogicalKeyboardKey.enter) {
@@ -72,221 +70,221 @@ class LoginForm extends GetView<LoginController> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
             ),
-            height: size.height *
-                (size.height > 770
-                    ? 0.8
-                    : size.height > 670
-                        ? 0.7
-                        : 0.9),
             width: 500,
-            child: Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(40),
-                  child: GetBuilder<LoginController>(
-                    init: LoginController(),
-                    builder: (controller) {
-                      return Form(
-                        key: formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Welcome To Nis Examination Center",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
+            child: IntrinsicHeight(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(40),
+                    child: GetBuilder<LoginController>(
+                      init: LoginController(),
+                      builder: (controller) {
+                        return Form(
+                          key: formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Welcome To Nis Examination Center",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Image.asset(
-                              AssetsManager.assetsLogosNisLogo,
-                              fit: BoxFit.fill,
-                              height: 160,
-                              width: 160,
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              "LOG IN",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.grey[700],
+                              const SizedBox(
+                                height: 10,
                               ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            const SizedBox(
-                              width: 30,
-                              child: Divider(
-                                color: ColorManager.bgSideMenu,
-                                thickness: 2,
+                              Image.asset(
+                                AssetsManager.assetsLogosNisLogo,
+                                fit: BoxFit.fill,
+                                height: 160,
+                                width: 160,
                               ),
-                            ),
-                            const SizedBox(
-                              height: 32,
-                            ),
-                            MytextFormFiled(
-                              controller: emailController,
-                              myValidation: Validations.requiredValidator,
-                              title: "ٍStudent Name",
-                              // suffixIcon: const Icon(
-                              //   Icons.mail_outline,
-                              //   color: ColorManager.glodenColor,
-                              // ),
-                            ),
-                            GetBuilder<LoginController>(
-                              id: 'pass_icon',
-                              builder: (_) {
-                                return MytextFormFiled(
-                                  obscureText: controller.showPass,
-                                  controller: passwordController,
-                                  myValidation: Validations.requiredValidator,
-                                  enableBorderColor: ColorManager.grey,
-                                  title: "Password",
-                                  suffixIcon: GetBuilder<LoginController>(
-                                    id: 'pass_icon',
-                                    builder: (_) {
-                                      return IntrinsicHeight(
-                                        child: IntrinsicWidth(
-                                          child: IconButton(
-                                            icon: AnimatedSwitcher(
-                                              duration:
-                                                  AppConstants.mediumDuration,
-                                              transitionBuilder:
-                                                  (child, animation) {
-                                                final rotateAnimation =
-                                                    Tween<double>(
-                                                            begin: 0.0,
-                                                            end: 1.0)
-                                                        .animate(animation);
-                                                final reverseAnimation =
-                                                    Tween<double>(
-                                                            begin: 1.0,
-                                                            end: 0.0)
-                                                        .animate(animation);
-                                                return RotationTransition(
-                                                  turns: controller.showPass
-                                                      ? rotateAnimation
-                                                      : reverseAnimation,
-                                                  child: FadeTransition(
-                                                    opacity: animation,
-                                                    child: child,
-                                                  ),
-                                                );
-                                              },
-                                              layoutBuilder: (currentChild,
-                                                  previousChildren) {
-                                                return Stack(
-                                                  fit: StackFit.loose,
-                                                  children: [
-                                                    // Show the current child.
-                                                    if (currentChild != null)
-                                                      Positioned.fill(
-                                                        child: Align(
-                                                          alignment: Alignment
-                                                              .topRight,
-                                                          child: currentChild,
-                                                        ),
-                                                      ),
-                                                    // Show the previous children in a stack.
-                                                    ...previousChildren.map(
-                                                      (child) {
-                                                        return Positioned.fill(
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "LOG IN",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey[700],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              const SizedBox(
+                                width: 30,
+                                child: Divider(
+                                  color: ColorManager.bgSideMenu,
+                                  thickness: 2,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 32,
+                              ),
+                              MytextFormFiled(
+                                autofillHints: const [AutofillHints.username],
+                                controller: emailController,
+                                myValidation: Validations.requiredValidator,
+                                title: "Student Username",
+                              ),
+                              GetBuilder<LoginController>(
+                                id: 'pass_icon',
+                                builder: (_) {
+                                  return MytextFormFiled(
+                                    autofillHints: const [
+                                      AutofillHints.password
+                                    ],
+                                    obscureText: controller.showPass,
+                                    controller: passwordController,
+                                    myValidation: Validations.requiredValidator,
+                                    enableBorderColor: ColorManager.grey,
+                                    title: "Password",
+                                    suffixIcon: GetBuilder<LoginController>(
+                                      id: 'pass_icon',
+                                      builder: (_) {
+                                        return IntrinsicHeight(
+                                          child: IntrinsicWidth(
+                                            child: IconButton(
+                                              icon: AnimatedSwitcher(
+                                                duration:
+                                                    AppConstants.mediumDuration,
+                                                transitionBuilder:
+                                                    (child, animation) {
+                                                  final rotateAnimation =
+                                                      Tween<double>(
+                                                              begin: 0.0,
+                                                              end: 1.0)
+                                                          .animate(animation);
+                                                  final reverseAnimation =
+                                                      Tween<double>(
+                                                              begin: 1.0,
+                                                              end: 0.0)
+                                                          .animate(animation);
+                                                  return RotationTransition(
+                                                    turns: controller.showPass
+                                                        ? rotateAnimation
+                                                        : reverseAnimation,
+                                                    child: FadeTransition(
+                                                      opacity: animation,
+                                                      child: child,
+                                                    ),
+                                                  );
+                                                },
+                                                layoutBuilder: (currentChild,
+                                                    previousChildren) {
+                                                  return Stack(
+                                                    fit: StackFit.loose,
+                                                    children: [
+                                                      // Show the current child.
+                                                      if (currentChild != null)
+                                                        Positioned.fill(
                                                           child: Align(
                                                             alignment: Alignment
                                                                 .topRight,
-                                                            child:
-                                                                IgnorePointer(
-                                                                    child:
-                                                                        child),
+                                                            child: currentChild,
                                                           ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ],
-                                                );
+                                                        ),
+                                                      // Show the previous children in a stack.
+                                                      ...previousChildren.map(
+                                                        (child) {
+                                                          return Positioned
+                                                              .fill(
+                                                            child: Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topRight,
+                                                              child:
+                                                                  IgnorePointer(
+                                                                      child:
+                                                                          child),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                                switchInCurve:
+                                                    Curves.easeOutExpo,
+                                                switchOutCurve:
+                                                    Curves.easeInExpo,
+                                                child: controller.showPass
+                                                    ? const Icon(
+                                                        key: ValueKey(1),
+                                                        Icons.visibility,
+                                                        color: ColorManager
+                                                            .glodenColor,
+                                                      )
+                                                    : const Icon(
+                                                        key: ValueKey(2),
+                                                        Icons.visibility_off,
+                                                        color: ColorManager
+                                                            .glodenColor,
+                                                      ),
+                                              ),
+                                              onPressed: () {
+                                                controller.setShowPass();
                                               },
-                                              switchInCurve: Curves.easeOutExpo,
-                                              switchOutCurve: Curves.easeInExpo,
-                                              child: controller.showPass
-                                                  ? const Icon(
-                                                      key: ValueKey(1),
-                                                      Icons.visibility,
-                                                      color: ColorManager
-                                                          .glodenColor,
-                                                    )
-                                                  : const Icon(
-                                                      key: ValueKey(2),
-                                                      Icons.visibility_off,
-                                                      color: ColorManager
-                                                          .glodenColor,
-                                                    ),
                                             ),
-                                            onPressed: () {
-                                              controller.setShowPass();
-                                            },
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
-                            ),
-                            const SizedBox(
-                              height: 32,
-                            ),
-                            GetBuilder<LoginController>(
-                              id: 'login_button',
-                              builder: (_) {
-                                return controller.isLoading
-                                    ? FittedBox(
-                                        child: LoadingIndicators
-                                            .getLoadingIndicator(),
-                                      )
-                                    : SizedBox(
-                                        width: double.infinity,
-                                        height: 50,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            _login(
-                                              controller.login,
-                                              emailController.text,
-                                              passwordController.text,
-                                              formKey,
-                                              context,
-                                            );
-                                          },
-                                          child: const Text("Login"),
-                                        ),
-                                      );
-                              },
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            GetBuilder<LoginController>(
-                              builder: (_) {
-                                return Text(
-                                  controller.packageInfo?.version ??
-                                      'getting version...',
-                                  style: nunitoBlack.copyWith(
-                                    fontSize: 16,
-                                    color: ColorManager.grey,
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                                        );
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                              const SizedBox(
+                                height: 32,
+                              ),
+                              GetBuilder<LoginController>(
+                                id: 'login_button',
+                                builder: (_) {
+                                  return controller.isLoading
+                                      ? FittedBox(
+                                          child: LoadingIndicators
+                                              .getLoadingIndicator(),
+                                        )
+                                      : SizedBox(
+                                          width: double.infinity,
+                                          height: 50,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              _login(
+                                                controller.login,
+                                                emailController.text,
+                                                passwordController.text,
+                                                formKey,
+                                                context,
+                                              );
+                                            },
+                                            child: const Text("Login"),
+                                          ),
+                                        );
+                                },
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              GetBuilder<LoginController>(
+                                builder: (_) {
+                                  return Text(
+                                    controller.packageInfo?.version ??
+                                        'getting version...',
+                                    style: nunitoBlack.copyWith(
+                                      fontSize: 16,
+                                      color: ColorManager.grey,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

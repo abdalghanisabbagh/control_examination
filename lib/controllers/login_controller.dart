@@ -35,22 +35,25 @@ class LoginController extends GetxController {
       },
     );
 
-    response.fold((l) {
-      MyAwesomeDialogue(
-        title: 'Error',
-        desc: l.message,
-        dialogType: DialogType.error,
-      ).showDialogue(Get.context!);
-      isLogin = false;
-    }, (r) {
-      tokenService.saveTokenModelToHiveBox(TokenModel(
-        aToken: r.accessToken!,
-        rToken: r.refreshToken!,
-        dToken: DateTime.now().toIso8601String(),
-      ));
-      profileController.saveProfileToHiveBox(r.userProfile!);
-      isLogin = true;
-    });
+    response.fold(
+      (l) {
+        MyAwesomeDialogue(
+          title: 'Error',
+          desc: l.message,
+          dialogType: DialogType.error,
+        ).showDialogue(Get.context!);
+        isLogin = false;
+      },
+      (r) {
+        tokenService.saveTokenModelToHiveBox(TokenModel(
+          aToken: r.accessToken!,
+          rToken: r.refreshToken!,
+          dToken: DateTime.now().toIso8601String(),
+        ));
+        profileController.saveProfileToHiveBox(r.userProfile!);
+        isLogin = true;
+      },
+    );
 
     isLoading = false;
     update(['login_button']);

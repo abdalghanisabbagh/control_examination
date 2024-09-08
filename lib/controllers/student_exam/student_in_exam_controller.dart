@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:control_examination/routes_manger.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -61,6 +62,8 @@ class StudentInExamController extends FullLifeCycleController
       type: ReqTypeEnum.GET,
       converter: (_) {},
     );
+
+    Get.offAllNamed(Routes.homeScreen);
   }
 
   @override

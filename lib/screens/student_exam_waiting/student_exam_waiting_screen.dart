@@ -12,8 +12,7 @@ class StudentExamWaitingScreen extends GetView<StudentExamController> {
           .cachedExamMission!
           .startTime
           .toString())
-      .toUtc()
-      .difference(DateTime.now().toUtc())
+      .difference(DateTime.now())
       .inSeconds
       .abs(); // Countdown starting value
 
