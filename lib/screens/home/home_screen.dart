@@ -198,10 +198,9 @@ class HomeScreen extends GetView<HomeController> {
                                                                   ?.endTime ??
                                                               DateTime.now()
                                                                   .toString())
-                                                          .toLocal()
                                                           .toUtc()
-                                                          .isBefore(DateTime.now()
-                                                              .toLocal())) {
+                                                          .isBefore(
+                                                              DateTime.now())) {
                                                         MyAwesomeDialogue(
                                                           title: 'Exam Ended',
                                                           desc:
@@ -210,19 +209,24 @@ class HomeScreen extends GetView<HomeController> {
                                                               DialogType.error,
                                                         ).showDialogue(Get.key
                                                             .currentContext!);
-                                                      } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).toUtc().difference(DateTime.now().toUtc()) <= const Duration(minutes: 5) ||
-                                                          DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
-                                                              .toLocal()
-                                                              .toUtc()
-                                                              .isBefore(DateTime.now()
-                                                                  .toLocal())) {
+                                                      } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
+                                                                  .toUtc()
+                                                                  .difference(DateTime.now()
+                                                                      .toUtc()) <=
+                                                              const Duration(
+                                                                minutes: 5,
+                                                              ) ||
+                                                          DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).toUtc().isBefore(
+                                                              DateTime.now())) {
                                                         Get.toNamed(Routes
                                                             .studentExamScreenQRCode);
-                                                      } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
-                                                              .toLocal()
+                                                      } else if (DateTime.parse(
+                                                                  exam.examMission?.startTime ?? DateTime.now().toString())
                                                               .toUtc()
-                                                              .difference(DateTime.now().toLocal()) <
-                                                          const Duration(minutes: 15)) {
+                                                              .difference(DateTime.now()) <
+                                                          const Duration(
+                                                            minutes: 15,
+                                                          )) {
                                                         Get.toNamed(Routes
                                                             .studentExamScreenWaiting);
                                                       } else {
@@ -426,7 +430,7 @@ class HomeScreen extends GetView<HomeController> {
                             child: FittedBox(
                               fit: BoxFit.fill,
                               child: Text(
-                                'NIS Copyright © 2025 (v1.0.0)',
+                                'NIS Copyright © 2025 (${Get.find<LoginController>().packageInfo?.version ?? 'getting version...'})',
                                 style: nunitoLight.copyWith(
                                   color: ColorManager.white,
                                   fontSize: 12,

@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../configurations/app_links.dart';
 import '../models/login_response/login_res_model.dart';
@@ -11,6 +12,8 @@ import '../tools/response_handler.dart';
 import 'controllers.dart';
 
 class LoginController extends GetxController {
+  PackageInfo? packageInfo;
+
   bool isLoading = false;
   bool isLogin = false;
   ProfileController profileController = Get.find<ProfileController>();
@@ -52,6 +55,13 @@ class LoginController extends GetxController {
     isLoading = false;
     update(['login_button']);
     return isLogin;
+  }
+
+  @override
+  void onInit() async {
+    super.onInit();
+    packageInfo = await PackageInfo.fromPlatform();
+    update();
   }
 
   setShowPass() {
