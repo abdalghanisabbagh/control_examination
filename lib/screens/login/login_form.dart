@@ -45,8 +45,6 @@ class LoginForm extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.sizeOf(context);
-
     return KeyboardListener(
       onKeyEvent: (value) {
         if (value.logicalKey == LogicalKeyboardKey.enter) {
@@ -130,7 +128,7 @@ class LoginForm extends GetView<LoginController> {
                                 autofillHints: const [AutofillHints.username],
                                 controller: emailController,
                                 myValidation: Validations.requiredValidator,
-                                title: "Username",
+                                title: "Student Username",
                               ),
                               GetBuilder<LoginController>(
                                 id: 'pass_icon',
