@@ -89,11 +89,11 @@ class HomeController extends GetxController {
 
   void startServerClock(String? servertimeString) async {
     if (servertimeString != null) {
-      DateTime servertimeDate = DateTime.parse(servertimeString).toUtc();
+      DateTime servertimeDate = DateTime.parse(servertimeString);
       timerCounter = servertimeDate.millisecondsSinceEpoch;
       serverCLock = Timer.periodic(const Duration(seconds: 1), (timer) {
         timerCounter += 1000;
-        serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter).toUtc();
+        serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter);
         serverTime = DateFormat('HH:mm:ss').format(serveclock!);
         // print(serverTime);
         serverTime = DateFormat('HH:mm:ss').format(serveclock!);
