@@ -134,11 +134,11 @@ class LoginForm extends GetView<LoginController> {
                             MytextFormFiled(
                               controller: emailController,
                               myValidation: Validations.requiredValidator,
-                              title: "Email",
-                              suffixIcon: const Icon(
-                                Icons.mail_outline,
-                                color: ColorManager.glodenColor,
-                              ),
+                              title: "ٍStudent Name",
+                              // suffixIcon: const Icon(
+                              //   Icons.mail_outline,
+                              //   color: ColorManager.glodenColor,
+                              // ),
                             ),
                             GetBuilder<LoginController>(
                               id: 'pass_icon',
