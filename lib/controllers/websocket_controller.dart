@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
@@ -23,6 +22,7 @@ class WebSocketController extends GetxController {
   }
 
   void _connectToWebSocket() {
+    /* 
     socket = io.io(
         'http://localhost:3000',
         io.OptionBuilder().setTransports(['websocket']).setAuth({
@@ -55,5 +55,6 @@ class WebSocketController extends GetxController {
         debugPrint('onError $data');
       })
       ..connect();
+   */
   }
 }

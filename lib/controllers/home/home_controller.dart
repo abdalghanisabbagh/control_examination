@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../configurations/app_links.dart';
-import '../../models/server_clock_model.dart';
 import '../../models/student_exams/student_exam_res_model.dart';
 import '../../models/student_exams/student_exams_res_model.dart';
 import '../../resource_manager/ReusableWidget/show_dialgue.dart';
@@ -26,28 +25,28 @@ class HomeController extends GetxController {
   int timerCounter = 0;
   final userProfile = Get.find<ProfileController>().cachedUserProfile;
 
-  Future<void> getServerClock() async {
-    ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
+  // Future<void> getServerClock() async {
+  //   ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
 
-    var response = await responseHandler.getResponse(
-      path: AppLinks.baseUrlProd,
-      converter: ServerClockResModel.fromJson,
-      type: ReqTypeEnum.GET,
-    );
+  //   var response = await responseHandler.getResponse(
+  //     path: AppLinks.baseUrlProd,
+  //     converter: ServerClockResModel.fromJson,
+  //     type: ReqTypeEnum.GET,
+  //   );
 
-    response.fold((fauilr) {
-      /// handel error
-      MyAwesomeDialogue(
-        title: 'Error',
-        desc: "${fauilr.code} ::${fauilr.message}",
-        dialogType: DialogType.error,
-      ).showDialogue(Get.key.currentContext!);
-    }, (result) {
-      debugPrint(result.data);
-      startServerClock(result.data);
-      update();
-    });
-  }
+  //   response.fold((fauilr) {
+  //     /// handel error
+  //     MyAwesomeDialogue(
+  //       title: 'Error',
+  //       desc: "${fauilr.code} ::${fauilr.message}",
+  //       dialogType: DialogType.error,
+  //     ).showDialogue(Get.key.currentContext!);
+  //   }, (result) {
+  //     debugPrint(result.data);
+  //     startServerClock(result.data);
+  //     update();
+  //   });
+  // }
 
   Future<void> getStudentExams() async {
     final responseHandler = ResponseHandler<StudentExamsResModel>();
@@ -79,7 +78,7 @@ class HomeController extends GetxController {
     loading = true;
     update();
     await Future.wait([
-      getServerClock(),
+      // getServerClock(),
       getStudentExams(),
     ]);
 
