@@ -427,6 +427,9 @@ class HomeScreen extends GetView<HomeController> {
                                       await Get.find<TokenService>()
                                           .deleteTokenModelFromHiveBox();
                                       Get.delete<LoginController>(force: true);
+                                      Get.delete<ExamMissionController>(
+                                          force: true);
+                                      Get.delete<HomeController>(force: true);
                                       Get.offAllNamed(Routes.loginRoute);
                                     },
                                     child: const Icon(
