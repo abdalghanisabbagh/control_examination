@@ -34,6 +34,12 @@ class ExamMissionController extends GetxController {
     return _cachedExamMission;
   }
 
+  @override
+  void onClose() {
+    deleteExamMissionFromHiveBox();
+    super.onClose();
+  }
+
   void saveExamMissionToHiveBox({
     required ExamMission examMission,
     required String barcode,
