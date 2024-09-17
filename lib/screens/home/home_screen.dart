@@ -393,7 +393,8 @@ class HomeScreen extends GetView<HomeController> {
                                                     horizontal: 10,
                                                     vertical: 10),
                                               ),
-                                            ).paddingSymmetric(horizontal: 10);
+                                            ).paddingSymmetric(
+                                                horizontal: 10, vertical: 10);
                                           },
                                         ),
                                       ),

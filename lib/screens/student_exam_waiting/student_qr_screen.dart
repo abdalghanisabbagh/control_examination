@@ -12,20 +12,6 @@ import '../../routes_manger.dart';
 class StudentQrScreen extends GetView<StudentQrCodeController> {
   final ProfileController profileController = Get.find<ProfileController>();
 
-  final int _start = DateTime.parse(Get.find<ExamMissionController>()
-              .cachedExamMission!
-              .startTime
-              .toString())
-          .isBefore(DateTime.now())
-      ? 0
-      : DateTime.parse(Get.find<ExamMissionController>()
-              .cachedExamMission!
-              .startTime
-              .toString())
-          .difference(DateTime.now())
-          .inSeconds
-          .abs(); // Countdown starting value
-
   StudentQrScreen({super.key});
 
   @override
