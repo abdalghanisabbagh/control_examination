@@ -1,6 +1,6 @@
 class AppLinks {
   /// `http://localhost:3333/`
-  static const baseUrl = 'http://localhost:3333/';
+  static const baseUrl = 'http://localhost:80/';
 
   static const baseUrlDev = 'http://localhost:3333/';
   static const baseUrlProd = 'https://control-o5xlbifnea-uc.a.run.app/';
