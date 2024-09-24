@@ -8,6 +8,7 @@ class MytextFormFiled extends StatelessWidget {
 
   final String? Function(String? value)? onChange;
   final Function(String? value)? onFieldSubmitted;
+  final List<String> autofillHints;
   final TextEditingController controller;
   final Color? enableBorderColor;
   final FocusNode? focusNode;
@@ -20,7 +21,6 @@ class MytextFormFiled extends StatelessWidget {
   final Widget? suffixIcon;
   final List<TextInputFormatter>? textInputs;
   final String? title;
-  final List<String> autofillHints;
   const MytextFormFiled({
     super.key,
     this.title,

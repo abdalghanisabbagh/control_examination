@@ -2,6 +2,37 @@ import '../grade_response/grade_res_model.dart';
 import '../school/school_res_model.dart';
 
 class UserProfileModel {
+  int? active;
+
+  int? blbId;
+
+  // ClassRoomResModel? classRoomResModel;
+
+  int? cohortID;
+  String? cohortName;
+  // CohortResModel? cohortResModel;
+  // BarcodesResModel? barcodesResModel;
+  String? createdAt;
+
+  int? createdBy;
+  String? email;
+
+  String? firstName;
+  String? gradeName;
+  GradeResModel? gradeResModel;
+  int? gradesID;
+  int? iD;
+  String? religion;
+  int? schoolClassID;
+  String? schoolClassName;
+  SchoolResModel? schoolResModel;
+  int? schoolsID;
+  String? secondLang;
+  String? secondName;
+  String? thirdName;
+  DateTime? updatedAt;
+  int? updatedBy;
+  String? userName;
   UserProfileModel({
     this.iD,
     this.blbId,
@@ -30,7 +61,6 @@ class UserProfileModel {
     this.active,
     this.religion,
   });
-
   UserProfileModel.fromJson(json) {
     iD = json['ID'];
     userName = json['User_Name'];
@@ -64,36 +94,6 @@ class UserProfileModel {
     //     json['cohort'] == null ? null : CohortResModel.fromJson(json['cohort']);
     // active = json['Active'];
   }
-
-  int? active;
-  int? blbId;
-  // ClassRoomResModel? classRoomResModel;
-
-  int? cohortID;
-
-  String? cohortName;
-  // CohortResModel? cohortResModel;
-  // BarcodesResModel? barcodesResModel;
-  String? createdAt;
-
-  int? createdBy;
-  String? email;
-  String? firstName;
-  String? gradeName;
-  GradeResModel? gradeResModel;
-  int? gradesID;
-  int? iD;
-  String? religion;
-  int? schoolClassID;
-  String? schoolClassName;
-  SchoolResModel? schoolResModel;
-  int? schoolsID;
-  String? secondLang;
-  String? secondName;
-  String? thirdName;
-  DateTime? updatedAt;
-  int? updatedBy;
-  String? userName;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

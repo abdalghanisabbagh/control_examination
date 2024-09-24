@@ -12,10 +12,8 @@ import '../../tools/response_handler.dart';
 import '../controllers.dart';
 
 class StudentQrCodeController extends GetxController {
+  final cachedExamMission = Get.find<ExamMissionController>().cachedExamMission;
   final cachedUserProfile = Get.find<ProfileController>().cachedUserProfile;
-  final cahechedExamMission =
-      Get.find<ExamMissionController>().cachedExamMission;
-
   Completer<ExamLinkResModel> examLinkResModel = Completer<ExamLinkResModel>();
   bool loading = false;
   String qrCode = '';
@@ -61,7 +59,7 @@ class StudentQrCodeController extends GetxController {
     super.onInit();
   }
 
-  Future<bool> validtaeStudentToStartExam() async {
+  Future<bool> validateStudentToStartExam() async {
     loading = true;
     bool isValid = false;
     update(['scan_done']);
@@ -73,7 +71,7 @@ class StudentQrCodeController extends GetxController {
       path: '${StudentsLinks.validateStudent}/${uuid.iD}',
       converter: ExamLinkResModel.fromJson,
       params: {
-        'examMissionId': cahechedExamMission?.iD,
+        'examMissionId': cachedExamMission?.iD,
       },
       type: ReqTypeEnum.GET,
     );

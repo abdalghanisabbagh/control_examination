@@ -2,7 +2,6 @@ import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 import '../../configurations/constants/assets.dart';
 import '../../controllers/controllers.dart';
@@ -97,7 +96,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
               FittedBox(
                 fit: BoxFit.fill,
                 child: Text(
-                  ' / ${controller.cahechedExamMission?.subjects?.name}',
+                  ' / ${controller.cachedExamMission?.subjects?.name}',
                   style: nunitoBold.copyWith(
                     color: ColorManager.white,
                     fontSize: 18,
@@ -118,19 +117,6 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                   flex: 2,
                 ),
                 Expanded(
-                  flex: 5,
-                  child: controller.qrCode.isEmpty
-                      ? Center(
-                          child: LoadingIndicators.getLoadingIndicator(),
-                        )
-                      : PrettyQrView.data(
-                          data: controller.qrCode,
-                        ),
-                ),
-                const Spacer(
-                  flex: 2,
-                ),
-                Expanded(
                   flex: 3,
                   child: controller.qrCode.isEmpty
                       ? const SizedBox.shrink()
@@ -145,7 +131,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                                 : ElevatedButton(
                                     onPressed: () async {
                                       final bool isValid = await controller
-                                          .validtaeStudentToStartExam();
+                                          .validateStudentToStartExam();
                                       if (isValid) {
                                         Hive.box('ExamMission')
                                             .put('inExam', true);
@@ -153,7 +139,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                                       }
                                     },
                                     child: Text(
-                                      'Scan Done?',
+                                      'Validate and start exam',
                                       style: nunitoBold.copyWith(
                                         color: ColorManager.white,
                                       ),

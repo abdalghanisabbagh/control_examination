@@ -18,7 +18,7 @@ class FullScreenController extends GetxController {
     try {
       await html.window.document.documentElement?.requestFullscreen();
     } catch (e) {
-      debugPrint('Error entering full screen: $e');
+      // debugPrint('Error entering full screen: $e');
     }
   }
 
@@ -26,7 +26,7 @@ class FullScreenController extends GetxController {
     try {
       html.document.exitFullscreen();
     } catch (e) {
-      debugPrint('Error exiting full screen: $e');
+      // debugPrint('Error exiting full screen: $e');
     }
   }
 

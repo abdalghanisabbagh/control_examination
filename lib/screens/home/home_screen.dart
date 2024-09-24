@@ -1,11 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_examination/controllers/window_size_controller.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../configurations/constants/assets.dart';
 import '../../controllers/controllers.dart';
+import '../../controllers/window_size_controller.dart';
 import '../../extensions/string_extension.dart';
 import '../../models/student_exams/student_exam_res_model.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';

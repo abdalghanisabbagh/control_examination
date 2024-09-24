@@ -12,10 +12,9 @@ import '../tools/response_handler.dart';
 import 'controllers.dart';
 
 class LoginController extends GetxController {
-  PackageInfo? packageInfo;
-
   bool isLoading = false;
   bool isLogin = false;
+  PackageInfo? packageInfo;
   ProfileController profileController = Get.find<ProfileController>();
   bool showPass = true;
   TokenService tokenService = Get.find<TokenService>();
@@ -52,6 +51,10 @@ class LoginController extends GetxController {
           ),
         );
         profileController.saveProfileToHiveBox(r.userProfile!);
+        Get.put<WebSocketController>(
+          WebSocketController(),
+          permanent: true,
+        );
         isLogin = true;
       },
     );

@@ -1,7 +1,7 @@
-import 'package:control_examination/controllers/window_size_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/controllers.dart';
+import '../controllers/window_size_controller.dart';
 import '../services/token_service.dart';
 
 class HomeBindings extends Bindings {
@@ -88,9 +88,9 @@ class StudentQrCodeBinding extends Bindings {
 class WebSocketBinding extends Bindings {
   @override
   void dependencies() {
-    // Get.put<WebSocketController>(
-    //   WebSocketController(),
-    //   permanent: true,
-    // );
+    Get.lazyPut<WebSocketController>(
+      () => WebSocketController(),
+      fenix: true,
+    );
   }
 }

@@ -4,8 +4,8 @@ import 'dart:html' as html;
 import 'package:get/get.dart';
 
 class WindowSizeController extends GetxController {
-  var windowWidth = html.window.innerWidth!.toDouble();
   var windowHeight = html.window.innerHeight!.toDouble();
+  var windowWidth = html.window.innerWidth!.toDouble();
 
   @override
   void onInit() {
