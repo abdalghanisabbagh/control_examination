@@ -37,7 +37,6 @@ class StudentExamWaitingScreen extends GetView<StudentExamController> {
               BackButton(
                 color: ColorManager.white,
                 onPressed: () {
-                  Get.delete<StudentQrCodeController>(force: true);
                   Get.back();
                 },
               ),
@@ -117,7 +116,7 @@ class StudentExamWaitingScreen extends GetView<StudentExamController> {
       body: Center(
         child: SlideCountdown(
           onChanged: (value) => value.inSeconds <= 5 * 60
-              ? Get.offNamed(Routes.studentExamScreenQRCode)
+              ? Get.offNamed(Routes.studentWaitingToStartExamScreen)
               : null,
           duration: Duration(seconds: _start),
           style: nunitoBold.copyWith(

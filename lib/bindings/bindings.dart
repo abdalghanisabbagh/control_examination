@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../controllers/controllers.dart';
+import '../controllers/student_exam/student_waiting_to_start_exam.dart';
 import '../controllers/window_size_controller.dart';
 import '../services/token_service.dart';
 
@@ -75,11 +76,11 @@ class StudentInExamBinding extends Bindings {
   }
 }
 
-class StudentQrCodeBinding extends Bindings {
+class StudentWaitingToStartExamBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<StudentQrCodeController>(
-      StudentQrCodeController(),
+    Get.put<StudentWaitingToStartExamController>(
+      StudentWaitingToStartExamController(),
       permanent: true,
     );
   }

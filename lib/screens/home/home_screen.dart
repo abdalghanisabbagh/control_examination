@@ -229,7 +229,7 @@ class HomeScreen extends GetView<HomeController> {
                                                                       exam.examMission?.startTime ?? DateTime.now().toString())
                                                                   .isBefore(DateTime.now())) {
                                                             Get.toNamed(Routes
-                                                                .studentExamScreenQRCode);
+                                                                .studentWaitingToStartExamScreen);
                                                           } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).difference(DateTime.now()) <
                                                               const Duration(
                                                                 minutes: 15,

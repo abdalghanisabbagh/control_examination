@@ -5,7 +5,7 @@ import 'screens/home/home_screen.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/student_exam_waiting/student_exam_waiting_screen.dart';
 import 'screens/student_exam_waiting/student_in_exam_screen.dart';
-import 'screens/student_exam_waiting/student_qr_screen.dart';
+import 'screens/student_exam_waiting/student_waiting_to_start_exam_screen.dart';
 
 class Routes {
   static const String homeScreen = "/home";
@@ -41,12 +41,12 @@ class Routes {
       transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(
-      name: studentExamScreenQRCode,
-      page: () => StudentQrScreen(),
+      name: studentWaitingToStartExamScreen,
+      page: () => StudentWaitingToStartExamScreen(),
       transition: Transition.fade,
-      binding: StudentQrCodeBinding(),
       bindings: [
         StudentExamBinding(),
+        StudentWaitingToStartExamBinding(),
         WebSocketBinding(),
       ],
       transitionDuration: const Duration(seconds: 1),
@@ -56,12 +56,7 @@ class Routes {
       page: () => const StudentInExamScreen(),
       transition: Transition.fade,
       binding: StudentInExamBinding(),
-      bindings: [
-        HomeBindings(),
-        WebSocketBinding(),
-        StudentQrCodeBinding(),
-        StudentExamBinding()
-      ],
+      bindings: [HomeBindings(), WebSocketBinding(), StudentExamBinding()],
       transitionDuration: const Duration(seconds: 1),
     ),
     // GetPage(
@@ -89,6 +84,7 @@ class Routes {
   ];
 
   static const String studentExamScreen = "/studentExamScreen";
-  static const String studentExamScreenQRCode = "/studentExamScreenQRCode";
+  static const String studentWaitingToStartExamScreen =
+      "/studentExamScreenQRCode";
   static const String studentExamScreenWaiting = "/studentExamScreenWaiting";
 }

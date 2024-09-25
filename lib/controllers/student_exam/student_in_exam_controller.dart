@@ -12,6 +12,7 @@ import '../../resource_manager/enums/req_type_enum.dart';
 import '../../routes_manger.dart';
 import '../../tools/response_handler.dart';
 import '../controllers.dart';
+import 'student_waiting_to_start_exam.dart';
 
 class StudentInExamController extends FullLifeCycleController
     with FullLifeCycleMixin {
@@ -26,8 +27,9 @@ class StudentInExamController extends FullLifeCycleController
   bool isLoadingExam = true;
   PdfViewerController? pdfViewerController = PdfViewerController();
   final ScrollController scrollController = ScrollController();
-  final StudentQrCodeController studentQrCodeController =
-      Get.find<StudentQrCodeController>();
+  final StudentWaitingToStartExamController
+      studentWaitingToStartExamController =
+      Get.find<StudentWaitingToStartExamController>();
 
   final TransformationController transformationController =
       TransformationController();
@@ -39,7 +41,8 @@ class StudentInExamController extends FullLifeCycleController
 
   Future<void> getExamData() async {
     try {
-      var link = await studentQrCodeController.examLinkResModel.future;
+      var link =
+          await studentWaitingToStartExamController.examLinkResModel.future;
       var response = await Dio().get(link.examLink!,
           options: Options(responseType: ResponseType.bytes));
       documentBytes = response.data;
@@ -68,7 +71,7 @@ class StudentInExamController extends FullLifeCycleController
 
   @override
   void onClose() {
-    Get.delete<StudentQrCodeController>(force: true);
+    Get.delete<StudentWaitingToStartExamController>(force: true);
     Get.delete<StudentExamController>(force: true);
 
     super.onClose();

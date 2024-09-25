@@ -1,4 +1,7 @@
+import 'package:control_examination/controllers/student_exam/student_waiting_to_start_exam.dart';
+import 'package:control_examination/models/student_exams/exam_link_res_model.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import '../configurations/app_links.dart';
@@ -57,6 +60,23 @@ class WebSocketController extends GetxController {
               Get.find<HomeController>().onInit();
               Get.offAllNamed(Routes.homeScreen);
             }
+          }
+        },
+      )
+      ..on(
+        'start_exam',
+        (startExam) {
+          if (startExam['studentId'] ==
+              profileController.cachedUserProfile?.iD) {
+            Get.find<StudentWaitingToStartExamController>()
+                .examLinkResModel
+                .complete(
+                  ExamLinkResModel(
+                    examLink: startExam['examUrl'],
+                  ),
+                );
+            Hive.box('ExamMission').put('inExam', true);
+            Get.offNamed(Routes.studentExamScreen);
           }
         },
       );

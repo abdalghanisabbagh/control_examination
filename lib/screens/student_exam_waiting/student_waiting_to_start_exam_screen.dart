@@ -1,17 +1,16 @@
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../configurations/constants/assets.dart';
 import '../../controllers/controllers.dart';
-import '../../resource_manager/ReusableWidget/loading_indicators.dart';
-import '../../routes_manger.dart';
+import '../../controllers/student_exam/student_waiting_to_start_exam.dart';
 
-class StudentQrScreen extends GetView<StudentQrCodeController> {
+class StudentWaitingToStartExamScreen
+    extends GetView<StudentWaitingToStartExamController> {
   final ProfileController profileController = Get.find<ProfileController>();
 
-  StudentQrScreen({super.key});
+  StudentWaitingToStartExamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,6 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
               BackButton(
                 color: ColorManager.white,
                 onPressed: () {
-                  Get.delete<StudentQrCodeController>(force: true);
                   Get.back();
                 },
               ),
@@ -108,7 +106,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
           ),
         ),
       ),
-      body: GetBuilder<StudentQrCodeController>(
+      body: GetBuilder<StudentWaitingToStartExamController>(
         builder: (_) {
           return Center(
             child: Column(
@@ -116,38 +114,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                 const Spacer(
                   flex: 2,
                 ),
-                Expanded(
-                  flex: 3,
-                  child: controller.qrCode.isEmpty
-                      ? const SizedBox.shrink()
-                      : GetBuilder<StudentQrCodeController>(
-                          id: 'scan_done',
-                          builder: (_) {
-                            return controller.loading
-                                ? Center(
-                                    child:
-                                        LoadingIndicators.getLoadingIndicator(),
-                                  )
-                                : ElevatedButton(
-                                    onPressed: () async {
-                                      final bool isValid = await controller
-                                          .validateStudentToStartExam();
-                                      if (isValid) {
-                                        Hive.box('ExamMission')
-                                            .put('inExam', true);
-                                        Get.offNamed(Routes.studentExamScreen);
-                                      }
-                                    },
-                                    child: Text(
-                                      'Validate and start exam',
-                                      style: nunitoBold.copyWith(
-                                        color: ColorManager.white,
-                                      ),
-                                    ),
-                                  );
-                          },
-                        ),
-                ),
+                Text('Waiting to start the exam', style: nunitoBold),
                 const Spacer(
                   flex: 2,
                 ),
