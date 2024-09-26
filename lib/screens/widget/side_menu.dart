@@ -104,14 +104,14 @@ class SideMenu extends StatelessWidget {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
-      tileColor: sideMenuController.currentPage.value == pageName
+      tileColor: sideMenuController.currentPage == pageName
           ? Colors.grey[300] // لون الخلفية للصفحة النشطة
           : null,
       onTap: () {
         sideMenuController.updatePage(pageName);
         Get.toNamed(pageName);
       },
-      shape: sideMenuController.currentPage.value == pageName
+      shape: sideMenuController.currentPage == pageName
           ? RoundedRectangleBorder(
               side: const BorderSide(color: ColorManager.primary, width: 2),
               borderRadius: BorderRadius.circular(5),
