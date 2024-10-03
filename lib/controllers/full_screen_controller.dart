@@ -116,7 +116,6 @@ class FullScreenController extends GetxController {
       }
 
       /// If it is not, mark the student as cheating
-      studentInExamController.markStudentCheating();
     });
 
     /// Call the onInit method of the superclass

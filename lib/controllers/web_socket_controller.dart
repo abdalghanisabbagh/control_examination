@@ -67,7 +67,7 @@ class WebSocketController extends GetxController {
         'room_event',
         (roomEvent) {
           // Handle room event
-          if (roomEvent['eventType'] == 1 || roomEvent['eventType'] == 0) {
+          if ([0, 1].contains(roomEvent['eventType'])) {
             if (roomEvent['studentId'] ==
                 profileController.cachedUserProfile?.iD) {
               // If the event is for the current student, go back to the home

@@ -174,29 +174,12 @@ class StudentWaitingToStartExamBinding extends Bindings {
   }
 }
 
-/// WebSocketBinding is a class that extends Bindings and is used to bind the WebSocketController to the GetX framework.
-///
-/// This class overrides the dependencies method of the Bindings class and puts an instance of WebSocketController into the GetX framework, with the fenix flag set to true.
-/// This means that the WebSocketController will be initialized when the WebSocketBinding are initialized and will not be disposed of when the binding is removed.
-///
-/// The WebSocketController is a GetX lazy controller, which means that it will not be initialized until it is needed.
-/// This is done to reduce the amount of memory used by the app, and to improve the app's performance.
 class WebSocketBinding extends Bindings {
-  /// The dependencies method of the Bindings class is overridden to put an instance of WebSocketController into the GetX framework, with the fenix flag set to true.
-  /// This means that the WebSocketController will be initialized when the WebSocketBinding are initialized and will not be disposed of when the binding is removed.
-  ///
-  /// The WebSocketController is a GetX lazy controller, which means that it will not be initialized until it is needed.
-  /// This is done to reduce the amount of memory used by the app, and to improve the app's performance.
   @override
   void dependencies() {
-    /// Put an instance of WebSocketController into the GetX framework, with the fenix flag set to true.
-    /// This means that the WebSocketController will be initialized when the WebSocketBinding are initialized and will not be disposed of when the binding is removed.
-    ///
-    /// The WebSocketController is a GetX lazy controller, which means that it will not be initialized until it is needed.
-    /// This is done to reduce the amount of memory used by the app, and to improve the app's performance.
-    Get.lazyPut<WebSocketController>(
-      () => WebSocketController(),
-      fenix: true,
+    Get.put<WebSocketController>(
+      WebSocketController(),
+      permanent: true,
     );
   }
 }
