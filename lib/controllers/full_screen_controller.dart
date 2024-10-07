@@ -71,7 +71,7 @@ class FullScreenController extends GetxController {
   void onInit() async {
     await enterFullScreen();
     html.window.addEventListener('fullscreenchange', (event) {
-      if (Hive.box('ExamMission').get('inExam')) {
+      if (Hive.box('ExamMission').get('inExam', defaultValue: false)) {
         isInFullScreen() ? null : studentInExamController.markStudentCheating();
       }
     });
