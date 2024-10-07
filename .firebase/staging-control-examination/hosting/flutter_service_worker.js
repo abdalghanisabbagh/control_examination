@@ -65,7 +65,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "5d3b3bbeec4ce6123a648b681b799df6
 "canvaskit/skwasm.worker.js": "89990e8c92bcb123999aa81f7e203b1c",
 "favicon.png": "7d844e596d4c0da5e4d0b6b35c196b97",
 "flutter.js": "f393d3c16b631f36852323de8e583132",
-"flutter_bootstrap.js": "c0037dc7daacdfc40e97954fc52d6014",
+"flutter_bootstrap.js": "312fba8c00be30df27556fb29bbdcb09",
 "icons/Icon-192.png": "db9fb010616d67905d18a3c517479f4e",
 "icons/Icon-512.png": "4f1685b6f43d89b05e30955afc5f7aae",
 "icons/Icon-maskable-192.png": "db9fb010616d67905d18a3c517479f4e",
@@ -74,7 +74,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "5d3b3bbeec4ce6123a648b681b799df6
 "/": "4d80b8f3e04fd1f2868889b73d71e1ee",
 "main.dart.js": "4494c810e1673831c28b723f2141856f",
 "manifest.json": "60126968cdf38d535992dddee3bdbd48",
-"version.json": "a6020a81c9d29434f3a5150621db54bc"};
+"version.json": "cf542d92c7b185a61354f2af17c34408"};
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = ["main.dart.js",
