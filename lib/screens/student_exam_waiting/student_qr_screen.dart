@@ -115,7 +115,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
             child: Column(
               children: [
                 const Spacer(
-                  flex: 2,
+                  flex: 1,
                 ),
                 Expanded(
                   flex: 5,
@@ -128,7 +128,15 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                         ),
                 ),
                 const Spacer(
-                  flex: 2,
+                  flex: 1,
+                ),
+                const Text(
+                  "With any attempt to leave the screen of examination, your exam will be CANCELLED immediately, and you will earn a score of Zero Grade!",
+                  // "If you try to go out from Exam screen,your exam will be CANCELED,Please don't try take screen (shot/record)",
+                  style: TextStyle(color: Colors.red, fontSize: 24),
+                ).paddingSymmetric(horizontal: 300),
+                const Spacer(
+                  flex: 1,
                 ),
                 Expanded(
                   flex: 3,
