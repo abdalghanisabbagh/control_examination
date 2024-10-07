@@ -1,3 +1,5 @@
+import 'package:control_examination/screens/exam_finished/exam_finished_screen.dart';
+import 'package:control_examination/screens/student_cheating/student_cheating_screen.dart';
 import 'package:get/get.dart';
 
 import 'bindings/bindings.dart';
@@ -12,6 +14,8 @@ class Routes {
   static const String initialRoute = "/login";
   static const String loginForm = "/loginForm";
   static const String loginRoute = "/login";
+  static const String studentExamFinished = "/studentExamFinished";
+  static const String studentCheatingRoute = "/studentCheatingRoute";
   // static const String nextExams = "/NextExams";
   // static const String allExams = "/AllExams";
   // static const String attendance = "/Attendance";
@@ -23,6 +27,18 @@ class Routes {
       page: () => const LoginScreen(),
       transition: Transition.fade,
       binding: LoginBinding(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: studentExamFinished,
+      page: () => const ExamFinishedScreen(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: studentCheatingRoute,
+      page: () => const StudentCheatingScreen(),
+      transition: Transition.fade,
       transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(

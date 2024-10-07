@@ -11,6 +11,7 @@ import '../../configurations/constants/assets.dart';
 import '../../controllers/full_screen_controller.dart';
 import '../../controllers/student_exam/student_in_exam_controller.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
+import '../../routes_manger.dart';
 
 class StudentInExamScreen extends GetView<StudentInExamController> {
   const StudentInExamScreen({super.key});
@@ -45,8 +46,8 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
                     ),
                     BackButton(
                       color: ColorManager.white,
-                      onPressed: () {
-                        Hive.box('ExamMission').put('inExam', false);
+                      onPressed: () async {
+                        await Hive.box('ExamMission').put('inExam', false);
                         Get.back();
                       },
                     ),
@@ -145,6 +146,13 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
                         return controller.documentBytes == null
                             ? const SizedBox.shrink()
                             : SlideCountdown(
+                                onDone: () async {
+                                  await Hive.box('ExamMission')
+                                      .put('inExam', false);
+
+                                  Get.delete<FullScreenController>(force: true);
+                                  Get.offAllNamed(Routes.studentExamFinished);
+                                },
                                 decoration: const BoxDecoration(),
                                 duration:
                                     Duration(minutes: controller.examDuration),

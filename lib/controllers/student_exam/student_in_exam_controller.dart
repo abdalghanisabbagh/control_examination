@@ -63,7 +63,7 @@ class StudentInExamController extends FullLifeCycleController
       converter: (_) {},
     );
     Get.find<HomeController>().onInit();
-    Get.offAllNamed(Routes.homeScreen);
+    Get.offAllNamed(Routes.studentCheatingRoute);
   }
 
   @override
