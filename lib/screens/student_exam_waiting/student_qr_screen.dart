@@ -33,6 +33,8 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                 color: ColorManager.white,
                 onPressed: () {
                   Get.delete<StudentQrCodeController>(force: true);
+                  Get.find<ExamMissionController>()
+                      .deleteExamMissionFromHiveBox();
                   Get.back();
                 },
               ),
