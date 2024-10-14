@@ -9,27 +9,42 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+/// FullScreenController is a GetxController that handles entering and exiting
+/// full screen mode.
+///
+/// It also prevents the user from using certain keyboard shortcuts.
 class FullScreenController extends GetxController {
+  /// The focus node that is used to request focus on the page.
   final FocusNode focusNode = FocusNode()..requestFocus();
+
+  /// The last key that was pressed.
   String lastKey = '';
+
+  /// The StudentInExamController that is used to mark the student as cheating.
   final studentInExamController = Get.find<StudentInExamController>();
 
+  /// Enters full screen mode.
   Future<void> enterFullScreen() async {
     try {
       await html.window.document.documentElement?.requestFullscreen();
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('Error entering full screen: $e');
     }
   }
 
+  /// Exits full screen mode.
   void exitFullScreen() {
     try {
       html.document.exitFullscreen();
-    } catch (e) {
+    } on Exception catch (e) {
       debugPrint('Error exiting full screen: $e');
     }
   }
 
+  /// Checks if the user has pressed a key that is not allowed.
+  ///
+  /// If the user has pressed a key that is not allowed, it will mark the
+  /// student as cheating.
   bool handleKeyEvent(KeyEvent event) {
     if (HardwareKeyboard.instance.isAltPressed ||
         HardwareKeyboard.instance.isControlPressed ||
@@ -55,6 +70,7 @@ class FullScreenController extends GetxController {
     return false;
   }
 
+  /// Checks if the browser is currently in full screen mode.
   bool isInFullScreen() {
     var result = js.context.callMethod('isFullScreen');
     return result ?? false;
@@ -68,20 +84,25 @@ class FullScreenController extends GetxController {
   }
 
   @override
-  void onInit() async {
-    await enterFullScreen();
-    html.window.addEventListener('fullscreenchange', (event) {
-      if (Hive.box('ExamMission').get('inExam', defaultValue: false)) {
-        isInFullScreen() ? null : studentInExamController.markStudentCheating();
-      }
+  void onInit() {
+    enterFullScreen().then((value) async {
+      html.window.addEventListener('fullscreenchange', (event) {
+        if (Hive.box('ExamMission').get('inExam', defaultValue: false)) {
+          isInFullScreen()
+              ? null
+              : studentInExamController.markStudentCheating();
+        }
+      });
     });
     super.onInit();
   }
 
-  removeListeners() {
+  /// Removes the event listeners that were added in the onInit method.
+  void removeListeners() {
     html.window.removeEventListener('fullscreenchange', (event) => true, true);
   }
 
+  /// Updates the lastKey variable with the new key.
   void updateLastKey(String key) {
     lastKey = key;
     update();

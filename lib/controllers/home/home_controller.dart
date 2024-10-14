@@ -14,17 +14,39 @@ import '../../resource_manager/enums/req_type_enum.dart';
 import '../../tools/response_handler.dart';
 import '../controllers.dart';
 
+/// this class is the controller for the home page
+/// it contains the logic for getting the student exams and
+/// displaying the server clock
 class HomeController extends GetxController {
+  /// flag to indicate if the data is loading
   bool loading = false;
+
+  /// scroll controller for the exams list
   ScrollController scrollController = ScrollController();
+
+  /// the server clock
   DateTime? serveClock;
+
+  /// the timer for the server clock
   Timer? serverCLock;
+
+  /// the string representation of the server clock
   String serverTime = '00:00';
+
+  /// the list of student exams
   List<StudentExamResModel> studentExams = [];
+
+  /// the map of student exams grouped by mission name
   Map<String?, List<StudentExamResModel>>? studentExamsResModel;
+
+  /// the counter for the server clock
   int timerCounter = 0;
+
+  /// the user profile
   final userProfile = Get.find<ProfileController>().cachedUserProfile;
 
+  /// get the server clock from the server
+  /// and start the timer
   // Future<void> getServerClock() async {
   //   ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
 
@@ -48,6 +70,7 @@ class HomeController extends GetxController {
   //   });
   // }
 
+  /// get the student exams from the server
   Future<void> getStudentExams() async {
     final responseHandler = ResponseHandler<StudentExamsResModel>();
 
@@ -72,6 +95,7 @@ class HomeController extends GetxController {
     update(['exams']);
   }
 
+  /// on init
   @override
   void onInit() async {
     super.onInit();
@@ -86,6 +110,7 @@ class HomeController extends GetxController {
     update();
   }
 
+  /// start the server clock
   void startServerClock(String? serverTimeString) async {
     if (serverTimeString != null) {
       DateTime serverTimeDate = DateTime.parse(serverTimeString);
@@ -102,6 +127,7 @@ class HomeController extends GetxController {
     }
   }
 
+  /// stop the server clock
   void stopServerClock() {
     if (serverCLock != null) {
       serverCLock!.cancel();

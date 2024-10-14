@@ -3,10 +3,16 @@ import 'dart:html' as html;
 
 import 'package:get/get.dart';
 
+/// WindowSizeController is a GetxController that provides the current width and height of the window
+/// it listens to window resize events and updates the values accordingly
 class WindowSizeController extends GetxController {
+  /// The current width of the window
   var windowWidth = html.window.innerWidth!.toDouble();
+
+  /// The current height of the window
   var windowHeight = html.window.innerHeight!.toDouble();
 
+  /// Listens to window resize events and updates the values accordingly
   @override
   void onInit() {
     super.onInit();

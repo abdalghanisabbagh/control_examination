@@ -11,15 +11,34 @@ import '../services/token_service.dart';
 import '../tools/response_handler.dart';
 import 'controllers.dart';
 
+/// this controller is responsible for the login process
+/// it contains the login function and the related UI state
 class LoginController extends GetxController {
+  /// package info of the app
   PackageInfo? packageInfo;
 
+  /// whether the login button is loading or not
   bool isLoading = false;
+
+  /// whether the user is logged in or not
   bool isLogin = false;
+
+  /// the profile controller
   ProfileController profileController = Get.find<ProfileController>();
+
+  /// whether to show the password or not
   bool showPass = true;
+
+  /// the token service
   TokenService tokenService = Get.find<TokenService>();
 
+  /// the login function
+  /// it will be called when the user presses the login button
+  /// it will get the user name and password from the UI
+  /// it will call the login API and handle the response
+  /// if the response is success it will save the token to the hive box
+  /// and navigate to the home page
+  /// if the response is error it will show a dialog with the error message
   Future<bool> login(String username, String password) async {
     isLoading = true;
     update(['login_button']);
@@ -61,6 +80,9 @@ class LoginController extends GetxController {
     return isLogin;
   }
 
+  /// override the onInit function
+  /// it will be called when the controller is initialized
+  /// it will get the package info of the app
   @override
   void onInit() async {
     super.onInit();
@@ -68,7 +90,11 @@ class LoginController extends GetxController {
     update();
   }
 
-  setShowPass() {
+  /// the function to show or hide the password
+  /// it will be called when the user presses the show password button
+  /// it will toggle the showPass variable
+  /// and update the UI
+  void setShowPass() {
     showPass = !showPass;
     update(['pass_icon']);
   }
