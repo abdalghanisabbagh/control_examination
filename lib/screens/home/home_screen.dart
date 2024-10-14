@@ -38,6 +38,7 @@ class HomeScreen extends GetView<HomeController> {
                       Image.asset(
                         Assets.assetsLogosNIS5,
                         height: 100,
+                        filterQuality: FilterQuality.high,
                       ),
                       const Spacer(
                         flex: 2,
@@ -407,38 +408,38 @@ class HomeScreen extends GetView<HomeController> {
                           const Spacer(),
                           Column(
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  FittedBox(
-                                    fit: BoxFit.fill,
-                                    child: Text(
-                                      'Logout',
-                                      style: nunitoBold.copyWith(
-                                        color: ColorManager.white,
-                                        fontSize: 16,
+                              InkWell(
+                                onTap: () async {
+                                  await Get.find<ProfileController>()
+                                      .deleteProfileFromHiveBox();
+                                  await Get.find<TokenService>()
+                                      .deleteTokenModelFromHiveBox();
+                                  Get.delete<LoginController>(force: true);
+                                  Get.delete<ExamMissionController>(
+                                      force: true);
+                                  Get.delete<HomeController>(force: true);
+                                  Get.offAllNamed(Routes.loginRoute);
+                                },
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    FittedBox(
+                                      fit: BoxFit.fill,
+                                      child: Text(
+                                        'Logout',
+                                        style: nunitoBold.copyWith(
+                                          color: ColorManager.white,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  InkWell(
-                                    onTap: () async {
-                                      await Get.find<ProfileController>()
-                                          .deleteProfileFromHiveBox();
-                                      await Get.find<TokenService>()
-                                          .deleteTokenModelFromHiveBox();
-                                      Get.delete<LoginController>(force: true);
-                                      Get.delete<ExamMissionController>(
-                                          force: true);
-                                      Get.delete<HomeController>(force: true);
-                                      Get.offAllNamed(Routes.loginRoute);
-                                    },
-                                    child: const Icon(
+                                    const Icon(
                                       Icons.logout_outlined,
                                       color: ColorManager.white,
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               const SizedBox(height: 20),
                               Align(
@@ -473,8 +474,9 @@ class HomeScreen extends GetView<HomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              Assets.assetsLogosNIS5,
-                              width: 100,
+                              Assets.assetsLogosNisLogo22,
+                              width: 150,
+                              filterQuality: FilterQuality.high,
                             ),
                             Align(
                               alignment: Alignment.topCenter,
