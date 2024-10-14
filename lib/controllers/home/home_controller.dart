@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 import '../../configurations/app_links.dart';
 import '../../models/student_exams/student_exam_res_model.dart';
 import '../../models/student_exams/student_exams_res_model.dart';
-import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
 import '../../tools/response_handler.dart';
 import '../controllers.dart';
@@ -17,7 +17,7 @@ import '../controllers.dart';
 class HomeController extends GetxController {
   bool loading = false;
   ScrollController scrollController = ScrollController();
-  DateTime? serveclock;
+  DateTime? serveClock;
   Timer? serverCLock;
   String serverTime = '00:00';
   List<StudentExamResModel> studentExams = [];
@@ -92,10 +92,10 @@ class HomeController extends GetxController {
       timerCounter = servertimeDate.millisecondsSinceEpoch;
       serverCLock = Timer.periodic(const Duration(seconds: 1), (timer) {
         timerCounter += 1000;
-        serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter);
-        serverTime = DateFormat('HH:mm:ss').format(serveclock!);
+        serveClock = DateTime.fromMillisecondsSinceEpoch(timerCounter);
+        serverTime = DateFormat('HH:mm:ss').format(serveClock!);
         // print(serverTime);
-        serverTime = DateFormat('HH:mm:ss').format(serveclock!);
+        serverTime = DateFormat('HH:mm:ss').format(serveClock!);
 //debugPrint(serverTime);
         update();
       });

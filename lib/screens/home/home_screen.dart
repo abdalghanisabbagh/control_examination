@@ -9,7 +9,7 @@ import '../../controllers/controllers.dart';
 import '../../extensions/string_extension.dart';
 import '../../models/student_exams/student_exam_res_model.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
-import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../../routes_manger.dart';
 import '../../services/services.dart';
 
@@ -849,7 +849,7 @@ class HomeScreen extends GetView<HomeController> {
                                             ),
                                             TextSpan(
                                               text:
-                                                  ' ! Your keyboard is locked. You are only allowed to preview your exam byscrolling up ⬆ and down ⬇ the screen using your keyboard, or mouse scroll, or scroll bar',
+                                                  ' ! Your keyboard is locked. You are only allowed to preview your exam by scrolling up ⬆ and down ⬇ the screen using your keyboard, or mouse scroll, or scroll bar',
                                               style: nunitoRegular.copyWith(
                                                 fontSize: 16,
                                                 color: ColorManager.darkGrey2,

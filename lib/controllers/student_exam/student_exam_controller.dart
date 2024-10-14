@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../configurations/app_links.dart';
 import '../../models/uuid/uuid_res_model.dart';
-import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
 import '../../tools/response_handler.dart';
 import '../controllers.dart';

@@ -6,15 +6,14 @@ import 'package:get/get.dart';
 import '../../configurations/app_links.dart';
 import '../../models/student_exams/exam_link_res_model.dart';
 import '../../models/uuid/uuid_res_model.dart';
-import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
 import '../../tools/response_handler.dart';
 import '../controllers.dart';
 
 class StudentQrCodeController extends GetxController {
   final cachedUserProfile = Get.find<ProfileController>().cachedUserProfile;
-  final cahechedExamMission =
-      Get.find<ExamMissionController>().cachedExamMission;
+  final cachedExamMission = Get.find<ExamMissionController>().cachedExamMission;
 
   Completer<ExamLinkResModel> examLinkResModel = Completer<ExamLinkResModel>();
   bool loading = false;
@@ -61,7 +60,7 @@ class StudentQrCodeController extends GetxController {
     super.onInit();
   }
 
-  Future<bool> validtaeStudentToStartExam() async {
+  Future<bool> validateStudentToStartExam() async {
     loading = true;
     bool isValid = false;
     update(['scan_done']);
@@ -73,7 +72,7 @@ class StudentQrCodeController extends GetxController {
       path: '${StudentsLinks.validateStudent}/${uuid.iD}',
       converter: ExamLinkResModel.fromJson,
       params: {
-        'examMissionId': cahechedExamMission?.iD,
+        'examMissionId': cachedExamMission?.iD,
       },
       type: ReqTypeEnum.GET,
     );

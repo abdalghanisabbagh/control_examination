@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
 import '../../configurations/app_links.dart';
-import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
 import '../../tools/response_handler.dart';
 import '../controllers.dart';
