@@ -34,11 +34,11 @@ class HomeController extends GetxController {
   //     type: ReqTypeEnum.GET,
   //   );
 
-  //   response.fold((fauilr) {
+  //   response.fold((failure) {
   //     /// handel error
   //     MyAwesomeDialogue(
   //       title: 'Error',
-  //       desc: "${fauilr.code} ::${fauilr.message}",
+  //       desc: "${failure.code} ::${failure.message}",
   //       dialogType: DialogType.error,
   //     ).showDialogue(Get.key.currentContext!);
   //   }, (result) {
@@ -86,10 +86,10 @@ class HomeController extends GetxController {
     update();
   }
 
-  void startServerClock(String? servertimeString) async {
-    if (servertimeString != null) {
-      DateTime servertimeDate = DateTime.parse(servertimeString);
-      timerCounter = servertimeDate.millisecondsSinceEpoch;
+  void startServerClock(String? serverTimeString) async {
+    if (serverTimeString != null) {
+      DateTime serverTimeDate = DateTime.parse(serverTimeString);
+      timerCounter = serverTimeDate.millisecondsSinceEpoch;
       serverCLock = Timer.periodic(const Duration(seconds: 1), (timer) {
         timerCounter += 1000;
         serveClock = DateTime.fromMillisecondsSinceEpoch(timerCounter);
