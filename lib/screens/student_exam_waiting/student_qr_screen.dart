@@ -33,6 +33,8 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                 color: ColorManager.white,
                 onPressed: () {
                   Get.delete<StudentQrCodeController>(force: true);
+                  Get.find<ExamMissionController>()
+                      .deleteExamMissionFromHiveBox();
                   Get.back();
                 },
               ),
@@ -97,7 +99,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
               FittedBox(
                 fit: BoxFit.fill,
                 child: Text(
-                  ' / ${controller.cahechedExamMission?.subjects?.name}',
+                  ' / ${controller.cachedExamMission?.subjects?.name}',
                   style: nunitoBold.copyWith(
                     color: ColorManager.white,
                     fontSize: 18,
@@ -153,7 +155,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                                 : ElevatedButton(
                                     onPressed: () async {
                                       final bool isValid = await controller
-                                          .validtaeStudentToStartExam();
+                                          .validateStudentToStartExam();
                                       if (isValid) {
                                         Hive.box('ExamMission')
                                             .put('inExam', true);

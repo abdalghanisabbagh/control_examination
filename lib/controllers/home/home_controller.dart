@@ -9,22 +9,44 @@ import 'package:intl/intl.dart';
 import '../../configurations/app_links.dart';
 import '../../models/student_exams/student_exam_res_model.dart';
 import '../../models/student_exams/student_exams_res_model.dart';
-import '../../resource_manager/ReusableWidget/show_dialgue.dart';
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../../resource_manager/enums/req_type_enum.dart';
 import '../../tools/response_handler.dart';
 import '../controllers.dart';
 
+/// this class is the controller for the home page
+/// it contains the logic for getting the student exams and
+/// displaying the server clock
 class HomeController extends GetxController {
+  /// flag to indicate if the data is loading
   bool loading = false;
+
+  /// scroll controller for the exams list
   ScrollController scrollController = ScrollController();
-  DateTime? serveclock;
+
+  /// the server clock
+  DateTime? serveClock;
+
+  /// the timer for the server clock
   Timer? serverCLock;
+
+  /// the string representation of the server clock
   String serverTime = '00:00';
+
+  /// the list of student exams
   List<StudentExamResModel> studentExams = [];
+
+  /// the map of student exams grouped by mission name
   Map<String?, List<StudentExamResModel>>? studentExamsResModel;
+
+  /// the counter for the server clock
   int timerCounter = 0;
+
+  /// the user profile
   final userProfile = Get.find<ProfileController>().cachedUserProfile;
 
+  /// get the server clock from the server
+  /// and start the timer
   // Future<void> getServerClock() async {
   //   ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
 
@@ -34,11 +56,11 @@ class HomeController extends GetxController {
   //     type: ReqTypeEnum.GET,
   //   );
 
-  //   response.fold((fauilr) {
+  //   response.fold((failure) {
   //     /// handel error
   //     MyAwesomeDialogue(
   //       title: 'Error',
-  //       desc: "${fauilr.code} ::${fauilr.message}",
+  //       desc: "${failure.code} ::${failure.message}",
   //       dialogType: DialogType.error,
   //     ).showDialogue(Get.key.currentContext!);
   //   }, (result) {
@@ -48,6 +70,7 @@ class HomeController extends GetxController {
   //   });
   // }
 
+  /// get the student exams from the server
   Future<void> getStudentExams() async {
     final responseHandler = ResponseHandler<StudentExamsResModel>();
 
@@ -72,6 +95,7 @@ class HomeController extends GetxController {
     update(['exams']);
   }
 
+  /// on init
   @override
   void onInit() async {
     super.onInit();
@@ -86,22 +110,24 @@ class HomeController extends GetxController {
     update();
   }
 
-  void startServerClock(String? servertimeString) async {
-    if (servertimeString != null) {
-      DateTime servertimeDate = DateTime.parse(servertimeString);
-      timerCounter = servertimeDate.millisecondsSinceEpoch;
+  /// start the server clock
+  void startServerClock(String? serverTimeString) async {
+    if (serverTimeString != null) {
+      DateTime serverTimeDate = DateTime.parse(serverTimeString);
+      timerCounter = serverTimeDate.millisecondsSinceEpoch;
       serverCLock = Timer.periodic(const Duration(seconds: 1), (timer) {
         timerCounter += 1000;
-        serveclock = DateTime.fromMillisecondsSinceEpoch(timerCounter);
-        serverTime = DateFormat('HH:mm:ss').format(serveclock!);
+        serveClock = DateTime.fromMillisecondsSinceEpoch(timerCounter);
+        serverTime = DateFormat('HH:mm:ss').format(serveClock!);
         // print(serverTime);
-        serverTime = DateFormat('HH:mm:ss').format(serveclock!);
+        serverTime = DateFormat('HH:mm:ss').format(serveClock!);
 //debugPrint(serverTime);
         update();
       });
     }
   }
 
+  /// stop the server clock
   void stopServerClock() {
     if (serverCLock != null) {
       serverCLock!.cancel();

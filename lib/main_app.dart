@@ -7,7 +7,7 @@ import 'bindings/bindings.dart';
 import 'routes_manger.dart';
 
 class MyApp extends StatefulWidget {
-  static const MyApp _instance = MyApp._internal(); // singlton instance
+  static const MyApp _instance = MyApp._internal(); // singleton instance
 
   factory MyApp() => _instance;
 

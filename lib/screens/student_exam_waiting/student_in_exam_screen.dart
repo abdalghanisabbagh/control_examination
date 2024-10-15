@@ -8,6 +8,7 @@ import 'package:pdf_render/pdf_render_widgets.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../configurations/constants/assets.dart';
+import '../../controllers/exam_mission_controller.dart';
 import '../../controllers/full_screen_controller.dart';
 import '../../controllers/student_exam/student_in_exam_controller.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
@@ -48,6 +49,8 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
                       color: ColorManager.white,
                       onPressed: () async {
                         await Hive.box('ExamMission').put('inExam', false);
+                        Get.find<ExamMissionController>()
+                            .deleteExamMissionFromHiveBox();
                         Get.back();
                       },
                     ),
