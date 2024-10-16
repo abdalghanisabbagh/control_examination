@@ -115,18 +115,34 @@ class StudentExamWaitingScreen extends GetView<StudentExamController> {
         ),
       ),
       body: Center(
-        child: SlideCountdown(
-          onChanged: (value) => value.inSeconds <= 5 * 60
-              ? Get.offNamed(Routes.studentExamScreenQRCode)
-              : null,
-          duration: Duration(seconds: _start),
-          style: nunitoBold.copyWith(
-            color: ColorManager.white,
-            fontSize: 100,
-          ),
-          decoration: const BoxDecoration(
-            color: ColorManager.bgSideMenu,
-          ),
+        child: Column(
+          children: [
+            const Spacer(),
+            SlideCountdown(
+              onChanged: (value) => value.inSeconds <= 5 * 60
+                  ? Get.offNamed(Routes.studentExamScreenQRCode)
+                  : null,
+              duration: Duration(seconds: _start),
+              separatorType: SeparatorType.title,
+              style: nunitoBold.copyWith(
+                color: ColorManager.white,
+                fontSize: 100,
+              ),
+              decoration: const BoxDecoration(
+                color: ColorManager.bgSideMenu,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+              ),
+            ),
+            const Spacer(),
+            const Text(
+              "With any attempt to leave the screen of examination, your exam will be CANCELLED immediately, and you will earn a score of Zero Grade!",
+              // "If you try to go out from Exam screen,your exam will be CANCELED,Please don't try take screen (shot/record)",
+              style: TextStyle(color: Colors.red, fontSize: 24),
+            ).paddingSymmetric(horizontal: 300),
+            const Spacer(),
+          ],
         ),
       ),
     );
