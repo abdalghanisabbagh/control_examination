@@ -80,15 +80,15 @@ class StudentInExamController extends FullLifeCycleController
 
   /// mark the student as cheating
   void markStudentCheating() async {
-    final ResponseHandler responseHandler = ResponseHandler<void>();
+    // final ResponseHandler responseHandler = ResponseHandler<void>();
 
-    await responseHandler.getResponse(
-      path: '${StudentsLinks.studentCheating}/${examMissionController.barcode}',
-      type: ReqTypeEnum.GET,
-      converter: (_) {},
-    );
-    Get.find<HomeController>().onInit();
-    Get.offAllNamed(Routes.studentCheatingRoute);
+    // await responseHandler.getResponse(
+    //   path: '${StudentsLinks.studentCheating}/${examMissionController.barcode}',
+    //   type: ReqTypeEnum.GET,
+    //   converter: (_) {},
+    // );
+    // Get.find<HomeController>().onInit();
+    // Get.offAllNamed(Routes.studentCheatingRoute);
   }
 
   @override
