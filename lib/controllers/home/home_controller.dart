@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../configurations/app_links.dart';
+import '../../models/server_clock_model.dart';
 import '../../models/student_exams/student_exam_res_model.dart';
 import '../../models/student_exams/student_exams_res_model.dart';
 import '../../resource_manager/ReusableWidget/show_dialogue.dart';
@@ -26,6 +27,9 @@ class HomeController extends GetxController {
 
   /// the server clock
   DateTime? serveClock;
+
+  /// the server time
+  DateTime? serverDateTime;
 
   /// the timer for the server clock
   Timer? serverCLock;
@@ -47,28 +51,31 @@ class HomeController extends GetxController {
 
   /// get the server clock from the server
   /// and start the timer
-  // Future<void> getServerClock() async {
-  //   ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
+  Future<void> getServerClock() async {
+    ResponseHandler<ServerClockResModel> responseHandler = ResponseHandler();
 
-  //   var response = await responseHandler.getResponse(
-  //     path: AppLinks.baseUrlProd,
-  //     converter: ServerClockResModel.fromJson,
-  //     type: ReqTypeEnum.GET,
-  //   );
+    var response = await responseHandler.getResponse(
+      path: AppLinks.baseUrlProd,
+      converter: ServerClockResModel.fromJson,
+      type: ReqTypeEnum.GET,
+    );
 
-  //   response.fold((failure) {
-  //     /// handel error
-  //     MyAwesomeDialogue(
-  //       title: 'Error',
-  //       desc: "${failure.code} ::${failure.message}",
-  //       dialogType: DialogType.error,
-  //     ).showDialogue(Get.key.currentContext!);
-  //   }, (result) {
-  //     debugPrint(result.data);
-  //     startServerClock(result.data);
-  //     update();
-  //   });
-  // }
+    response.fold(
+      (failure) {
+        /// handel error
+        MyAwesomeDialogue(
+          title: 'Error',
+          desc: "${failure.code} ::${failure.message}",
+          dialogType: DialogType.error,
+        ).showDialogue(Get.key.currentContext!);
+      },
+      (result) {
+        serverDateTime = DateTime.parse(result.data!.replaceAll('Z', ''));
+        startServerClock(result.data!.replaceAll('Z', ''));
+        update();
+      },
+    );
+  }
 
   /// get the student exams from the server
   Future<void> getStudentExams() async {
@@ -80,18 +87,21 @@ class HomeController extends GetxController {
       type: ReqTypeEnum.GET,
     );
 
-    response.fold((l) {
-      MyAwesomeDialogue(
-        title: 'Error',
-        desc: l.message,
-        dialogType: DialogType.error,
-      ).showDialogue(Get.key.currentContext!);
-    }, (r) {
-      studentExams.assignAll(r.exams!);
-      studentExamsResModel = r.exams!.groupListsBy(
-        (element) => element.examMission?.controlMissionResModel?.name,
-      );
-    });
+    response.fold(
+      (l) {
+        MyAwesomeDialogue(
+          title: 'Error',
+          desc: l.message,
+          dialogType: DialogType.error,
+        ).showDialogue(Get.key.currentContext!);
+      },
+      (r) {
+        studentExams.assignAll(r.exams!);
+        studentExamsResModel = r.exams!.groupListsBy(
+          (element) => element.examMission?.controlMissionResModel?.name,
+        );
+      },
+    );
     update(['exams']);
   }
 
@@ -101,10 +111,12 @@ class HomeController extends GetxController {
     super.onInit();
     loading = true;
     update();
-    await Future.wait([
-      // getServerClock(),
-      getStudentExams(),
-    ]);
+    await Future.wait(
+      [
+        getServerClock(),
+        getStudentExams(),
+      ],
+    );
 
     loading = false;
     update();
@@ -115,15 +127,15 @@ class HomeController extends GetxController {
     if (serverTimeString != null) {
       DateTime serverTimeDate = DateTime.parse(serverTimeString);
       timerCounter = serverTimeDate.millisecondsSinceEpoch;
-      serverCLock = Timer.periodic(const Duration(seconds: 1), (timer) {
-        timerCounter += 1000;
-        serveClock = DateTime.fromMillisecondsSinceEpoch(timerCounter);
-        serverTime = DateFormat('HH:mm:ss').format(serveClock!);
-        // print(serverTime);
-        serverTime = DateFormat('HH:mm:ss').format(serveClock!);
-//debugPrint(serverTime);
-        update();
-      });
+      serverCLock = Timer.periodic(
+        const Duration(seconds: 1),
+        (timer) {
+          timerCounter += 1000;
+          serveClock = DateTime.fromMillisecondsSinceEpoch(timerCounter);
+          serverTime = DateFormat('HH:mm:ss').format(serveClock!);
+          update();
+        },
+      );
     }
   }
 
