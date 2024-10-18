@@ -206,8 +206,10 @@ class HomeScreen extends GetView<HomeController> {
                                                                       ?.endTime ??
                                                                   DateTime.now()
                                                                       .toString())
-                                                              .isBefore(DateTime
-                                                                  .now())) {
+                                                              .isBefore(controller
+                                                                      .serverDateTime ??
+                                                                  DateTime
+                                                                      .now())) {
                                                             MyAwesomeDialogue(
                                                               title:
                                                                   'Exam Ended',
@@ -219,19 +221,18 @@ class HomeScreen extends GetView<HomeController> {
                                                             ).showDialogue(Get
                                                                 .key
                                                                 .currentContext!);
-                                                          } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
-                                                                      .difference(
+                                                          } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).difference(
+                                                                      controller.serverDateTime ??
                                                                           DateTime
                                                                               .now()) <=
                                                                   const Duration(
                                                                     minutes: 5,
                                                                   ) ||
-                                                              DateTime.parse(
-                                                                      exam.examMission?.startTime ?? DateTime.now().toString())
-                                                                  .isBefore(DateTime.now())) {
+                                                              DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString())
+                                                                  .isBefore(controller.serverDateTime ?? DateTime.now())) {
                                                             Get.toNamed(Routes
                                                                 .studentExamScreenQRCode);
-                                                          } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).difference(DateTime.now()) <
+                                                          } else if (DateTime.parse(exam.examMission?.startTime ?? DateTime.now().toString()).difference(controller.serverDateTime ?? DateTime.now()) <
                                                               const Duration(
                                                                 minutes: 15,
                                                               )) {

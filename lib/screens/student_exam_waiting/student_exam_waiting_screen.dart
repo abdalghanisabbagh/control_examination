@@ -8,11 +8,12 @@ import '../../controllers/controllers.dart';
 import '../../routes_manger.dart';
 
 class StudentExamWaitingScreen extends GetView<StudentExamController> {
-  final int _start = DateTime.parse(Get.find<ExamMissionController>()
+  final int _start = Get.find<HomeController>()
+      .serveClock!
+      .difference(DateTime.parse(Get.find<ExamMissionController>()
           .cachedExamMission!
           .startTime
-          .toString())
-      .difference(DateTime.now())
+          .toString()))
       .inSeconds
       .abs(); // Countdown starting value
 
