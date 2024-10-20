@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 // import '../../configurations/app_links.dart';
 import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 // import '../../resource_manager/enums/req_type_enum.dart';
