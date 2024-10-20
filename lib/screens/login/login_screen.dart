@@ -21,7 +21,8 @@ class LoginScreen extends GetView<LoginController> {
           children: [
             Opacity(
               opacity: .5,
-              child: CarouselSlider(
+              child: 
+                  CarouselSlider(
                 items: [
                   Image.asset(
                     width: size.width,
@@ -52,6 +53,7 @@ class LoginScreen extends GetView<LoginController> {
                   reverse: false,
                 ),
               ),
+        
             ),
             Align(
               alignment: Alignment.bottomRight,

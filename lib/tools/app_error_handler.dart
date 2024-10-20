@@ -7,18 +7,19 @@ import 'package:dio/dio.dart';
 import '../models/failure_model.dart';
 
 Failure _handleError(DioException error) {
-  return switch (error.type) {
-    DioExceptionType.connectionError =>
-      DataSource.CONNECTION_ERROR.getFailure(),
-    DioExceptionType.badCertificate => DataSource.BAD_CERTIFICATE.getFailure(),
-    DioExceptionType.sendTimeout => DataSource.SEND_TIMEOUT.getFailure(),
-    DioExceptionType.receiveTimeout => DataSource.RECIEVE_TIMEOUT.getFailure(),
-    DioExceptionType.badResponse => DataSource.BAD_RESPONSE.getFailure(),
-    DioExceptionType.connectionTimeout =>
-      DataSource.CONNECT_TIMEOUT.getFailure(),
-    DioExceptionType.cancel => DataSource.CANCEL.getFailure(),
-    DioExceptionType.unknown => DataSource.NOT_FOUND.getFailure(),
-  };
+  return DataSource.CONNECT_TIMEOUT.getFailure();
+  // return switch (error.type) {
+  //   DioExceptionType.connectionError =>
+  //     DataSource.CONNECTION_ERROR.getFailure(),
+  //   DioExceptionType.badCertificate => DataSource.BAD_CERTIFICATE.getFailure(),
+  //   DioExceptionType.sendTimeout => DataSource.SEND_TIMEOUT.getFailure(),
+  //   DioExceptionType.receiveTimeout => DataSource.RECIEVE_TIMEOUT.getFailure(),
+  //   DioExceptionType.badResponse => DataSource.BAD_RESPONSE.getFailure(),
+  //   DioExceptionType.connectionTimeout =>
+  //     DataSource.CONNECT_TIMEOUT.getFailure(),
+  //   DioExceptionType.cancel => DataSource.CANCEL.getFailure(),
+  //   DioExceptionType.unknown => DataSource.NOT_FOUND.getFailure(),
+  // };
 }
 
 enum DataSource {

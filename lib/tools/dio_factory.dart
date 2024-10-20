@@ -32,9 +32,10 @@ class DioFactory {
       if (token != null || tokenModel?.aToken != null)
         AUTHORIZATION: "Bearer ${token?.aToken ?? tokenModel?.aToken}",
     };
+    
 
     dio.options = BaseOptions(
-      baseUrl: AppLinks.baseUrlStaging,
+      baseUrl: AppLinks.baseUrlProd,
       headers: headers,
       receiveTimeout: timeOut,
       sendTimeout: timeOut,
