@@ -1,16 +1,12 @@
 import 'dart:typed_data';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:control_examination/routes_manger.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
 
-import '../../configurations/app_links.dart';
 import '../../resource_manager/ReusableWidget/show_dialogue.dart';
-import '../../resource_manager/enums/req_type_enum.dart';
-import '../../tools/response_handler.dart';
 import '../controllers.dart';
 
 /// student in exam controller
@@ -80,15 +76,15 @@ class StudentInExamController extends FullLifeCycleController
 
   /// mark the student as cheating
   void markStudentCheating() async {
-    final ResponseHandler responseHandler = ResponseHandler<void>();
+    // final ResponseHandler responseHandler = ResponseHandler<void>();
 
-    await responseHandler.getResponse(
-      path: '${StudentsLinks.studentCheating}/${examMissionController.barcode}',
-      type: ReqTypeEnum.GET,
-      converter: (_) {},
-    );
-    Get.find<HomeController>().onInit();
-    Get.offAllNamed(Routes.studentCheatingRoute);
+    // await responseHandler.getResponse(
+    //   path: '${StudentsLinks.studentCheating}/${examMissionController.barcode}',
+    //   type: ReqTypeEnum.GET,
+    //   converter: (_) {},
+    // );
+    // Get.find<HomeController>().onInit();
+    // Get.offAllNamed(Routes.studentCheatingRoute);
   }
 
   @override
