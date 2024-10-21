@@ -37,10 +37,8 @@ class ProfileController extends GetxController {
   /// this method saves the user profile to the hive box
   /// it takes the user profile model as a parameter
   /// and returns a future
-  Future<void> saveProfileToHiveBox(UserProfileModel cachedUserProfile) async {
+  void saveProfileToHiveBox(UserProfileModel cachedUserProfile) {
     _cachedUserProfile = cachedUserProfile;
-    update();
-    await Hive.box('Profile')
-        .put('Profile', jsonEncode(cachedUserProfile.toJson()));
+    Hive.box('Profile').put('Profile', jsonEncode(cachedUserProfile.toJson()));
   }
 }
