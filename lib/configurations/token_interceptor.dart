@@ -12,7 +12,7 @@ class TokenInterceptor extends Interceptor {
   TokenInterceptor();
 
   @override
-  void onError(DioException err, ErrorInterceptorHandler handler) async {
+  void onError(DioError err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401) {
       String refresh = tokenService.tokenModel!.rToken;
       var dio = Dio(
