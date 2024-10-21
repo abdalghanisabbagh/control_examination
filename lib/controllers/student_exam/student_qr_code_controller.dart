@@ -26,6 +26,9 @@ class StudentQrCodeController extends GetxController {
   /// this is the exam mission
   final cachedExamMission = Get.find<ExamMissionController>().cachedExamMission;
 
+  /// this is the barcode
+  final cachedBarcode = Get.find<ExamMissionController>().barcode;
+
   /// this is the loading status
   bool loading = false;
 
@@ -101,6 +104,7 @@ class StudentQrCodeController extends GetxController {
       converter: ExamLinkResModel.fromJson,
       params: {
         'examMissionId': cachedExamMission?.iD,
+        'barcode': cachedBarcode,
       },
       type: ReqTypeEnum.GET,
     );
