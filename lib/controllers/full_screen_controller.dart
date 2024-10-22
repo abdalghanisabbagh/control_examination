@@ -1,5 +1,5 @@
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+//import 'dart:html' as html;
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
 
@@ -24,22 +24,22 @@ class FullScreenController extends GetxController {
   final studentInExamController = Get.find<StudentInExamController>();
 
   /// Enters full screen mode.
-  Future<void> enterFullScreen() async {
-    try {
-      await html.window.document.documentElement?.requestFullscreen();
-    } on Exception catch (e) {
-      debugPrint('Error entering full screen: $e');
-    }
-  }
+  // Future<void> enterFullScreen() async {
+  //   try {
+  //     await html.window.document.documentElement?.requestFullscreen();
+  //   } on Exception catch (e) {
+  //     debugPrint('Error entering full screen: $e');
+  //   }
+  // }
 
   /// Exits full screen mode.
-  void exitFullScreen() {
-    try {
-      html.document.exitFullscreen();
-    } on Exception catch (e) {
-      debugPrint('Error exiting full screen: $e');
-    }
-  }
+  // void exitFullScreen() {
+  //   try {
+  //     html.document.exitFullscreen();
+  //   } on Exception catch (e) {
+  //     debugPrint('Error exiting full screen: $e');
+  //   }
+  // }
 
   /// Checks if the user has pressed a key that is not allowed.
   ///
@@ -79,27 +79,27 @@ class FullScreenController extends GetxController {
   @override
   void onClose() {
     removeListeners();
-    exitFullScreen();
+   // exitFullScreen();
     super.onClose();
   }
 
   @override
   void onInit() {
-    enterFullScreen().then((value) async {
-      html.window.addEventListener('fullscreenchange', (event) {
-        if (Hive.box('ExamMission').get('inExam', defaultValue: false)) {
-          isInFullScreen()
-              ? null
-              : studentInExamController.markStudentCheating();
-        }
-      });
-    });
+    // enterFullScreen().then((value) async {
+    //   html.window.addEventListener('fullscreenchange', (event) {
+    //     if (Hive.box('ExamMission').get('inExam', defaultValue: false)) {
+    //       isInFullScreen()
+    //           ? null
+    //           : studentInExamController.markStudentCheating();
+    //     }
+    //   });
+    // });
     super.onInit();
   }
 
   /// Removes the event listeners that were added in the onInit method.
   void removeListeners() {
-    html.window.removeEventListener('fullscreenchange', (event) => true, true);
+    //html.window.removeEventListener('fullscreenchange', (event) => true, true);
   }
 
   /// Updates the lastKey variable with the new key.

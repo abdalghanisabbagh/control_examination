@@ -102,7 +102,7 @@ class HomeScreen extends GetView<HomeController> {
                       color: ColorManager.primary,
                     ),
                     child: SizedBox(
-                      width: windowSizeController.windowWidth * 0.26,
+                    //  width: windowSizeController.windowWidth * 0.26,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -277,12 +277,12 @@ class HomeScreen extends GetView<HomeController> {
                                                           child: Row(
                                                             children: [
                                                               SizedBox(
-                                                                width: windowSizeController
-                                                                        .windowWidth *
-                                                                    0.015,
-                                                                height: windowSizeController
-                                                                        .windowWidth *
-                                                                    0.06,
+                                                                // width: windowSizeController
+                                                                //         .windowWidth *
+                                                                //     0.015,
+                                                                // height: windowSizeController
+                                                                //         .windowWidth *
+                                                                //     0.06,
                                                               ),
                                                               Column(
                                                                 children: [
@@ -465,7 +465,7 @@ class HomeScreen extends GetView<HomeController> {
                   ),
                   SizedBox(
                     height: double.infinity,
-                    width: windowSizeController.windowWidth * 0.74,
+                 //   width: windowSizeController.windowWidth * 0.74,
                     child: SingleChildScrollView(
                       controller: controller.scrollController,
                       physics: const BouncingScrollPhysics(),
