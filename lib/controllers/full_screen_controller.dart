@@ -1,7 +1,7 @@
 // ignore: avoid_web_libraries_in_flutter
 //import 'dart:html' as html;
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
+//import 'dart:js' as js;
 
 import 'package:control_examination/controllers/controllers.dart';
 import 'package:flutter/material.dart';
@@ -71,10 +71,10 @@ class FullScreenController extends GetxController {
   }
 
   /// Checks if the browser is currently in full screen mode.
-  bool isInFullScreen() {
-    var result = js.context.callMethod('isFullScreen');
-    return result ?? false;
-  }
+  // bool isInFullScreen() {
+  //   // var result = js.context.callMethod('isFullScreen');
+  //   // return result ?? false;
+  // }
 
   @override
   void onClose() {
