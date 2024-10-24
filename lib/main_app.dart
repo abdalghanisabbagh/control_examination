@@ -1,4 +1,5 @@
 import 'package:custom_theme/lib.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -20,10 +21,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    if (kIsWeb) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+    }
+
     return GetMaterialApp(
       navigatorKey: Get.key,
       debugShowCheckedModeBanner: false,
@@ -35,10 +39,5 @@ class _MyAppState extends State<MyApp> {
       initialBinding: InitialBindings(),
       initialRoute: Routes.loginRoute,
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 }

@@ -1,27 +1,33 @@
-// ignore: avoid_web_libraries_in_flutter
-//import 'dart:html' as html;
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
 
-import 'package:get/get.dart';
+// /// WindowSizeController هو GetxController الذي يوفر العرض والارتفاع الحاليين للنافذة
+// /// يستمع لأحداث تغيير حجم النافذة ويقوم بتحديث القيم وفقًا لذلك
+// class WindowSizeController extends GetxController {
+//   /// العرض الحالي للنافذة
+//   double windowWidth = 0.0;
 
-/// WindowSizeController is a GetxController that provides the current width and height of the window
-/// it listens to window resize events and updates the values accordingly
-class WindowSizeController extends GetxController {
-  /// The current width of the window
- // var windowWidth = html.window.innerWidth!.toDouble();
+//   /// الارتفاع الحالي للنافذة
+//   double windowHeight = 0.0;
 
-  /// The current height of the window
- // var windowHeight = html.window.innerHeight!.toDouble();
+//   @override
+//   void onInit() {
+//     super.onInit();
+//     // تعيين القيم الأولية
+//     updateWindowSize();
 
-  /// Listens to window resize events and updates the values accordingly
-  @override
-  void onInit() {
-    super.onInit();
-    // Listen to window resize events
-    // html.window.onResize.listen((event) {
-    //   windowWidth = html.window.innerWidth!.toDouble();
-    //   windowHeight = html.window.innerHeight!.toDouble();
+//     // إضافة مستمع لتغيير حجم النافذة
+//     WidgetsBinding.instance.platformDispatcher.onMetricsChanged =
+//         updateWindowSize;
+//   }
 
-    //   update();
-    // });
-  }
-}
+//   /// تحديث القيم للعرض والارتفاع الحاليين
+//   void updateWindowSize() {
+//     final size = MediaQueryData.fromView(
+//             WidgetsBinding.instance.platformDispatcher.views.first)
+//         .size;
+//     windowWidth = size.width;
+//     windowHeight = size.height;
+//     update();
+//   }
+// }

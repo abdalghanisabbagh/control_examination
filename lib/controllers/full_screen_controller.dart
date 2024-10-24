@@ -7,7 +7,6 @@ import 'package:control_examination/controllers/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 /// FullScreenController is a GetxController that handles entering and exiting
 /// full screen mode.

@@ -1,4 +1,3 @@
-import 'package:control_examination/controllers/window_size_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/controllers.dart';
@@ -38,10 +37,10 @@ class InitialBindings extends Bindings {
       permanent: true,
     );
 
-    Get.put<WindowSizeController>(
-      WindowSizeController(),
-      permanent: true,
-    );
+    // Get.put<WindowSizeController>(
+    //   WindowSizeController(),
+    //   permanent: true,
+    // );
   }
 }
 

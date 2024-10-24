@@ -70,18 +70,19 @@ class LoginForm extends GetView<LoginController> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
             ),
-            width: 500,
+            width: 450,
             child: IntrinsicHeight(
               child: Center(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(40),
+                    padding: const EdgeInsets.all(20),
                     child: GetBuilder<LoginController>(
                       init: LoginController(),
                       builder: (controller) {
                         return Form(
                           key: formKey,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -89,7 +90,7 @@ class LoginForm extends GetView<LoginController> {
                                 "Welcome To Nis Examination Center",
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 25,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

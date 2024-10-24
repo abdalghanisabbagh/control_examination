@@ -7,8 +7,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final directory = await getApplicationDocumentsDirectory();
-  Hive.init(directory.path); 
-
+  Hive.init(directory.path);
 
   await Future.wait([
     Hive.openBox('Token'),
