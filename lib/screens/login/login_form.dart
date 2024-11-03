@@ -86,7 +86,7 @@ class LoginForm extends GetView<LoginController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
-                                "Welcome To Nis Examination Center",
+                                "Welcome To NIS Examination Center",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 25,
