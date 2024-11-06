@@ -267,117 +267,106 @@ class HomeScreen extends GetView<HomeController> {
                                                                         13
                                                                     ? ColorManager
                                                                         .green
-                                                                    : DateTime.parse(exam.examMission?.endTime ?? DateTime.now().toString()).isBefore(DateTime
-                                                                            .now())
+                                                                    : DateTime.parse(exam.examMission?.endTime ?? DateTime.now().toString())
+                                                                            .isBefore(
+                                                                        DateTime
+                                                                            .now(),
+                                                                      )
                                                                         ? ColorManager
                                                                             .red
                                                                         : ColorManager
                                                                             .greyA8,
                                                           ),
                                                           child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: [
+                                                              const Spacer(),
                                                               SizedBox(
-                                                                width: windowSizeController
-                                                                        .windowWidth *
-                                                                    0.015,
                                                                 height: windowSizeController
                                                                         .windowWidth *
-                                                                    0.06,
+                                                                    0.07,
                                                               ),
                                                               Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
-                                                                  FittedBox(
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    child: Text(
-                                                                      '${exam.examMission?.startTime?.dateFormat}',
-                                                                      style: nunitoLight
-                                                                          .copyWith(
-                                                                        color: ColorManager
-                                                                            .darkGrey2,
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
+                                                                  Text(
+                                                                    '${exam.examMission?.startTime?.dateFormat}',
+                                                                    style: nunitoLight
+                                                                        .copyWith(
+                                                                      color: ColorManager
+                                                                          .darkGrey2,
+                                                                      fontSize:
+                                                                          12,
                                                                     ),
                                                                   ),
-                                                                  FittedBox(
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    child: Text(
-                                                                      '${exam.examMission?.startTime?.timeFormat}',
-                                                                      style: nunitoLight
-                                                                          .copyWith(
-                                                                        color: ColorManager
-                                                                            .darkGrey2,
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
+                                                                  Text(
+                                                                    '${exam.examMission?.startTime?.timeFormat}',
+                                                                    style: nunitoLight
+                                                                        .copyWith(
+                                                                      color: ColorManager
+                                                                          .darkGrey2,
+                                                                      fontSize:
+                                                                          12,
                                                                     ),
                                                                   ),
                                                                 ],
                                                               ),
                                                               const Spacer(),
                                                               Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
-                                                                  FittedBox(
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    child: Text(
-                                                                      '${exam.examMission!.subjects?.name}',
-                                                                      style: nunitoSemiBold
-                                                                          .copyWith(
-                                                                        color: ColorManager
-                                                                            .white,
-                                                                        fontSize:
-                                                                            16,
-                                                                      ),
+                                                                  Text(
+                                                                    '${exam.examMission!.subjects?.name}',
+                                                                    style: nunitoSemiBold
+                                                                        .copyWith(
+                                                                      color: ColorManager
+                                                                          .white,
+                                                                      fontSize:
+                                                                          16,
                                                                     ),
                                                                   ),
-                                                                  FittedBox(
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    child: Text(
-                                                                      '${exam.examMission!.duration}',
-                                                                      style: nunitoSemiBold
-                                                                          .copyWith(
-                                                                        color: ColorManager
-                                                                            .white,
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
+                                                                  Text(
+                                                                    '${exam.examMission!.duration}',
+                                                                    style: nunitoSemiBold
+                                                                        .copyWith(
+                                                                      color: ColorManager
+                                                                          .white,
+                                                                      fontSize:
+                                                                          12,
                                                                     ),
                                                                   ),
                                                                 ],
                                                               ),
                                                               const Spacer(),
                                                               Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
-                                                                  FittedBox(
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    child: Text(
-                                                                      '${exam.examMission?.endTime?.dateFormat}',
-                                                                      style: nunitoLight
-                                                                          .copyWith(
-                                                                        color: ColorManager
-                                                                            .darkGrey2,
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
+                                                                  Text(
+                                                                    '${exam.examMission?.endTime?.dateFormat}',
+                                                                    style: nunitoLight
+                                                                        .copyWith(
+                                                                      color: ColorManager
+                                                                          .darkGrey2,
+                                                                      fontSize:
+                                                                          12,
                                                                     ),
                                                                   ),
-                                                                  FittedBox(
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    child: Text(
-                                                                      '${exam.examMission?.endTime?.timeFormat}',
-                                                                      style: nunitoLight
-                                                                          .copyWith(
-                                                                        color: ColorManager
-                                                                            .darkGrey2,
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
+                                                                  Text(
+                                                                    '${exam.examMission?.endTime?.timeFormat}',
+                                                                    style: nunitoLight
+                                                                        .copyWith(
+                                                                      color: ColorManager
+                                                                          .darkGrey2,
+                                                                      fontSize:
+                                                                          12,
                                                                     ),
                                                                   ),
                                                                 ],
