@@ -2,7 +2,6 @@ import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 import '../../configurations/constants/assets.dart';
 import '../../controllers/controllers.dart';
@@ -119,29 +118,29 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                 const Spacer(
                   flex: 1,
                 ),
-                Expanded(
-                  flex: 5,
-                  child: controller.qrCode.isEmpty
-                      ? Center(
-                          child: LoadingIndicators.getLoadingIndicator(),
-                        )
-                      : PrettyQrView.data(
-                          data: controller.qrCode,
-                        ),
-                ),
+                // Expanded(
+                //   flex: 5,
+                //   child: controller.qrCode.isEmpty
+                //       ? Center(
+                //           child: LoadingIndicators.getLoadingIndicator(),
+                //         )
+                //       : PrettyQrView.data(
+                //           data: controller.qrCode,
+                //         ),
+                // ),
                 const Spacer(
                   flex: 1,
                 ),
                 const Text(
-                  "With any attempt to leave the screen of examination, your exam will be CANCELLED immediately, and you will earn a score of Zero Grade!",
+                  "Please ask your proctor to open your exam. ",
                   // "If you try to go out from Exam screen,your exam will be CANCELED,Please don't try take screen (shot/record)",
-                  style: TextStyle(color: Colors.red, fontSize: 24),
+                  style: TextStyle(color: ColorManager.primary, fontSize: 24),
                 ).paddingSymmetric(horizontal: 300),
                 const Spacer(
                   flex: 1,
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: 1,
                   child: controller.qrCode.isEmpty
                       ? const SizedBox.shrink()
                       : GetBuilder<StudentQrCodeController>(
@@ -163,7 +162,7 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                                       }
                                     },
                                     child: Text(
-                                      'Scan Done?',
+                                      'Start Exam',
                                       style: nunitoBold.copyWith(
                                         color: ColorManager.white,
                                       ),
