@@ -26,10 +26,9 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
           focusNode: fullScreenController.focusNode,
           onKeyEvent: (KeyEvent event) {
             if (event is KeyDownEvent) {
-              // fullScreenController.handleKeyEvent(event);
-              // fullScreenController
-              //     .updateLastKey(event.logicalKey.debugName ?? 'Unknown');
-              // debugPrint('Key pressed: ${event.logicalKey.debugName}');
+              if (event.logicalKey == LogicalKeyboardKey.f5) {
+                Get.offAllNamed(Routes.homeScreen);
+              }
             }
           },
           child: Scaffold(
@@ -42,9 +41,7 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     BackButton(
                       color: ColorManager.white,
                       onPressed: () async {
@@ -54,16 +51,12 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
                         Get.back();
                       },
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     Image.asset(
                       Assets.assetsLogosNIS5,
                       height: 100,
                     ),
-                    const Spacer(
-                      flex: 2,
-                    ),
+                    const Spacer(flex: 2),
                     FittedBox(
                       fit: BoxFit.fill,
                       child: Text(
@@ -74,9 +67,7 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
                         ),
                       ),
                     ),
-                    const Spacer(
-                      flex: 2,
-                    ),
+                    const Spacer(flex: 2),
                     Row(
                       children: [
                         FittedBox(
@@ -141,9 +132,7 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
                         controller.zoomOut();
                       },
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    const SizedBox(width: 20),
                     GetBuilder<StudentInExamController>(
                       builder: (context) {
                         return controller.documentBytes == null
