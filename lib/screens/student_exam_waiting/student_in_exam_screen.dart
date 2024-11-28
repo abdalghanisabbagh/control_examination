@@ -26,7 +26,14 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
           focusNode: fullScreenController.focusNode,
           onKeyEvent: (KeyEvent event) {
             if (event is KeyDownEvent) {
-              if (event.logicalKey == LogicalKeyboardKey.f5) {
+              // التحقق من أي مفتاح من المفاتيح التي يمكن أن تستخدم لأخذ لقطة شاشة
+              if (event.logicalKey == LogicalKeyboardKey.printScreen ||
+                  event.logicalKey ==
+                      LogicalKeyboardKey.f12 || // بعض الأجهزة تستخدم F12
+                  event.logicalKey == LogicalKeyboardKey.f5) {
+                // بعض الأجهزة قد تستخدم Snapshot
+
+                // إعادة توجيه المستخدم إلى شاشة الهوم
                 Get.offAllNamed(Routes.homeScreen);
               }
             }
