@@ -1,4 +1,6 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+<head>
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
@@ -17,32 +19,28 @@
   <title>control_examination</title>
   <link rel="manifest" href="manifest.json">
 
-<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js" type="text/javascript"></script><script type="text/javascript">
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
-  pdfRenderOptions = {
-    // where cmaps are downloaded from
-    cMapUrl: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/cmaps/",
-    // The cmaps are compressed in the case
-    cMapPacked: true,
-    // any other options for pdfjsLib.getDocument.
-    // params: {}
-  };
-</script>  
-  
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
+    pdfRenderOptions = {
+      cMapUrl: "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/cmaps/",
+      cMapPacked: true,
+    };
+  </script>
+
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-  
   
   <style id="splash-screen-style">
     html {
-      height: 100%
+      height: 100%;
     }
 
     body {
       margin: 0;
       min-height: 100%;
       background-color: #ffffff;
-          background-size: 100% 100%;
+      background-size: 100% 100%;
     }
 
     .center {
@@ -50,7 +48,6 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
     }
 
@@ -75,7 +72,6 @@
       position: absolute;
       bottom: 0;
       left: 50%;
-      -ms-transform: translate(-50%, 0);
       transform: translate(-50%, 0);
     }
 
@@ -90,7 +86,28 @@
       bottom: 0;
       right: 0;
     }
+
+    /* طبقة الإخفاء */
+    .hidden-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      z-index: 9999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .hidden-overlay.active {
+      display: flex;
+    }
   </style>
+
   <script id="splash-screen-script">
     function removeSplashFromWeb() {
       document.getElementById("splash")?.remove();
@@ -99,57 +116,49 @@
     }
   </script>
 </head>
-<!-- IMPORTANT: load pdfjs files -->
-
-
 
 <body>
+  <!-- محتوى الصفحة -->
   <picture id="splash">
-      <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
-      <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
-      <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
+    <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
+    <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
+    <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
   </picture>
+
   
-  
+  <!-- طبقة الإخفاء -->
+  <div id="hidden-overlay" class="hidden-overlay">
+    المحتوى غير متاح أثناء محاولة أخذ لقطة شاشة.
+  </div>
+
   <script src="flutter_bootstrap.js" async=""></script>
   <script>
-    function enterFullScreen ()
-    {
+    function enterFullScreen() {
       const elem = document.documentElement;
-      if ( elem.requestFullscreen )
-      {
+      if (elem.requestFullscreen) {
         elem.requestFullscreen();
-      } else if ( elem.mozRequestFullScreen )
-      { // Firefox
+      } else if (elem.mozRequestFullScreen) { // Firefox
         elem.mozRequestFullScreen();
-      } else if ( elem.webkitRequestFullscreen )
-      { // Chrome, Safari, and Opera
+      } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, and Opera
         elem.webkitRequestFullscreen();
-      } else if ( elem.msRequestFullscreen )
-      { // IE/Edge
+      } else if (elem.msRequestFullscreen) { // IE/Edge
         elem.msRequestFullscreen();
       }
     }
 
-    function exitFullScreen ()
-    {
-      if ( document.exitFullscreen )
-      {
+    function exitFullScreen() {
+      if (document.exitFullscreen) {
         document.exitFullscreen();
-      } else if ( document.mozCancelFullScreen )
-      { // Firefox
+      } else if (document.mozCancelFullScreen) { // Firefox
         document.mozCancelFullScreen();
-      } else if ( document.webkitExitFullscreen )
-      { // Chrome, Safari, and Opera
+      } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
         document.webkitExitFullscreen();
-      } else if ( document.msExitFullscreen )
-      { // IE/Edge
+      } else if (document.msExitFullscreen) { // IE/Edge
         document.msExitFullscreen();
       }
     }
 
-    function isFullScreen ()
-    {
+    function isFullScreen() {
       return document.fullscreenElement ||
         document.mozFullScreenElement ||
         document.webkitFullscreenElement ||
@@ -157,23 +166,51 @@
     }
 
     // Example usage: update fullscreen status
-    function updateFullScreenStatus ()
-    {
-      console.log( "Is full screen: " + isFullScreen() );
+    function updateFullScreenStatus() {
+      console.log("Is full screen: " + isFullScreen());
     }
 
     // Event listeners for entering and exiting full screen
-    document.addEventListener( "fullscreenchange", updateFullScreenStatus );
-    document.addEventListener( "mozfullscreenchange", updateFullScreenStatus );
-    document.addEventListener( "webkitfullscreenchange", updateFullScreenStatus );
-    document.addEventListener( "msfullscreenchange", updateFullScreenStatus );
+    document.addEventListener("fullscreenchange", updateFullScreenStatus);
+    document.addEventListener("mozfullscreenchange", updateFullScreenStatus);
+    document.addEventListener("webkitfullscreenchange", updateFullScreenStatus);
+    document.addEventListener("msfullscreenchange", updateFullScreenStatus);
+
+    // كشف نشاط لقطة الشاشة
+    function detectScreenshot() {
+      const overlay = document.getElementById('hidden-overlay');
+      overlay.classList.add('active'); // إظهار طبقة الإخفاء
+
+      // إزالة الإخفاء بعد 3 ثوانٍ
+      setTimeout(() => {
+        overlay.classList.remove('active');
+      }, 3000);
+    }
+
+    // استماع للأحداث المتعلقة بنشاط الشاشة
+    document.addEventListener('keyup', function (event) {
+      if (event.key === 'PrintScreen') {
+        detectScreenshot();
+      }
+    });
+
+    // النسخ إلى الحافظة (جزء من محاولات لقطة الشاشة)
+    document.addEventListener('copy', function () {
+      detectScreenshot();
+    });
+
+    // محاولة الكشف عن التركيز المفقود في المتصفح
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') {
+        detectScreenshot();
+      }
+    });
   </script>
+
   <script>
-    document.addEventListener( 'contextmenu', function ( event )
-    {
+    document.addEventListener('contextmenu', function (event) {
       event.preventDefault();
-    } );
+    });
   </script>
-
-
-</body></html>
+</body>
+</html>
