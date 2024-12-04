@@ -6,7 +6,7 @@
     "nis-control-4cd9d": {
       "hosting": {
         "control_examination": [
-          "control-examination"
+          "staging-control-examination"
         ]
       }
     }

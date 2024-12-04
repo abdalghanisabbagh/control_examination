@@ -26,7 +26,27 @@ class StudentInExamScreen extends GetView<StudentInExamController> {
           focusNode: fullScreenController.focusNode,
           onKeyEvent: (KeyEvent event) {
             if (event is KeyDownEvent) {
-              if (event.logicalKey == LogicalKeyboardKey.f5) {
+              final logicalKey = event.logicalKey;
+
+              if (logicalKey == LogicalKeyboardKey.metaLeft ||
+                  logicalKey == LogicalKeyboardKey.metaRight ||
+                  logicalKey == LogicalKeyboardKey.altLeft ||
+                  logicalKey == LogicalKeyboardKey.altRight ||
+                  logicalKey == LogicalKeyboardKey.shiftLeft ||
+                  logicalKey == LogicalKeyboardKey.shiftRight ||
+                  logicalKey == LogicalKeyboardKey.tab ||
+                  logicalKey == LogicalKeyboardKey.f1 ||
+                  logicalKey == LogicalKeyboardKey.f2 ||
+                  logicalKey == LogicalKeyboardKey.f3 ||
+                  logicalKey == LogicalKeyboardKey.f4 ||
+                  logicalKey == LogicalKeyboardKey.f5 ||
+                  logicalKey == LogicalKeyboardKey.f6 ||
+                  logicalKey == LogicalKeyboardKey.f7 ||
+                  logicalKey == LogicalKeyboardKey.f8 ||
+                  logicalKey == LogicalKeyboardKey.f9 ||
+                  logicalKey == LogicalKeyboardKey.f10 ||
+                  logicalKey == LogicalKeyboardKey.f11 ||
+                  logicalKey == LogicalKeyboardKey.f12) {
                 Get.offAllNamed(Routes.homeScreen);
               }
             }
