@@ -176,30 +176,25 @@
     document.addEventListener("webkitfullscreenchange", updateFullScreenStatus);
     document.addEventListener("msfullscreenchange", updateFullScreenStatus);
 
-    // كشف نشاط لقطة الشاشة
     function detectScreenshot() {
       const overlay = document.getElementById('hidden-overlay');
-      overlay.classList.add('active'); // إظهار طبقة الإخفاء
+      overlay.classList.add('active'); 
 
-      // إزالة الإخفاء بعد 3 ثوانٍ
       setTimeout(() => {
         overlay.classList.remove('active');
       }, 3000);
     }
 
-    // استماع للأحداث المتعلقة بنشاط الشاشة
     document.addEventListener('keyup', function (event) {
       if (event.key === 'PrintScreen') {
         detectScreenshot();
       }
     });
 
-    // النسخ إلى الحافظة (جزء من محاولات لقطة الشاشة)
     document.addEventListener('copy', function () {
       detectScreenshot();
     });
 
-    // محاولة الكشف عن التركيز المفقود في المتصفح
     document.addEventListener('visibilitychange', function () {
       if (document.visibilityState === 'hidden') {
         detectScreenshot();
