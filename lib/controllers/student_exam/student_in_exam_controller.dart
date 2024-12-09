@@ -12,6 +12,7 @@ import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 // import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 // import '../../resource_manager/enums/req_type_enum.dart';
 // import '../../tools/response_handler.dart';
+import '../../routes_manger.dart';
 import '../controllers.dart';
 
 /// student in exam controller
@@ -89,13 +90,14 @@ class StudentInExamController extends FullLifeCycleController
     //   converter: (_) {},
     // );
     // Get.find<HomeController>().onInit();
-   // Get.offAllNamed(Routes.homeScreen);
+   Get.offAllNamed(Routes.homeScreen);
   }
 
   @override
   void onClose() {
     Get.delete<StudentQrCodeController>(force: true);
     Get.delete<StudentExamController>(force: true);
+    markStudentCheating();
 
     super.onClose();
   }
