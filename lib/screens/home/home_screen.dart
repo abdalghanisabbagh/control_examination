@@ -538,7 +538,7 @@ class HomeScreen extends GetView<HomeController> {
                             FittedBox(
                               fit: BoxFit.fill,
                               child: Text(
-                                '1. The side-bar includes each student\'s assigned exams throughout the examination-week.',
+                                '1. The side-bar includes your assigned exams throughout the examination-week.',
                                 style: nunitoRegular.copyWith(
                                   fontSize: 16,
                                   color: ColorManager.darkGrey2,
@@ -549,7 +549,7 @@ class HomeScreen extends GetView<HomeController> {
                             FittedBox(
                               fit: BoxFit.fill,
                               child: Text(
-                                '2. Each exam’s information is provided for your reference. Exam\'s date and duration are always shown and reflected underneath the exam’s label',
+                                '2. Date and duration are always shown and reflected underneath the exam’s label',
                                 style: nunitoRegular.copyWith(
                                   fontSize: 16,
                                   color: ColorManager.darkGrey2,
@@ -581,7 +581,7 @@ class HomeScreen extends GetView<HomeController> {
                                       child: RichText(
                                         text: TextSpan(
                                           text:
-                                              'a. The color of any un-attempted exam is initially  ',
+                                              'a. The color of any un-attempted exam is initially ',
                                           style: nunitoRegular.copyWith(
                                             fontSize: 16,
                                             color: ColorManager.darkGrey2,
@@ -604,7 +604,7 @@ class HomeScreen extends GetView<HomeController> {
                                       child: RichText(
                                         text: TextSpan(
                                           text:
-                                              'b. If you missed an exam, your subject-exam will turn  ',
+                                              'b. If you missed an exam, your subject-exam will turn ',
                                           style: nunitoRegular.copyWith(
                                             fontSize: 16,
                                             color: ColorManager.darkGrey2,
@@ -627,7 +627,7 @@ class HomeScreen extends GetView<HomeController> {
                                       child: RichText(
                                         text: TextSpan(
                                           text:
-                                              'c. If you took an exam, your subject-exam will turn  ',
+                                              'c. If you took an exam, your subject-exam will turn ',
                                           style: nunitoRegular.copyWith(
                                             fontSize: 16,
                                             color: ColorManager.darkGrey2,
@@ -649,41 +649,345 @@ class HomeScreen extends GetView<HomeController> {
                               ],
                             ),
                             const SizedBox(height: 10),
+                            // FittedBox(
+                            //   fit: BoxFit.fill,
+                            //   child: RichText(
+                            //     text: TextSpan(
+                            //       text:
+                            //           '4. Your exam will be logged out ONLY if you swipe left or right. You will be written up and will NOT be allowed to attempt the exam again.',
+                            //       style: nunitoRegular.copyWith(
+                            //         fontSize: 16,
+                            //         color: ColorManager.darkGrey2,
+                            //       ),
+                            //       children: [
+                            //         TextSpan(
+                            //           text: 'ATTEMPTED TO CHEAT',
+                            //           style: nunitoBold.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.ornage,
+                            //           ),
+                            //         ),
+                            //         TextSpan(
+                            //           text:
+                            //               ' on any exam, your subject-exam will turn ',
+                            //           style: nunitoRegular.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.darkGrey2,
+                            //           ),
+                            //         ),
+                            //         TextSpan(
+                            //           text: 'Orange',
+                            //           style: nunitoRegular.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.ornage,
+                            //           ),
+                            //         ),
+                            //         TextSpan(
+                            //           text:
+                            //               ' and your digital exam attempt will be cancelled immediately.',
+                            //           style: nunitoRegular.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.darkGrey2,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                            // const SizedBox(height: 10),
+                            // FittedBox(
+                            //   fit: BoxFit.fill,
+                            //   child: Text(
+                            //     '5. Cheating attempts will happen on any of the following cases. ',
+                            //     style: nunitoRegular.copyWith(
+                            //       fontSize: 16,
+                            //       color: ColorManager.darkGrey2,
+                            //     ),
+                            //   ),
+                            // ),
+                            const SizedBox(height: 5),
+                            // Row(
+                            //   children: [
+                            //     const SizedBox(
+                            //       width: 100,
+                            //     ),
+                            //     Expanded(
+                            //       child: Column(
+                            //         crossAxisAlignment:
+                            //             CrossAxisAlignment.start,
+                            //         children: [
+                            //           const SizedBox(height: 5),
+                            //           RichText(
+                            //             maxLines: 3,
+                            //             text: TextSpan(
+                            //               text: 'a. ',
+                            //               style: nunitoRegular.copyWith(
+                            //                 fontSize: 16,
+                            //                 color: ColorManager.darkGrey2,
+                            //               ),
+                            //               children: [
+                            //                 TextSpan(
+                            //                   text: 'BE WARNED!',
+                            //                   style: nunitoBold.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.yellow,
+                            //                   ),
+                            //                 ),
+                            //                 TextSpan(
+                            //                   text:
+                            //                       ' The following buttons are active buttons. ',
+                            //                   style: nunitoRegular.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.darkGrey2,
+                            //                   ),
+                            //                 ),
+                            //                 TextSpan(
+                            //                   text:
+                            //                       'If you pressed any of them for any reason, ',
+                            //                   style: nunitoRegular.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.darkGrey2,
+                            //                   ),
+                            //                 ),
+                            //                 TextSpan(
+                            //                   text:
+                            //                       'your attempt will be immediately cancelled, ',
+                            //                   style: nunitoRegular.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.darkGrey2,
+                            //                   ),
+                            //                 ),
+                            //                 TextSpan(
+                            //                   text:
+                            //                       'and you will be locked outside the Examination Platform.',
+                            //                   style: nunitoRegular.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.darkGrey2,
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
+                            // const SizedBox(height: 10),
+                            // Align(
+                            //   alignment: Alignment.topCenter,
+                            //   child: Column(
+                            //     children: [
+                            //       FittedBox(
+                            //         fit: BoxFit.fill,
+                            //         child: Text(
+                            //           'These buttons are: ',
+                            //           style: nunitoBold.copyWith(
+                            //             fontSize: 18,
+                            //             color: ColorManager.darkGrey2,
+                            //           ),
+                            //         ),
+                            //       ),
+                            //       FittedBox(
+                            //         fit: BoxFit.fill,
+                            //         child: Text(
+                            //           '[Print Screen, Windows, Control, Shift, F4, F5, F9, F10, F11, F12, Tab, Alt, Esc]',
+                            //           style: nunitoBold.copyWith(
+                            //             fontSize: 18,
+                            //             color: ColorManager.darkGrey2,
+                            //           ),
+                            //         ),
+                            //       ),
+                            //       FittedBox(
+                            //         fit: BoxFit.fill,
+                            //         child: Text(
+                            //           'Do Not Lock your laptop during exam.',
+                            //           style: nunitoBold.copyWith(
+                            //             fontSize: 18,
+                            //             color: ColorManager.darkGrey2,
+                            //             decoration: TextDecoration.underline,
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
+                            // const SizedBox(height: 5),
+                            // Row(
+                            //   children: [
+                            //     const SizedBox(
+                            //       width: 100,
+                            //     ),
+                            //     Expanded(
+                            //       child: Column(
+                            //         crossAxisAlignment:
+                            //             CrossAxisAlignment.start,
+                            //         children: [
+                            //           const SizedBox(height: 5),
+                            //           RichText(
+                            //             maxLines: 3,
+                            //             text: TextSpan(
+                            //               text: 'b. ',
+                            //               style: nunitoRegular.copyWith(
+                            //                 fontSize: 16,
+                            //                 color: ColorManager.darkGrey2,
+                            //               ),
+                            //               children: [
+                            //                 TextSpan(
+                            //                   text: 'BE WARNED!',
+                            //                   style: nunitoBold.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.yellow,
+                            //                   ),
+                            //                 ),
+                            //                 TextSpan(
+                            //                   text:
+                            //                       ' ! Your keyboard is locked. You are only allowed to preview your exam by scrolling up ⬆ and down ⬇ the screen using your keyboard, or mouse scroll, or scroll bar',
+                            //                   style: nunitoRegular.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.darkGrey2,
+                            //                   ),
+                            //                 ),
+                            //                 TextSpan(
+                            //                   text:
+                            //                       ' If you pressed any of them for any reason, ',
+                            //                   style: nunitoRegular.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.darkGrey2,
+                            //                   ),
+                            //                 ),
+                            //                 TextSpan(
+                            //                   text:
+                            //                       'your attempt will be immediately cancelled, ',
+                            //                   style: nunitoRegular.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.darkGrey2,
+                            //                   ),
+                            //                 ),
+                            //                 TextSpan(
+                            //                   text:
+                            //                       'and you will be locked outside the Examination Platform.',
+                            //                   style: nunitoRegular.copyWith(
+                            //                     fontSize: 16,
+                            //                     color: ColorManager.darkGrey2,
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ),
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
+                            // const SizedBox(height: 10),
+                            // FittedBox(
+                            //   fit: BoxFit.fill,
+                            //   child: RichText(
+                            //     text: TextSpan(
+                            //       text: '6. BE CAREFUL! ',
+                            //       style: nunitoSemiBold.copyWith(
+                            //         fontSize: 16,
+                            //         color: ColorManager.yellow,
+                            //       ),
+                            //       children: [
+                            //         TextSpan(
+                            //           text:
+                            //               'Once the system cancels your digital attempt automatically, you will be transferred to the Principal\'s Office for an investigation and you will receive a ZERO grade.',
+                            //           style: nunitoRegular.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.darkGrey2,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                            const SizedBox(height: 10),
+                            // FittedBox(
+                            //   fit: BoxFit.fill,
+                            //   child: RichText(
+                            //     text: TextSpan(
+                            //       text: '7. Some programs will lead to ',
+                            //       style: nunitoRegular.copyWith(
+                            //         fontSize: 16,
+                            //         color: ColorManager.darkGrey2,
+                            //       ),
+                            //       children: [
+                            //         TextSpan(
+                            //           text: 'not previewing ',
+                            //           style: nunitoSemiBold.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.darkGrey2,
+                            //             decoration: TextDecoration.underline,
+                            //           ),
+                            //         ),
+                            //         TextSpan(
+                            //           text:
+                            //               'your subject-exam, if exited; such as, The Internet Download Manager [ ',
+                            //           style: nunitoRegular.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.darkGrey2,
+                            //           ),
+                            //         ),
+                            //         TextSpan(
+                            //           text: 'IDM',
+                            //           style: nunitoSemiBold.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.darkGrey2,
+                            //             decoration: TextDecoration.underline,
+                            //           ),
+                            //         ),
+                            //         TextSpan(
+                            //           text: ' ]',
+                            //           style: nunitoRegular.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.darkGrey2,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
                             FittedBox(
                               fit: BoxFit.fill,
                               child: RichText(
                                 text: TextSpan(
-                                  text: '4. If you ',
+                                  text: '4. Your exam will be logged out ',
                                   style: nunitoRegular.copyWith(
                                     fontSize: 16,
                                     color: ColorManager.darkGrey2,
                                   ),
                                   children: [
                                     TextSpan(
-                                      text: 'ATTEMPTED TO CHEAT',
+                                      text: 'ONLY', // كلمة ONLY
                                       style: nunitoBold.copyWith(
                                         fontSize: 16,
-                                        color: ColorManager.ornage,
+                                        color: ColorManager.darkGrey2,
+                                        decoration: TextDecoration
+                                            .underline, // إضافة خط تحت
                                       ),
                                     ),
                                     TextSpan(
                                       text:
-                                          ' on any exam, your subject-exam will turn ',
+                                          ' if you swipe left or right. You will be written up and will ',
                                       style: nunitoRegular.copyWith(
                                         fontSize: 16,
                                         color: ColorManager.darkGrey2,
                                       ),
                                     ),
                                     TextSpan(
-                                      text: 'Orange',
-                                      style: nunitoRegular.copyWith(
+                                      text: 'NOT', // كلمة NOT
+                                      style: nunitoBold.copyWith(
                                         fontSize: 16,
-                                        color: ColorManager.ornage,
+                                        color: ColorManager.darkGrey2,
+                                        decoration: TextDecoration
+                                            .underline, // إضافة خط تحت
                                       ),
                                     ),
                                     TextSpan(
                                       text:
-                                          ' and your digital exam attempt will be cancelled immediately.',
+                                          ' be allowed to attempt the exam again.',
                                       style: nunitoRegular.copyWith(
                                         fontSize: 16,
                                         color: ColorManager.darkGrey2,
@@ -693,266 +997,12 @@ class HomeScreen extends GetView<HomeController> {
                                 ),
                               ),
                             ),
+
                             const SizedBox(height: 10),
                             FittedBox(
                               fit: BoxFit.fill,
                               child: Text(
-                                '5. Cheating attempts will happen on any of the following cases. ',
-                                style: nunitoRegular.copyWith(
-                                  fontSize: 16,
-                                  color: ColorManager.darkGrey2,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  width: 100,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(height: 5),
-                                      RichText(
-                                        maxLines: 3,
-                                        text: TextSpan(
-                                          text: 'a. ',
-                                          style: nunitoRegular.copyWith(
-                                            fontSize: 16,
-                                            color: ColorManager.darkGrey2,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text: 'BE WARNED!',
-                                              style: nunitoBold.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.yellow,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  ' The following buttons are active buttons. ',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'If you pressed any of them for any reason, ',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'your attempt will be immediately cancelled, ',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'and you will be locked outside the Examination Platform.',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Column(
-                                children: [
-                                  FittedBox(
-                                    fit: BoxFit.fill,
-                                    child: Text(
-                                      'These buttons are: ',
-                                      style: nunitoBold.copyWith(
-                                        fontSize: 18,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                  ),
-                                  FittedBox(
-                                    fit: BoxFit.fill,
-                                    child: Text(
-                                      '[Print Screen, Windows, Control, Shift, F4, F5, F9, F10, F11, F12, Tab, Alt, Esc]',
-                                      style: nunitoBold.copyWith(
-                                        fontSize: 18,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                  ),
-                                  FittedBox(
-                                    fit: BoxFit.fill,
-                                    child: Text(
-                                      'Do Not Lock your laptop during exam.',
-                                      style: nunitoBold.copyWith(
-                                        fontSize: 18,
-                                        color: ColorManager.darkGrey2,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Row(
-                              children: [
-                                const SizedBox(
-                                  width: 100,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(height: 5),
-                                      RichText(
-                                        maxLines: 3,
-                                        text: TextSpan(
-                                          text: 'b. ',
-                                          style: nunitoRegular.copyWith(
-                                            fontSize: 16,
-                                            color: ColorManager.darkGrey2,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text: 'BE WARNED!',
-                                              style: nunitoBold.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.yellow,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  ' ! Your keyboard is locked. You are only allowed to preview your exam by scrolling up ⬆ and down ⬇ the screen using your keyboard, or mouse scroll, or scroll bar',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  ' If you pressed any of them for any reason, ',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'your attempt will be immediately cancelled, ',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'and you will be locked outside the Examination Platform.',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            FittedBox(
-                              fit: BoxFit.fill,
-                              child: RichText(
-                                text: TextSpan(
-                                  text: '6. BE CAREFUL! ',
-                                  style: nunitoSemiBold.copyWith(
-                                    fontSize: 16,
-                                    color: ColorManager.yellow,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Once the system cancels your digital attempt automatically, you will be transferred to the Principal\'s Office for an investigation and you will receive a ZERO grade.',
-                                      style: nunitoRegular.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            FittedBox(
-                              fit: BoxFit.fill,
-                              child: RichText(
-                                text: TextSpan(
-                                  text: '7. Some programs will lead to ',
-                                  style: nunitoRegular.copyWith(
-                                    fontSize: 16,
-                                    color: ColorManager.darkGrey2,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: 'not previewing ',
-                                      style: nunitoSemiBold.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text:
-                                          'your subject-exam, if exited; such as, The Internet Download Manager [ ',
-                                      style: nunitoRegular.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: 'IDM',
-                                      style: nunitoSemiBold.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: ' ]',
-                                      style: nunitoRegular.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            FittedBox(
-                              fit: BoxFit.fill,
-                              child: Text(
-                                '8. Before any exam, check the following: ',
+                                '5. Before any exam, check the following:',
                                 style: nunitoRegular.copyWith(
                                   fontSize: 16,
                                   color: ColorManager.darkGrey2,
@@ -986,14 +1036,14 @@ class HomeScreen extends GetView<HomeController> {
                                                 color: ColorManager.darkGrey2,
                                               ),
                                             ),
-                                            TextSpan(
-                                              text:
-                                                  'Open any website to double-check.',
-                                              style: nunitoRegular.copyWith(
-                                                fontSize: 16,
-                                                color: ColorManager.darkGrey2,
-                                              ),
-                                            ),
+                                            // TextSpan(
+                                            //   text:
+                                            //       'Open any website to double-check.',
+                                            //   style: nunitoRegular.copyWith(
+                                            //     fontSize: 16,
+                                            //     color: ColorManager.darkGrey2,
+                                            //   ),
+                                            // ),
                                           ],
                                         ),
                                       ),
@@ -1103,88 +1153,88 @@ class HomeScreen extends GetView<HomeController> {
                               child: RichText(
                                 text: TextSpan(
                                   text:
-                                      '9. If you completed your exam, and you may wish to exit the screen, click on the ',
+                                      '6. If you completed your exam, and you may wish to exit the screen, click on the back arrow, which will provide a pop-up message to confirm the action.',
                                   style: nunitoRegular.copyWith(
                                     fontSize: 16,
                                     color: ColorManager.darkGrey2,
                                   ),
                                   children: [
-                                    TextSpan(
-                                      text: 'back arrow',
-                                      style: nunitoSemiBold.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: ', which will provide a  ',
-                                      style: nunitoRegular.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: 'pop-up message ',
-                                      style: nunitoSemiBold.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: 'to confirm the action.',
-                                      style: nunitoRegular.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
+                                    // TextSpan(
+                                    //   text: 'back arrow',
+                                    //   style: nunitoSemiBold.copyWith(
+                                    //     fontSize: 16,
+                                    //     color: ColorManager.darkGrey2,
+                                    //   ),
+                                    // ),
+                                    // TextSpan(
+                                    //   text: ', which will provide a  ',
+                                    //   style: nunitoRegular.copyWith(
+                                    //     fontSize: 16,
+                                    //     color: ColorManager.darkGrey2,
+                                    //   ),
+                                    // ),
+                                    // TextSpan(
+                                    //   text: 'pop-up message ',
+                                    //   style: nunitoSemiBold.copyWith(
+                                    //     fontSize: 16,
+                                    //     color: ColorManager.darkGrey2,
+                                    //   ),
+                                    // ),
+                                    // TextSpan(
+                                    //   text: 'to confirm the action.',
+                                    //   style: nunitoRegular.copyWith(
+                                    //     fontSize: 16,
+                                    //     color: ColorManager.darkGrey2,
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
                             ),
                             const SizedBox(height: 10),
-                            FittedBox(
-                              fit: BoxFit.fill,
-                              child: RichText(
-                                text: TextSpan(
-                                  text: '10. ',
-                                  style: nunitoRegular.copyWith(
-                                    fontSize: 16,
-                                    color: ColorManager.darkGrey2,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: 'BE the CHANGE! ',
-                                      style: nunitoSemiBold.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.newStatus,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text:
-                                          'Seek the Better Version of Yourself, and fulfill the Honor Pledge at your BEST capacity!',
-                                      style: nunitoRegular.copyWith(
-                                        fontSize: 16,
-                                        color: ColorManager.darkGrey2,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            // FittedBox(
+                            //   fit: BoxFit.fill,
+                            //   child: RichText(
+                            //     text: TextSpan(
+                            //       text: '10. ',
+                            //       style: nunitoRegular.copyWith(
+                            //         fontSize: 16,
+                            //         color: ColorManager.darkGrey2,
+                            //       ),
+                            //       children: [
+                            //         TextSpan(
+                            //           text: 'BE the CHANGE! ',
+                            //           style: nunitoSemiBold.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.newStatus,
+                            //           ),
+                            //         ),
+                            //         TextSpan(
+                            //           text:
+                            //               'Seek the Better Version of Yourself, and fulfill the Honor Pledge at your BEST capacity!',
+                            //           style: nunitoRegular.copyWith(
+                            //             fontSize: 16,
+                            //             color: ColorManager.darkGrey2,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
                             const SizedBox(height: 10),
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: FittedBox(
-                                fit: BoxFit.fill,
-                                child: Text(
-                                  '"Upon my honor, I have neither given nor received aid with this work"',
-                                  style: nunitoBold.copyWith(
-                                    fontSize: 16,
-                                    color: ColorManager.darkGrey2,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // Align(
+                            //   alignment: Alignment.topCenter,
+                            //   child: FittedBox(
+                            //     fit: BoxFit.fill,
+                            //     child: Text(
+                            //       '"Upon my honor, I have neither given nor received aid with this work"',
+                            //       style: nunitoBold.copyWith(
+                            //         fontSize: 16,
+                            //         color: ColorManager.darkGrey2,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             const SizedBox(height: 20),
                           ],
                         ),
