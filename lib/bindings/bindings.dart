@@ -2,6 +2,7 @@ import 'package:control_examination/controllers/window_size_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/controllers.dart';
+import '../controllers/surveys_controller.dart';
 import '../services/token_service.dart';
 
 class HomeBindings extends Bindings {
@@ -40,6 +41,11 @@ class InitialBindings extends Bindings {
 
     Get.put<WindowSizeController>(
       WindowSizeController(),
+      permanent: true,
+    );
+
+    Get.put(
+      SurveysController(),
       permanent: true,
     );
   }

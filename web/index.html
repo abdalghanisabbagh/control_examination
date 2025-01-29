@@ -88,7 +88,7 @@
     }
 
     /* طبقة الإخفاء */
-    .hidden-overlay {
+    /* .hidden-overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -101,7 +101,7 @@
       align-items: center;
       color: white;
       font-size: 24px;
-    }
+    } */
 
     .hidden-overlay.active {
       display: flex;
@@ -130,7 +130,7 @@
   <div id="hidden-overlay" class="hidden-overlay">
     "Content is unavailable while attempting to take a screenshot"
   </div>
-
+ث
   <script src="flutter_bootstrap.js" async=""></script>
   <script>
     function enterFullScreen() {
@@ -182,7 +182,7 @@
 
       setTimeout(() => {
         overlay.classList.remove('active');
-      }, 3000);
+      }, 1000);
     }
 
     document.addEventListener('keyup', function (event) {

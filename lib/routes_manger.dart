@@ -1,5 +1,6 @@
 import 'package:control_examination/screens/exam_finished/exam_finished_screen.dart';
 import 'package:control_examination/screens/student_cheating/student_cheating_screen.dart';
+import 'package:control_examination/screens/surveys/surveys_screen.dart';
 import 'package:get/get.dart';
 
 import 'bindings/bindings.dart';
@@ -16,6 +17,10 @@ class Routes {
   static const String loginRoute = "/login";
   static const String studentExamFinished = "/studentExamFinished";
   static const String studentCheatingRoute = "/studentCheatingRoute";
+  static const String surveys = "/surveys";
+  static const String studentExamScreen = "/studentExamScreen";
+  static const String studentExamScreenQRCode = "/studentExamScreenQRCode";
+  static const String studentExamScreenWaiting = "/studentExamScreenWaiting";
   // static const String nextExams = "/NextExams";
   // static const String allExams = "/AllExams";
   // static const String attendance = "/Attendance";
@@ -44,7 +49,7 @@ class Routes {
     GetPage(
       name: homeScreen,
       page: () => const HomeScreen(),
-    //  transition: Transition.fade,
+      //  transition: Transition.fade,
       binding: HomeBindings(),
       transitionDuration: const Duration(seconds: 1),
     ),
@@ -80,12 +85,12 @@ class Routes {
       ],
       transitionDuration: const Duration(seconds: 1),
     ),
-    // GetPage(
-    //   binding: NextExamBindings(),
-    //   name: nextExams,
-    //   page: () => const NextExamsPage(),
-    //   transitionDuration: const Duration(seconds: 1),
-    // ),
+    GetPage(
+      binding: InitialBindings(),
+      name: surveys,
+      page: () => const SurveysScreen(),
+      transitionDuration: const Duration(seconds: 1),
+    ),
     // GetPage(
     //   name: allExams,
     //   page: () => const AllExams(),
@@ -103,8 +108,4 @@ class Routes {
     //   transitionDuration: const Duration(seconds: 1),
     // ),
   ];
-
-  static const String studentExamScreen = "/studentExamScreen";
-  static const String studentExamScreenQRCode = "/studentExamScreenQRCode";
-  static const String studentExamScreenWaiting = "/studentExamScreenWaiting";
 }

@@ -90,6 +90,33 @@ class HomeScreen extends GetView<HomeController> {
                         ),
                       ),
                       const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            Get.toNamed(Routes.surveys);
+                          },
+                          label: const Text(
+                            'Surveys',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          iconAlignment: IconAlignment.end,
+                          icon:
+                              const Icon(Icons.star_rate, color: Colors.white),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF00BFFF),
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 8,
+                            shadowColor: const Color.fromRGBO(10, 31, 68, 0.5),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
