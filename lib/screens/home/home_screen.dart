@@ -97,7 +97,7 @@ class HomeScreen extends GetView<HomeController> {
                             Get.toNamed(Routes.surveys);
                           },
                           label: const Text(
-                            'Surveys',
+                            'Rate My Teacher',
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
