@@ -1,4 +1,5 @@
 // ignore: avoid_web_libraries_in_flutter
+import 'dart:async';
 import 'dart:html' as html;
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
@@ -78,13 +79,23 @@ class FullScreenController extends GetxController {
 
   @override
   void onClose() {
+    timer.cancel();
     removeListeners();
     exitFullScreen();
     super.onClose();
   }
 
+  late Timer timer;
   @override
   void onInit() {
+    timer = Timer.periodic(Duration(seconds: 5), (a) {
+      final bodyChildren = html.document.body?.children ?? [];
+      for (final element in bodyChildren) {
+        if (!element.id.contains('flutter')) {
+          studentInExamController.markStudentCheating();
+        }
+      }
+    });
     enterFullScreen().then((value) async {
       html.window.addEventListener('fullscreenchange', (event) {
         if (Hive.box('ExamMission').get('inExam', defaultValue: false)) {
