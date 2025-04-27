@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:custom_theme/lib.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../configurations/constants/assets.dart';
 import '../../controllers/controllers.dart';
 import '../../resource_manager/ReusableWidget/loading_indicators.dart';
+import '../../resource_manager/ReusableWidget/show_dialogue.dart';
 import '../../routes_manger.dart';
+import 'dart:html' as html;
 
 class StudentQrScreen extends GetView<StudentQrCodeController> {
   final ProfileController profileController = Get.find<ProfileController>();
@@ -153,6 +156,23 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
                                   )
                                 : ElevatedButton(
                                     onPressed: () async {
+                                      List<html.Element> allElements =
+                                          html.document.querySelectorAll('*');
+                                      for (var element in allElements) {
+                                        bool isAiExist = setupCheatingDetection(
+                                            element: element.outerHtml);
+                                        if (isAiExist) {
+                                          MyAwesomeDialogue(
+                                            title: 'Error',
+                                            desc:
+                                                "Kindly Uninstall or disable AI tools and try again",
+                                            dialogType: DialogType.error,
+                                          ).showDialogue(
+                                              Get.key.currentContext!);
+
+                                          return;
+                                        }
+                                      }
                                       final bool isValid = await controller
                                           .validateStudentToStartExam();
                                       if (isValid) {
@@ -180,5 +200,33 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
         },
       ),
     );
+  }
+
+  bool setupCheatingDetection({required String? element}) {
+    if (element?.contains('gpt') == true) {
+      return true;
+    } else if (element?.contains('monica') == true) {
+      return true;
+    } else {
+      false;
+    }
+    return false;
+    // html.window.addEventListener('visibilitychange', (event) {
+    //   var isInActive = js.context.callMethod('isInActive');
+    //   print('isInActive ${isInActive}');
+    //   if (isInActive) {
+    //     studentInExamController.markStudentCheating();
+    //   }
+    // });
+    //
+    // html.window.addEventListener('blur', (event) {
+    //   studentInExamController.markStudentCheating();
+    // });
+    //
+    // html.window.addEventListener('resize', (event) {
+    //   if (html.window.innerHeight! < 300 || html.window.innerWidth! < 300) {
+    //     studentInExamController.markStudentCheating();
+    //   }
+    // });
   }
 }
