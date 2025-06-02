@@ -207,6 +207,10 @@ class StudentQrScreen extends GetView<StudentQrCodeController> {
       return true;
     } else if (element?.contains('monica') == true) {
       return true;
+    } else if (element?.contains('gemini') == true) {
+      return true;
+    } else if (element?.contains('deepseek') == true) {
+      return true;
     } else {
       false;
     }
